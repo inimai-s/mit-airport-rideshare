@@ -63,11 +63,26 @@ const CreateARide = (props) => {
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
+    stringDestination="MIT"
+    if (destinationMIT===false){
+      stringDestination="Logan Airport"
+    }
 
-    // Clear the form
-    setMitLocationText("");
-    setDestinationMIT(false);
-    setDestinationLogan(false);
+    const body = {
+      creator_name: "Example User",
+      destination: stringDestination,
+      mit_location: mitLocationText,};
+
+    
+    post("/api/newRide", body).then((value) => {
+      console.log(value);
+      // Clear the form
+      setMitLocationText("");
+      setDestinationMIT(false);
+      setDestinationLogan(false);
+    });
+
+    
   };
 
   return (

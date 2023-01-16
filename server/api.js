@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const NewRide = require("./models/newRide")
 
 // import authentication library
 const auth = require("./auth");
@@ -42,6 +43,25 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+router.get("/newRides", (req, res) => {
+  // TODO (step1) get all the newRides from the database and send response back to client 
+  NewRide.find({}).then((newRides) => res.send(newRides));
+});
+
+router.post("/newRide", (req, res) => {
+  // TODO (step1) create a new NewRide document and put it into the collection using the model
+  
+  // Use req.body for POST request
+  const ourRide = new NewRide({
+    creator_name:req.body.creator_name,
+    destination: req.body.destination,
+    mit_location: req.body.mit_location,
+  });
+
+  // saves the newStory to MongoDB
+  ourRide.save().then((newRide) => res.send(newRide));
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
