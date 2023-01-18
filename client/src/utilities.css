@@ -15,10 +15,13 @@
 */
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap"); */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 :root {
-  --primary: #396dff;
+  --primary: #2155CD;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
@@ -34,8 +37,11 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+}
+
+.u-colorPrimary{
+  color:var(--primary);
 }
 
 form {
@@ -64,7 +70,7 @@ form {
 }
 
 .u-bold {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .u-textCenter {
@@ -89,6 +95,18 @@ form {
   color: var(--primary--dim);
 }
 
+.u-margin-left-s{
+  margin-left: var(--s);
+}
+
 .u-margin-left-m{
   margin-left: var(--m);
+}
+
+.u-fontsize-m{
+  font-size: var(--m);
+}
+
+.u-fontsize-l{
+  font-size: var(--l);
 }

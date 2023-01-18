@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const RideSchema = new mongoose.Schema({
   user_googleid: String,
   user_name: String,
+  photoLink:String,
+  classYear:String,
   destination: String,
   meetup_location: String,
   start_date: String,

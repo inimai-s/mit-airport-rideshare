@@ -41,7 +41,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
     //     Check out this getting started guide
     //   </a>
     // </GoogleOAuthProvider>
-    <h1>Good luck on your project</h1>
+    <h1>Website landing page</h1>
   );
 };
 

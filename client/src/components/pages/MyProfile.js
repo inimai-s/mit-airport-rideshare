@@ -86,21 +86,24 @@ const MyProfile = (props) => {
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>My Profile</h1>
-      <img src={props.photoLink} alt="Profile Image" className="profilePhoto"></img>
-      <h1>{props.user_name}</h1>
-      <h4>Email: {props.email}</h4>
-      <h4>Class Year: {currentClassYear}</h4>
-      <h4>Major: {currentMajor}</h4>
+      <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
+      <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
+      <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{currentClassYear}</span></p>
+      <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{currentMajor}</span></p>
+
       <br></br>
       <h2>Edit Info:</h2>
-      <p>Class Year:</p>
-      <input type="radio" name="classYear" value="Freshman" checked={classYearFreshman} onChange={handleFreshmanChange}/> Freshman
-      <input type="radio" name="classYear" value="Sophomore" checked={classYearSophomore} onChange={handleSophomoreChange}/> Sophomore
-      <input type="radio" name="classYear" value="Junior" checked={classYearJunior} onChange={handleJuniorChange}/> Junior
-      <input type="radio" name="classYear" value="Senior" checked={classYearSenior} onChange={handleSeniorChange}/> Senior
+      <span className="u-bold">Class Year:</span>
+      <input className="u-margin-left-m" type="radio" name="classYear" value="Freshman" checked={classYearFreshman} onChange={handleFreshmanChange}/> <span className="u-colorPrimary">Freshman</span>
+      <input className="u-margin-left-m" type="radio" name="classYear" value="Sophomore" checked={classYearSophomore} onChange={handleSophomoreChange}/> <span className="u-colorPrimary">Sophomore</span>
+      <input className="u-margin-left-m" type="radio" name="classYear" value="Junior" checked={classYearJunior} onChange={handleJuniorChange}/> <span className="u-colorPrimary">Junior</span>
+      <input className="u-margin-left-m" type="radio" name="classYear" value="Senior" checked={classYearSenior} onChange={handleSeniorChange}/> <span className="u-colorPrimary">Senior</span>
+      
+      <br></br><br></br>
+      <span className="u-bold">Major:</span>
+      <input className="u-margin-left-m" type="text" value={majorText} onChange={handleMajorChange} />
 
-      <p>Major:</p>
-      <input type="text" value={majorText} onChange={handleMajorChange} />
+      <br></br><br></br>
       <button onClick={submitProfileUpdates} className="u-marginLeft-m">Submit Edits!</button>
     </>
   }else{

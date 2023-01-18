@@ -90,6 +90,8 @@ const CreateARide = (props) => {
     const body = {
       user_googleid: props.user_googleid,
       user_name: props.user_name,
+      photoLink:props.photoLink,
+      classYear:props.classYear,
       destination: stringDestination,
       meetup_location: meetupLocationText,
       start_date: startDate,
@@ -127,32 +129,43 @@ const CreateARide = (props) => {
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>Create A Ride</h1>
-      <h4>You will be the "Captain" for this shared ride, and others can join on the "Find a Ride" page.</h4>
+      <p>You will be the "Captain" for this shared ride, and others can join on the "Find a Ride" page.</p>
+      <br></br>
       <div>
-        <h4>Destination</h4>
-        <input type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/> MIT
-        <input type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/>Logan Airport
+        <span className="u-bold">Destination:</span>
+        <input className="u-margin-left-m" type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/><span className="u-colorPrimary">MIT</span>
+        <input className="u-margin-left-m" type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/><span className="u-colorPrimary">Logan Airport</span>
 
-        <h4>Your Meet-up Location</h4>
-        <input type="text" value={meetupLocationText} onChange={handleMeetupLocationChange} />
+        <br></br><br></br>
 
-        <h4>Departure Start Date/Time</h4>
-        <input type="date" value={startDate} onChange={handleStartDateChange}/>
+        <span className="u-bold">Meet-up Location for the riders:</span>
+        <input className="u-margin-left-m" type="text" value={meetupLocationText} onChange={handleMeetupLocationChange} />
+
+        <br></br><br></br>
+
+        <span className="u-bold">Departure Start Date/Time:</span>
+        <input className="u-margin-left-m" type="date" value={startDate} onChange={handleStartDateChange}/>
         <input type="time" value={startTime} onChange={handleStartTimeChange} />
 
-        <h4>Departure End Date/Time</h4>
-        <input type="date" value={endDate} onChange={handleEndDateChange}/>
+        <br></br><br></br>
+
+        <span className="u-bold">Departure End Date/Time:</span>
+        <input className="u-margin-left-m" type="date" value={endDate} onChange={handleEndDateChange}/>
         <input type="time" value={endTime} onChange={handleEndTimeChange} />
 
-        <h4>Class Years You Wish to Ride With</h4>
-          <input type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
-          <span>Freshman</span>
-          <input type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} />
-          <span>Sophomore</span>
-          <input type="checkbox" checked={juniorBox} onChange={handleJuniorBox} />
-          <span>Junior</span>
-          <input type="checkbox" checked={seniorBox} onChange={handleSeniorBox} />
-          <span>Senior</span>
+        <br></br><br></br>
+
+        <span className="u-bold">Class Years you're comfortable riding with:</span>
+        <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
+        <span className="u-colorPrimary">Freshman</span>
+        <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} />
+        <span className="u-colorPrimary">Sophomore</span>
+        <input className="u-margin-left-m" type="checkbox" checked={juniorBox} onChange={handleJuniorBox} />
+        <span className="u-colorPrimary">Junior</span>
+        <input className="u-margin-left-m" type="checkbox" checked={seniorBox} onChange={handleSeniorBox} />
+        <span className="u-colorPrimary">Senior</span>
+
+        <br></br><br></br>
         <button onClick={submitRide}>Submit!</button>
       </div>
     </>

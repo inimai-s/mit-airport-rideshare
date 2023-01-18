@@ -55,6 +55,8 @@ router.post("/ride", (req, res) => {
   let ourRide = new Ride({
     user_googleid:req.body.user_googleid,
     user_name:req.body.user_name,
+    photoLink:req.body.photoLink,
+    classYear:req.body.classYear,
     destination: req.body.destination,
     meetup_location: req.body.meetup_location,
     start_date: req.body.start_date,

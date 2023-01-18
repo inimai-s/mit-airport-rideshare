@@ -3,3 +3,10 @@
     height:40px;
     border-radius:50%;
 }
+
+.MyProfile-profilePhoto{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    vertical-align:middle;
+}

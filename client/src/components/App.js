@@ -84,7 +84,7 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} photoLink={photoLink}/>
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} />
-        <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name}/>
+        <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name} photoLink={photoLink} classYear={classYear}/>
         <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
         <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major}/>
         <NotFound default />

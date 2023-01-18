@@ -24,6 +24,8 @@ const FindARide = (props) => {
         key={`Card_${rideObj._id}`}
         _id={rideObj._id}
         user_name={rideObj.user_name}
+        photoLink={rideObj.photoLink}
+        classYear={rideObj.classYear}
         destination={rideObj.destination}
         meetup_location={rideObj.meetup_location}
         start_date={rideObj.start_date}

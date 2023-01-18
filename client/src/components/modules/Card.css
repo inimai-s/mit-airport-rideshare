@@ -30,3 +30,10 @@
 .Card-commentBody {
   margin: 0 0 var(--s);
 }
+
+.Card-profilePhoto{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  vertical-align:middle;
+}
