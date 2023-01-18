@@ -25,6 +25,8 @@ const App = () => {
   const [user_name, set_user_name] = useState(undefined);
   const [email, set_email] = useState(undefined);
   const [photoLink, set_photoLink] = useState(undefined);
+  const [classYear, set_classYear] = useState("Unknown");
+  const [major, set_major] = useState("Unknown");
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -37,6 +39,8 @@ const App = () => {
         set_user_name(user.user_name);
         set_email(user.email);
         set_photoLink(user.photoLink);
+        set_classYear(user.classYear);
+        set_major(user.major);
       }
     });
   }, []);
@@ -70,6 +74,8 @@ const App = () => {
     set_user_name(undefined);
     set_email(undefined);
     set_photoLink(undefined);
+    set_classYear(undefined);
+    set_major(undefined);
     post("/api/logout");
   };
 
@@ -80,7 +86,7 @@ const App = () => {
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} />
         <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name}/>
         <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
-        <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink}/>
+        <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major}/>
         <NotFound default />
       </Router>
     </>

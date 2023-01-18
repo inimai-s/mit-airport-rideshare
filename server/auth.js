@@ -28,6 +28,8 @@ function getOrCreateUser(user) {
       user_googleid: user.sub,
       email: user.email,
       photoLink: user.picture,
+      classYear:"Unknown",
+      major:"Unknown",
     });
 
     return newUser.save();
