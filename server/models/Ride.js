@@ -5,7 +5,7 @@ const RideSchema = new mongoose.Schema({
   user_googleid: String,
   user_name: String,
   destination: String,
-  mit_location: String,
+  meetup_location: String,
   start_date: String,
   start_time: String,
   end_date: String,

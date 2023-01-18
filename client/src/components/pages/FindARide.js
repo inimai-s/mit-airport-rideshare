@@ -25,7 +25,7 @@ const FindARide = (props) => {
         _id={rideObj._id}
         user_name={rideObj.user_name}
         destination={rideObj.destination}
-        mit_location={rideObj.mit_location}
+        meetup_location={rideObj.meetup_location}
         start_date={rideObj.start_date}
         start_time={rideObj.start_time}
         end_date={rideObj.end_date}

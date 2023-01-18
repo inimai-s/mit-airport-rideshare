@@ -56,7 +56,7 @@ router.post("/ride", (req, res) => {
     user_googleid:req.body.user_googleid,
     user_name:req.body.user_name,
     destination: req.body.destination,
-    mit_location: req.body.mit_location,
+    meetup_location: req.body.meetup_location,
     start_date: req.body.start_date,
     start_time: req.body.start_time,
     end_date: req.body.end_date,

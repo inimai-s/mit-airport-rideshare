@@ -21,11 +21,11 @@ const CreateARide = (props) => {
   };
 
   // Your MIT Location
-  const [mitLocationText,setMitLocationText]=useState("");
+  const [meetupLocationText,setMeetupLocationText]=useState("");
 
-  const handleMitLocationChange = (event) => {
+  const handleMeetupLocationChange = (event) => {
       const value=event.target.value;
-      setMitLocationText(value);
+      setMeetupLocationText(value);
   };
 
   const [startDate, setStartDate] = useState("");
@@ -91,7 +91,7 @@ const CreateARide = (props) => {
       user_googleid: props.user_googleid,
       user_name: props.user_name,
       destination: stringDestination,
-      mit_location: mitLocationText,
+      meetup_location: meetupLocationText,
       start_date: startDate,
       start_time: startTime,
       end_date: endDate,
@@ -110,7 +110,7 @@ const CreateARide = (props) => {
     });
 
     // Clear the form
-    setMitLocationText("");
+    setMeetupLocationText("");
     setDestinationMIT(false);
     setDestinationLogan(false);
     setStartDate("");
@@ -134,7 +134,7 @@ const CreateARide = (props) => {
         <input type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/>Logan Airport
 
         <h4>Your Meet-up Location</h4>
-        <input type="text" value={mitLocationText} onChange={handleMitLocationChange} />
+        <input type="text" value={meetupLocationText} onChange={handleMeetupLocationChange} />
 
         <h4>Departure Start Date/Time</h4>
         <input type="date" value={startDate} onChange={handleStartDateChange}/>
