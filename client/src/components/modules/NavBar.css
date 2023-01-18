@@ -33,3 +33,9 @@
   align-items:center;
   justify-content:space-between;
 }
+
+.NavBar-profilePhoto{
+  width:30px;
+  height:30px;
+  border-radius:15px;
+}

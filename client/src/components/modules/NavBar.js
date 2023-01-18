@@ -10,10 +10,9 @@ import "../../utilities.css";
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "354424873499-ns84n5jbt5benp32pf6fkvar91ffghi5.apps.googleusercontent.com";
 
-/**
- * The navigation bar at the top of all pages. Takes no props.
- */
 const NavBar = (props) => {
+  console.log(`This is the props.photoLink: ${props.photoLink}`);
+
   return (
     <nav className="NavBar-container">
       <div className="NavBar-flex NavBar-linkContainer">
@@ -27,19 +26,24 @@ const NavBar = (props) => {
           Find a Ride
         </Link>
 
-        
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           {props.user_googleid ? (
-            <button
-              onClick={() => {
-                googleLogout();
-                props.handleLogout();
-              }}
+            <>
+              <Link to="/myProfile/" className="NavBar-link">
+                <img src={props.photoLink} alt="Profile Image" className="NavBar-profilePhoto" />
+              </Link>
 
-              className="u-margin-left-m"
-            >
-              Logout
-            </button>
+              <button
+                onClick={() => {
+                  googleLogout();
+                  props.handleLogout();
+                }}
+
+                className="u-margin-left-m"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <div>
               <GoogleLogin 
