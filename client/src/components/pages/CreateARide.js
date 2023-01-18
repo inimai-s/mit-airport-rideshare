@@ -58,6 +58,24 @@ const CreateARide = (props) => {
     setFreshmanBox(value);
   }
 
+  const [sophomoreBox, setSophomoreBox] = useState(false);
+  const handleSophomoreBox=(event)=>{
+    const value=event.target.checked;
+    setSophomoreBox(value);
+  }
+
+  const [juniorBox, setJuniorBox] = useState(false);
+  const handleJuniorBox=(event)=>{
+    const value=event.target.checked;
+    setJuniorBox(value);
+  }
+
+  const [seniorBox, setSeniorBox] = useState(false);
+  const handleSeniorBox=(event)=>{
+    const value=event.target.checked;
+    setSeniorBox(value);
+  }
+
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
@@ -79,6 +97,9 @@ const CreateARide = (props) => {
       end_date: endDate,
       end_time: endTime,
       freshman_box: freshmanBox,
+      sophomore_box: sophomoreBox,
+      junior_box: juniorBox,
+      senior_box: seniorBox,
     };
 
     console.log(`props.user_googleid: ${props.user_googleid}`);
@@ -97,6 +118,9 @@ const CreateARide = (props) => {
     setEndDate("");
     setEndTime("");
     setFreshmanBox(false);
+    setSophomoreBox(false);
+    setJuniorBox(false);
+    setSeniorBox(false);
   };
 
   let masterModal = null;
@@ -123,6 +147,12 @@ const CreateARide = (props) => {
         <h4>Class Years You Wish to Ride With</h4>
           <input type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
           <span>Freshman</span>
+          <input type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} />
+          <span>Sophomore</span>
+          <input type="checkbox" checked={juniorBox} onChange={handleJuniorBox} />
+          <span>Junior</span>
+          <input type="checkbox" checked={seniorBox} onChange={handleSeniorBox} />
+          <span>Senior</span>
         <button onClick={submitRide}>Submit!</button>
       </div>
     </>

@@ -11,6 +11,9 @@ const RideSchema = new mongoose.Schema({
   end_date: String,
   end_time: String,
   freshman_box: Boolean,
+  sophomore_box: Boolean,
+  junior_box: Boolean,
+  senior_box: Boolean,
 });
 
 // compile model from schema
