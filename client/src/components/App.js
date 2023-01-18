@@ -21,12 +21,16 @@ import { get, post } from "../utilities";
  */
 const App = () => {
   const [userId, setUserId] = useState(undefined);
+  const [userFirstLastName, setUserFirstLastName] = useState(undefined);
+  const [userEmail, setUserEmail] = useState(undefined);
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
+      console.log(user._id);
       if (user._id) {
         // they are registed in the database, and currently logged in.
         setUserId(user._id);
+        setUserFirstLastName(user.name);
       }
     });
   }, []);
@@ -35,23 +39,38 @@ const App = () => {
     const userToken = credentialResponse.credential;
     const decodedCredential = jwt_decode(userToken);
     console.log(`Logged in as ${decodedCredential.name}`);
-    post("/api/login", { token: userToken }).then((user) => {
-      setUserId(user._id);
-      post("/api/initsocket", { socketid: socket.id });
-    });
+
+    if (decodedCredential.email.endsWith('@mit.edu')){
+      post("/api/login", { token: userToken }).then((user) => {
+        console.log(JSON.stringify(user));
+        console.log(`Here is the user name: ${user.name}`);
+        console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
+        console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
+  
+        setUserId(user._id);
+        setUserFirstLastName(user.name);
+        setUserEmail(decodedCredential.email);
+        post("/api/initsocket", { socketid: socket.id });
+      });
+    }else{
+      window.alert("Please login with an @mit.edu email!");
+    }
+
+    
   };
 
   const handleLogout = () => {
     setUserId(undefined);
+    setUserFirstLastName(undefined);
     post("/api/logout");
   };
 
   return (
     <>
-      <NavBar />
+      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId}/>
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <CreateARide path="/createARide/" />
+        <CreateARide path="/createARide/" userId={userId} userFirstLastName={userFirstLastName}/>
         <FindARide path="/findARide/" />
         <NotFound default />
       </Router>

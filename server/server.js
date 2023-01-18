@@ -35,7 +35,7 @@ const socketManager = require("./server-socket");
 // TODO change connection URL after setting up your team database
 const mongoConnectionURL = "mongodb+srv://admin:KTL2Nc5G6eeUBdRp@cluster-reaction.nla1jyv.mongodb.net/?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
-const databaseName = "Cluster-rEActIon";
+const databaseName = "Testing1";
 
 // connect to mongodb
 mongoose

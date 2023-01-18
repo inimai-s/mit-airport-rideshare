@@ -11,7 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const NewRide = require("./models/newRide")
+const Ride = require("./models/Ride")
 
 // import authentication library
 const auth = require("./auth");
@@ -43,23 +43,24 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
-router.get("/newRides", (req, res) => {
-  // TODO (step1) get all the newRides from the database and send response back to client 
-  NewRide.find({}).then((newRides) => res.send(newRides));
+router.get("/rides", (req, res) => {
+  // TODO (step1) get all the rides from the database and send response back to client 
+  Ride.find({}).then((rides) => res.send(rides));
 });
 
-router.post("/newRide", (req, res) => {
-  // TODO (step1) create a new NewRide document and put it into the collection using the model
-  
+router.post("/ride", (req, res) => {
+  // TODO (step1) create a new Ride document and put it into the collection using the model
+
   // Use req.body for POST request
-  const ourRide = new NewRide({
-    creator_name:req.body.creator_name,
+  let ourRide = new Ride({
+    user_id:req.body.user_id,
+    user_name:req.body.user_name,
     destination: req.body.destination,
     mit_location: req.body.mit_location,
   });
 
   // saves the newStory to MongoDB
-  ourRide.save().then((newRide) => res.send(newRide));
+  ourRide.save().then((ride) => res.send(ride));;
 });
 
 

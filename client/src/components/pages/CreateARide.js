@@ -2,42 +2,10 @@ import React, { useState, useEffect } from "react";
 
 // import { NewStory } from "../modules/NewPostInput.js";
 
-// import { get } from "../../utilities";
+import { get } from "../../utilities";
+import { post } from "../../utilities";
 
 const CreateARide = (props) => {
-  // const [stories, setStories] = useState([]);
-
-  // // called when the "Feed" component "mounts", i.e.
-  // // when it shows up on screen
-  // useEffect(() => {
-  //   document.title = "News Feed";
-  //   get("/api/stories").then((storyObjs) => {
-  //     let reversedStoryObjs = storyObjs.reverse();
-  //     setStories(reversedStoryObjs);
-  //   });
-  // }, []);
-
-  // // this gets called when the user pushes "Submit", so their
-  // // post gets added to the screen right away
-  // const addNewStory = (storyObj) => {
-  //   setStories([storyObj].concat(stories));
-  // };
-
-  // let storiesList = null;
-  // const hasStories = stories.length !== 0;
-  // if (hasStories) {
-  //   storiesList = stories.map((storyObj) => (
-  //     <Card
-  //       key={`Card_${storyObj._id}`}
-  //       _id={storyObj._id}
-  //       creator_name={storyObj.creator_name}
-  //       content={storyObj.content}
-  //     />
-  //   ));
-  // } else {
-  //   storiesList = <div>No stories!</div>;
-  // }
-
   // Radio buttons for MIT vs. Logan Airport destination
   const [destinationMIT, setDestinationMIT]=useState(false);
   const [destinationLogan, setDestinationLogan]=useState(false);
@@ -63,32 +31,30 @@ const CreateARide = (props) => {
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
-    stringDestination="MIT"
+    let stringDestination="MIT";
     if (destinationMIT===false){
-      stringDestination="Logan Airport"
+      stringDestination="Logan Airport";
     }
 
     const body = {
-      creator_name: "Example User",
+      user_id: props.userId,
+      user_name: props.userFirstLastName,
       destination: stringDestination,
-      mit_location: mitLocationText,};
+      mit_location: mitLocationText};
 
-    
-    post("/api/newRide", body).then((value) => {
-      console.log(value);
-      // Clear the form
-      setMitLocationText("");
-      setDestinationMIT(false);
-      setDestinationLogan(false);
+    post("/api/ride", body).then((ride) => {
+      //don't actually need to do anything
     });
 
-    
+    // Clear the form
+    setMitLocationText("");
+    setDestinationMIT(false);
+    setDestinationLogan(false);
   };
 
-  return (
-    <>
-      {/* <NewStory addNewStory={addNewStory} />
-      {storiesList} */}
+  let masterModal = null;
+  if (props.userId && props.userFirstLastName){
+    masterModal=<>
       <h1>Create A Ride</h1>
       <h4>You will be the "Captain" for this shared ride, and others can join on the "Find a Ride" page.</h4>
       <div>
@@ -102,6 +68,15 @@ const CreateARide = (props) => {
         <button onClick={submitRide}>Submit!</button>
       </div>
     </>
+  }else{
+    masterModal=<>
+      <h1>Create A Ride</h1>
+      <h4>Please login to Google first!</h4>
+    </>
+  }
+
+  return (
+    <>{masterModal}</>
   );
 };
 
