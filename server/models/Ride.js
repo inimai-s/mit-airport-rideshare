@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 //define a comment schema for the database
 const RideSchema = new mongoose.Schema({
-  user_id: String,
+  user_googleid: String,
   user_name: String,
   destination: String,
   mit_location: String,

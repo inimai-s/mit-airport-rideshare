@@ -20,17 +20,20 @@ import { get, post } from "../utilities";
  * Define the "App" component
  */
 const App = () => {
-  const [userId, setUserId] = useState(undefined);
-  const [userFirstLastName, setUserFirstLastName] = useState(undefined);
-  const [userEmail, setUserEmail] = useState(undefined);
+  const [user_googleid, set_user_googleid] = useState(undefined);
+  const [user_name, set_user_name] = useState(undefined);
+  const [user_email, set_user_email] = useState(undefined);
+  const [user_photoLink, set_user_photoLink] = useState(undefined);
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
       console.log(user._id);
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        setUserId(user._id);
-        setUserFirstLastName(user.name);
+        set_user_googleid(user.user_googleid);
+        set_user_name(user.user_name);
+        set_user_email(user.email);
+        set_user_photoLink(user.photoLink);
       }
     });
   }, []);
@@ -42,14 +45,14 @@ const App = () => {
 
     if (decodedCredential.email.endsWith('@mit.edu')){
       post("/api/login", { token: userToken }).then((user) => {
-        console.log(JSON.stringify(user));
-        console.log(`Here is the user name: ${user.name}`);
         console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
         console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
   
-        setUserId(user._id);
-        setUserFirstLastName(user.name);
-        setUserEmail(decodedCredential.email);
+        set_user_googleid(decodedCredential.sub);
+        set_user_name(decodedCredential.name);
+        set_user_email(decodedCredential.email);
+        set_user_photoLink(decodedCredential.picture);
+
         post("/api/initsocket", { socketid: socket.id });
       });
     }else{
@@ -60,18 +63,20 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    setUserId(undefined);
-    setUserFirstLastName(undefined);
+    set_user_googleid(undefined);
+    set_user_name(undefined);
+    set_user_email(undefined);
+    set_user_photoLink(undefined);
     post("/api/logout");
   };
 
   return (
     <>
-      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId}/>
+      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid}/>
       <Router>
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <CreateARide path="/createARide/" userId={userId} userFirstLastName={userFirstLastName}/>
-        <FindARide path="/findARide/" userId={userId} userFirstLastName={userFirstLastName}/>
+        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} />
+        <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name}/>
+        <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
         <NotFound default />
       </Router>
     </>

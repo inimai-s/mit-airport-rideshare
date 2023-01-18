@@ -33,7 +33,7 @@ const FindARide = (props) => {
   }
 
   let masterModal = null;
-  if (props.userId && props.userFirstLastName){
+  if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>Find A Ride</h1>
       {ridesList}

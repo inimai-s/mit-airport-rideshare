@@ -61,8 +61,8 @@ const CreateARide = (props) => {
     }
 
     const body = {
-      user_id: props.userId,
-      user_name: props.userFirstLastName,
+      user_googleid: props.user_googleid,
+      user_name: props.user_name,
       destination: stringDestination,
       mit_location: mitLocationText,
       start_date: startDate,
@@ -85,7 +85,7 @@ const CreateARide = (props) => {
   };
 
   let masterModal = null;
-  if (props.userId && props.userFirstLastName){
+  if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>Create A Ride</h1>
       <h4>You will be the "Captain" for this shared ride, and others can join on the "Find a Ride" page.</h4>
