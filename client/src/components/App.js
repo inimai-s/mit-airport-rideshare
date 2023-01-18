@@ -71,7 +71,7 @@ const App = () => {
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         <CreateARide path="/createARide/" userId={userId} userFirstLastName={userFirstLastName}/>
-        <FindARide path="/findARide/" />
+        <FindARide path="/findARide/" userId={userId} userFirstLastName={userFirstLastName}/>
         <NotFound default />
       </Router>
     </>

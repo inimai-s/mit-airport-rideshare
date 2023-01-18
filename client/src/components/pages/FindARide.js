@@ -4,7 +4,7 @@ import Card from "../modules/Card.js";
 import { get } from "../../utilities";
 import { post } from "../../utilities";
 
-const FindARide = () => {
+const FindARide = (props) => {
   const [rides, setRides] = useState([]);
 
   // called when the "Feed" component "mounts", i.e.
@@ -32,11 +32,21 @@ const FindARide = () => {
     ridesList = <div>No rides!</div>;
   }
 
-  return (
-    <>
+  let masterModal = null;
+  if (props.userId && props.userFirstLastName){
+    masterModal=<>
       <h1>Find A Ride</h1>
       {ridesList}
     </>
+  }else{
+    masterModal=<>
+      <h1>Find A Ride</h1>
+      <h4>Please login to Google first!</h4>
+    </>
+  }
+
+  return (
+    <>{masterModal}</>
   );
 };
 
