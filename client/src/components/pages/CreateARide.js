@@ -52,6 +52,12 @@ const CreateARide = (props) => {
     setEndTime(value);
   }
 
+  const [freshmanBox, setFreshmanBox] = useState(false);
+  const handleFreshmanBoxChange=(event)=>{
+    const value=event.target.checked;
+    setFreshmanBox(value);
+  }
+
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
@@ -72,6 +78,7 @@ const CreateARide = (props) => {
       start_time: startTime,
       end_date: endDate,
       end_time: endTime,
+      freshman_box: freshmanBox,
     };
 
     console.log(`props.user_googleid: ${props.user_googleid}`);
@@ -89,6 +96,7 @@ const CreateARide = (props) => {
     setStartTime("");
     setEndDate("");
     setEndTime("");
+    setFreshmanBox(false);
   };
 
   let masterModal = null;
@@ -111,6 +119,10 @@ const CreateARide = (props) => {
         <h4>Departure End Date/Time</h4>
         <input type="date" value={endDate} onChange={handleEndDateChange}/>
         <input type="time" value={endTime} onChange={handleEndTimeChange} />
+
+        <h4>Class Years You Wish to Ride With</h4>
+          <input type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
+          <span>Freshman</span>
         <button onClick={submitRide}>Submit!</button>
       </div>
     </>
