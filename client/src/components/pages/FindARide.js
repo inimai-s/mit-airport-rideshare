@@ -45,7 +45,7 @@ const FindARide = (props) => {
   }else{
     masterModal=<>
       <h1>Find A Ride</h1>
-      <h4>Please login to Google first!</h4>
+      <h4>Please login to Google with an @mit.edu email first!</h4>
     </>
   }
 
