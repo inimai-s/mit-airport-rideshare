@@ -27,3 +27,9 @@
 .NavBar-link + .NavBar-link {
   margin-left: var(--m);
 }
+
+.NavBar-flex{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
