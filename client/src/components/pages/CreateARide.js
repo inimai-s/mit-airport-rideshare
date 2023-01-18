@@ -28,6 +28,18 @@ const CreateARide = (props) => {
       setMitLocationText(value);
   };
 
+  const [startDate, setStartDate] = useState(null);
+  const handleStartDateChange=(event)=>{
+    const value = event.target.value;
+    setStartDate(value);
+  }
+
+  const [endDate, setEndDate] = useState(null);
+  const handleEndDateChange=(event)=>{
+    const value = event.target.value;
+    setEndDate(value);
+  }
+
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
@@ -62,7 +74,7 @@ const CreateARide = (props) => {
         <input type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/> MIT
         <input type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/>Logan Airport
 
-        <h4>Your MIT Location</h4>
+        <h4>Your Meet-up Location</h4>
         <input type="text" value={mitLocationText} onChange={handleMitLocationChange} />
         
         <button onClick={submitRide}>Submit!</button>
