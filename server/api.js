@@ -57,6 +57,10 @@ router.post("/ride", (req, res) => {
     user_name:req.body.user_name,
     destination: req.body.destination,
     mit_location: req.body.mit_location,
+    start_date: req.body.start_date,
+    start_time: req.body.start_time,
+    end_date: req.body.end_date,
+    end_time: req.body.end_time
   });
 
   // saves the newStory to MongoDB

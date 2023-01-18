@@ -28,16 +28,28 @@ const CreateARide = (props) => {
       setMitLocationText(value);
   };
 
-  const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState("");
   const handleStartDateChange=(event)=>{
     const value = event.target.value;
     setStartDate(value);
   }
 
-  const [endDate, setEndDate] = useState(null);
+  const [endDate, setEndDate] = useState("");
   const handleEndDateChange=(event)=>{
     const value = event.target.value;
     setEndDate(value);
+  }
+
+  const [startTime, setStartTime] = useState("");
+  const handleStartTimeChange=(event)=>{
+    const value = event.target.value;
+    setStartTime(value);
+  }
+
+  const [endTime, setEndTime] = useState("");
+  const handleEndTimeChange=(event)=>{
+    const value = event.target.value;
+    setEndTime(value);
   }
 
   // Submit button
@@ -52,7 +64,11 @@ const CreateARide = (props) => {
       user_id: props.userId,
       user_name: props.userFirstLastName,
       destination: stringDestination,
-      mit_location: mitLocationText};
+      mit_location: mitLocationText,
+      start_date: startDate,
+      start_time: startTime,
+      end_date: endDate,
+      end_time: endTime};
 
     post("/api/ride", body).then((ride) => {
       //don't actually need to do anything
@@ -62,6 +78,10 @@ const CreateARide = (props) => {
     setMitLocationText("");
     setDestinationMIT(false);
     setDestinationLogan(false);
+    setStartDate("");
+    setStartTime("");
+    setEndDate("");
+    setEndTime("");
   };
 
   let masterModal = null;
@@ -76,7 +96,14 @@ const CreateARide = (props) => {
 
         <h4>Your Meet-up Location</h4>
         <input type="text" value={mitLocationText} onChange={handleMitLocationChange} />
-        
+
+        <h4>Departure Start Date/Time</h4>
+        <input type="date" value={startDate} onChange={handleStartDateChange}/>
+        <input type="time" value={startTime} onChange={handleStartTimeChange} />
+
+        <h4>Departure End Date/Time</h4>
+        <input type="date" value={endDate} onChange={handleEndDateChange}/>
+        <input type="time" value={endTime} onChange={handleEndTimeChange} />
         <button onClick={submitRide}>Submit!</button>
       </div>
     </>
