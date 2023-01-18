@@ -76,6 +76,12 @@ const CreateARide = (props) => {
     setSeniorBox(value);
   }
 
+  const [extraRideInfo, setExtraRideInfo] = useState("");
+  const handleExtraRideInfo=(event)=>{
+    const value=event.target.value;
+    setExtraRideInfo(value);
+  }
+
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
@@ -102,6 +108,7 @@ const CreateARide = (props) => {
       sophomore_box: sophomoreBox,
       junior_box: juniorBox,
       senior_box: seniorBox,
+      extra_ride_info: extraRideInfo,
     };
 
     console.log(`props.user_googleid: ${props.user_googleid}`);
@@ -123,6 +130,7 @@ const CreateARide = (props) => {
     setSophomoreBox(false);
     setJuniorBox(false);
     setSeniorBox(false);
+    setExtraRideInfo("");
   };
 
   let masterModal = null;
@@ -166,6 +174,12 @@ const CreateARide = (props) => {
         <span className="u-colorPrimary">Senior</span>
 
         <br></br><br></br>
+
+        <span className="u-bold">Any Extra Information?</span>
+        <input className="u-margin-left-m" type="text" value={extraRideInfo} onChange={handleExtraRideInfo} />
+
+        <br></br><br></br>
+        
         <button onClick={submitRide}>Submit!</button>
       </div>
     </>

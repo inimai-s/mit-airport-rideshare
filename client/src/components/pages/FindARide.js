@@ -60,7 +60,11 @@ const FindARide = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Filtering Settings</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Need to add form questions here</Modal.Body>
+        <Modal.Body>
+          
+          
+          Need to add form questions here
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleSave}>
             Save Changes

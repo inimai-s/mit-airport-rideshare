@@ -67,6 +67,7 @@ router.post("/ride", (req, res) => {
     sophomore_box: req.body.sophomore_box,
     junior_box: req.body.junior_box,
     senior_box: req.body.senior_box,
+    extra_ride_info: req.body.extra_ride_info,
   });
 
   // saves the newStory to MongoDB

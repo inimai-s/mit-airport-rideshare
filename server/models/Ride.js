@@ -16,6 +16,7 @@ const RideSchema = new mongoose.Schema({
   sophomore_box: Boolean,
   junior_box: Boolean,
   senior_box: Boolean,
+  extra_ride_info: String,
 });
 
 // compile model from schema
