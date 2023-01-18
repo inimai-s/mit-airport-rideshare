@@ -60,6 +60,9 @@ const CreateARide = (props) => {
       stringDestination="Logan Airport";
     }
 
+    console.log(`Here is props.user_googleid: ${props.user_googleid}`)
+    console.log(`Here is props.user_name: ${props.user_name}`)
+
     const body = {
       user_googleid: props.user_googleid,
       user_name: props.user_name,
@@ -68,7 +71,11 @@ const CreateARide = (props) => {
       start_date: startDate,
       start_time: startTime,
       end_date: endDate,
-      end_time: endTime};
+      end_time: endTime,
+    };
+
+    console.log(`props.user_googleid: ${props.user_googleid}`);
+    console.log(`body.user_googleid: ${body.user_googleid}`);
 
     post("/api/ride", body).then((ride) => {
       //don't actually need to do anything

@@ -53,7 +53,7 @@ router.post("/ride", (req, res) => {
 
   // Use req.body for POST request
   let ourRide = new Ride({
-    user_id:req.body.user_id,
+    user_googleid:req.body.user_googleid,
     user_name:req.body.user_name,
     destination: req.body.destination,
     mit_location: req.body.mit_location,

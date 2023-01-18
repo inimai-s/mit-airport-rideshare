@@ -27,7 +27,9 @@ const App = () => {
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
-      console.log(user._id);
+      console.log(`JSON stringify of user: ${JSON.stringify(user)}`);
+
+      
       if (user._id) {
         // they are registed in the database, and currently logged in.
         set_user_googleid(user.user_googleid);
