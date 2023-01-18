@@ -44,27 +44,25 @@ const FindARide = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
+  const handleSave = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   let masterModal = null;
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>Find A Ride</h1>
       
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Filter Rides
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Filtering Settings</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>Need to add form questions here</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>
