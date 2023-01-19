@@ -5,7 +5,11 @@ import "./MyProfile.css";
 import { get } from "../../utilities";
 import { post } from "../../utilities";
 
+// const User = require("../../../../server/models/user");
+
+
 const MyProfile = (props) => {
+  console.log(`Props: ${JSON.stringify(props)}`)
   const [currentClassYear, setCurrentClassYear] = useState(props.classYear);
   const [currentMajor, setCurrentMajor] = useState(props.major);
 
@@ -16,7 +20,7 @@ const MyProfile = (props) => {
 
   const handleFreshmanChange = (event) => {
       const value=event.target.checked;
-      setClassYearFreshman(value)
+      setClassYearFreshman(value);
 
       // setClassYearFreshman(false)
       setClassYearSophomore(false)
@@ -26,7 +30,7 @@ const MyProfile = (props) => {
 
   const handleSophomoreChange = (event) => {
     const value=event.target.checked;
-    setClassYearSophomore(value)
+    setClassYearSophomore(value);
 
     setClassYearFreshman(false)
     // setClassYearSophomore(false)
@@ -36,7 +40,7 @@ const MyProfile = (props) => {
 
   const handleJuniorChange = (event) => {
     const value=event.target.checked;
-    setClassYearJunior(value)
+    setClassYearJunior(value);
 
     setClassYearFreshman(false)
     setClassYearSophomore(false)
@@ -46,7 +50,7 @@ const MyProfile = (props) => {
 
   const handleSeniorChange = (event) => {
     const value=event.target.checked;
-    setClassYearSenior(value)
+    setClassYearSenior(value);
 
     setClassYearFreshman(false)
     setClassYearSophomore(false)
@@ -63,18 +67,41 @@ const MyProfile = (props) => {
 
   // Deal with hitting the submit button
   const submitProfileUpdates = () => {
-    if (classYearFreshman){
+    let classYearText="Unknown";
+    
+    if (classYearFreshman===true){
+      console.log(`Freshman selected`)
       setCurrentClassYear("Freshman");
-    }else if (classYearSophomore){
+      classYearText="Freshman";
+    }else if (classYearSophomore===true){
+      console.log(`Soph selected`)
       setCurrentClassYear("Sophomore");
-    }else if (classYearJunior){
+      classYearText="Sophomore";
+    }else if (classYearJunior===true){
+      console.log(`Junior selected`)
       setCurrentClassYear("Junior");
-    }else if (classYearSenior){
+      classYearText="Junior";
+    }else if (classYearSenior===true){
+      console.log(`Senior selected`)
       setCurrentClassYear("Senior");
+      classYearText="Senior";
     }
 
+    setCurrentClassYear(classYearText);
     setCurrentMajor(majorText);
 
+    const body = {
+      user_googleid: props.user_googleid,
+      classYear:classYearText,
+      major:majorText,
+    };
+
+    console.log(`This is the body being posted: ${JSON.stringify(body)}`)
+    
+    post("/api/updateUser", body).then((ride) => {
+      //don't actually need to do anything
+    });
+    
     setClassYearFreshman(false);
     setClassYearSophomore(false);
     setClassYearJunior(false);

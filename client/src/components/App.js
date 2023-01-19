@@ -25,14 +25,11 @@ const App = () => {
   const [user_name, set_user_name] = useState(undefined);
   const [email, set_email] = useState(undefined);
   const [photoLink, set_photoLink] = useState(undefined);
-  const [classYear, set_classYear] = useState("Unknown");
-  const [major, set_major] = useState("Unknown");
+  const [classYear, set_classYear] = useState(undefined);
+  const [major, set_major] = useState(undefined);
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
-      console.log(`JSON stringify of user: ${JSON.stringify(user)}`);
-
-      
       if (user._id) {
         // they are registed in the database, and currently logged in.
         set_user_googleid(user.user_googleid);
@@ -59,6 +56,8 @@ const App = () => {
         set_user_name(decodedCredential.name);
         set_email(decodedCredential.email);
         set_photoLink(decodedCredential.picture);
+        set_classYear(user.classYear);
+        set_major(user.major);
 
         post("/api/initsocket", { socketid: socket.id });
       });
