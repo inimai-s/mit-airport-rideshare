@@ -5,6 +5,7 @@ import { Router } from "@reach/router";
 import CreateARide from "./pages/CreateARide.js";
 import FindARide from "./pages/FindARide.js";
 import MyProfile from "./pages/MyProfile.js";
+import EditMyProfile from "./pages/EditMyProfile.js";
 
 import jwt_decode from "jwt-decode";
 
@@ -87,6 +88,7 @@ const App = () => {
         <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name} photoLink={photoLink} classYear={classYear}/>
         <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
         <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major}/>
+        <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name}/>
         <NotFound default />
       </Router>
     </>

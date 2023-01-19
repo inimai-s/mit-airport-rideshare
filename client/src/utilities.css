@@ -44,6 +44,10 @@ body {
   color:var(--primary);
 }
 
+.u-colorWhite{
+  color:var(--white);
+}
+
 form {
   flex-grow: 1;
 }

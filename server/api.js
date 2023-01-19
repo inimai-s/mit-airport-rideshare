@@ -75,18 +75,22 @@ router.post("/ride", (req, res) => {
   ourRide.save().then((ride) => res.send(ride));;
 });
 
+router.get("/users", (req, res) => {
+  // req.query for GET requests
+  console.log(`user_googleid to look for: ${req.query.user_googleid}`);
+  User.find({user_googleid: req.query.user_googleid}).then((users) => res.send(users));
+});
+
 router.post("/updateUser", (req, res) => {
   console.log("Updating user");
 
   User.findOne({ user_googleid: req.body.user_googleid }).then((existingUser) => {
-    console.log("Stuff is happening")
+    console.log("Updating user info")
     existingUser.classYear = req.body.classYear;
     existingUser.major = req.body.major;
     existingUser.save();
   });
 });
-
-
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
