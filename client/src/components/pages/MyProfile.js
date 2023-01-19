@@ -115,8 +115,8 @@ const MyProfile = (props) => {
       <h1>My Profile</h1>
       <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
       <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
-      <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{currentClassYear}</span></p>
-      <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{currentMajor}</span></p>
+      <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
+      <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{props.major}</span></p>
 
       <br></br>
       <h2>Edit Info:</h2>
