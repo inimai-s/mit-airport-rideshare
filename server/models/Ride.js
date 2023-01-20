@@ -12,6 +12,7 @@ const RideSchema = new mongoose.Schema({
   start_time: String,
   end_date: String,
   end_time: String,
+  maxPeople: Number,
   freshman_box: Boolean,
   sophomore_box: Boolean,
   junior_box: Boolean,

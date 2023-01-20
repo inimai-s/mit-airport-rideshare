@@ -98,6 +98,7 @@ const FindARide = (props) => {
         start_time={rideObj.start_time}
         end_date={rideObj.end_date}
         end_time={rideObj.end_time}
+        maxPeople={rideObj.maxPeople}
         extra_ride_info={rideObj.extra_ride_info}
         freshman_box={rideObj.freshman_box}
         sophomore_box={rideObj.sophomore_box}
@@ -149,6 +150,7 @@ const FindARide = (props) => {
     setSophomoreBox(false);
     setJuniorBox(false);
     setSeniorBox(false);
+
     get("/api/rides").then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
       setRides(reversedRideObjs);
@@ -169,7 +171,7 @@ const FindARide = (props) => {
           <Modal.Title>Filter Settings</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <span>Destination: </span>
+          <span className="u-bold">Destination: </span>
           <input type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/><span className="u-colorPrimary">MIT</span>
           <input type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/><span className="u-colorPrimary">Logan Airport</span>
 

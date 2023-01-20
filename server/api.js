@@ -67,6 +67,7 @@ router.post("/ride", (req, res) => {
     start_time: req.body.start_time,
     end_date: req.body.end_date,
     end_time: req.body.end_time,
+    maxPeople: req.body.maxPeople,
     freshman_box: req.body.freshman_box,
     sophomore_box: req.body.sophomore_box,
     junior_box: req.body.junior_box,

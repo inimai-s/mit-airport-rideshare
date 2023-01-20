@@ -10,6 +10,7 @@ const CreateARide = (props) => {
   const [destinationMIT, setDestinationMIT]=useState(false);
   const [destinationLogan, setDestinationLogan]=useState(false);
 
+  // Destination
   const handleDestinationMITChange = (event) => {
       const value=event.target.checked;
       setDestinationMIT(value)
@@ -20,7 +21,7 @@ const CreateARide = (props) => {
     setDestinationLogan(value)
   };
 
-  // Your MIT Location
+  // Your meet up Location
   const [meetupLocationText,setMeetupLocationText]=useState("");
 
   const handleMeetupLocationChange = (event) => {
@@ -28,30 +29,43 @@ const CreateARide = (props) => {
       setMeetupLocationText(value);
   };
 
+  // Max people in car
+  const [maxPeopleText,setMaxPeopleText]=useState("");
+
+  const handleMaxPeopleChange = (event) => {
+      const value=event.target.value;
+      setMaxPeopleText(value);
+  };
+
+  // Start date
   const [startDate, setStartDate] = useState("");
   const handleStartDateChange=(event)=>{
     const value = event.target.value;
     setStartDate(value);
   }
 
+  // End date
   const [endDate, setEndDate] = useState("");
   const handleEndDateChange=(event)=>{
     const value = event.target.value;
     setEndDate(value);
   }
 
+  // Start Time
   const [startTime, setStartTime] = useState("");
   const handleStartTimeChange=(event)=>{
     const value = event.target.value;
     setStartTime(value);
   }
 
+  // End Time
   const [endTime, setEndTime] = useState("");
   const handleEndTimeChange=(event)=>{
     const value = event.target.value;
     setEndTime(value);
   }
 
+  // Clas year checkboxes
   const [freshmanBox, setFreshmanBox] = useState(false);
   const handleFreshmanBoxChange=(event)=>{
     const value=event.target.checked;
@@ -76,6 +90,7 @@ const CreateARide = (props) => {
     setSeniorBox(value);
   }
 
+  // Extra ride info
   const [extraRideInfo, setExtraRideInfo] = useState("");
   const handleExtraRideInfo=(event)=>{
     const value=event.target.value;
@@ -104,6 +119,7 @@ const CreateARide = (props) => {
       start_time: startTime,
       end_date: endDate,
       end_time: endTime,
+      maxPeople: parseInt(maxPeopleText),
       freshman_box: freshmanBox,
       sophomore_box: sophomoreBox,
       junior_box: juniorBox,
@@ -161,6 +177,11 @@ const CreateARide = (props) => {
         <span className="u-bold">Departure End Date/Time:</span>
         <input className="u-margin-left-m" type="date" value={endDate} onChange={handleEndDateChange}/>
         <input type="time" value={endTime} onChange={handleEndTimeChange} />
+
+        <br></br><br></br>
+
+        <span className="u-bold">Max # people who can join you:</span>
+        <input className="u-margin-left-m u-textbox-number" type="number" value={maxPeopleText} onChange={handleMaxPeopleChange} />
 
         <br></br><br></br>
 

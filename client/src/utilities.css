@@ -114,3 +114,7 @@ form {
 .u-fontsize-l{
   font-size: var(--l);
 }
+
+.u-textbox-number{
+  width: 50px;
+}
