@@ -25,7 +25,6 @@ const socketManager = require("./server-socket");
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
-  console.log(`req info: ${JSON.stringify(req.user)}`)
   if (!req.user) {
     // not logged in
     return res.send({});
@@ -47,6 +46,10 @@ router.post("/initsocket", (req, res) => {
 router.get("/rides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({}).then((rides) => res.send(rides));
+});
+
+router.get("/filterRides",(req,res)=>{
+  Ride.find({destination: req.query.destination, start_date: req.query.start_date, end_date: req.query.end_date, end_time: req.query.end_time, freshman_box:req.query.freshman_box, sophomore_box:req.query.sophomore_box, junior_box: req.query.junior_box, senior_box:req.query.senior_box}).then((rides) => res.send(rides));
 });
 
 router.post("/ride", (req, res) => {
@@ -75,22 +78,6 @@ router.post("/ride", (req, res) => {
   ourRide.save().then((ride) => res.send(ride));;
 });
 
-router.get("/users", (req, res) => {
-  // req.query for GET requests
-  console.log(`user_googleid to look for: ${req.query.user_googleid}`);
-  User.find({user_googleid: req.query.user_googleid}).then((users) => res.send(users));
-});
-
-router.post("/updateUser", (req, res) => {
-  console.log("Updating user");
-
-  User.findOne({ user_googleid: req.body.user_googleid }).then((existingUser) => {
-    console.log("Updating user info")
-    existingUser.classYear = req.body.classYear;
-    existingUser.major = req.body.major;
-    existingUser.save();
-  });
-});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

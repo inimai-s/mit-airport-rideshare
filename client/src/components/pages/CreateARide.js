@@ -116,6 +116,7 @@ const CreateARide = (props) => {
 
     post("/api/ride", body).then((ride) => {
       //don't actually need to do anything
+      console.log(body); //DELETE
     });
 
     // Clear the form
