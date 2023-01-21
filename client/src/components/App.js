@@ -38,10 +38,18 @@ const App = () => {
         set_user_name(user.user_name);
         set_email(user.email);
         set_photoLink(user.photoLink);
-        set_classYear(user.classYear);
-        set_major(user.major);
+        // set_classYear(user.classYear);
+        // set_major(user.major);
+
+        get("/api/user_classYear_major",{user_googleid:user.user_googleid}).then((user_classYear_major) => {
+          console.log(`user_classYear_major: ${user_classYear_major}`);
+          set_classYear(user_classYear_major.classYear);
+          set_major(user_classYear_major.major);
+        });
       }
     });
+
+    
   }, []);
 
   const handleLogin = (credentialResponse) => {
@@ -80,6 +88,24 @@ const App = () => {
     post("/api/logout");
   };
 
+  const refreshProfile = () => {
+    get("/api/users").then((userObjs) => {
+      if (userObjs.length > 0) {
+
+        const user=userObjs[0];
+
+        console.log(`Refresh Profile User Info: ${JSON.stringify(user)}`)
+
+        set_user_googleid(user.user_googleid);
+        set_user_name(user.user_name);
+        set_email(user.email);
+        set_photoLink(user.photoLink);
+        set_classYear(user.classYear);
+        set_major(user.major);
+      }
+    });
+  };
+
   return (
     <>
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} photoLink={photoLink}/>
@@ -87,8 +113,8 @@ const App = () => {
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} />
         <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name} photoLink={photoLink} classYear={classYear}/>
         <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
-        <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major}/>
-        <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name}/>
+        <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major} refreshProfile={refreshProfile}/>
+        <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name} set_classYear={set_classYear} set_major={set_major}/>
         <NotFound default />
       </Router>
     </>

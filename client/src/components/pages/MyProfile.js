@@ -10,6 +10,10 @@ import { Link } from "@reach/router";
 import Button from 'react-bootstrap/Button';
 
 const MyProfile = (props) => {
+  useEffect(() => {
+    props.refreshProfile();
+  },[]);
+
   let masterModal = null;
   if (props.user_googleid && props.user_name){
     masterModal=<>

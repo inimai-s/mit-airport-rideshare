@@ -182,24 +182,24 @@ const CreateARide = (props) => {
         <br></br><br></br>
 
         <span className="u-bold">Max # people who can join you:</span>
-        <input className="u-margin-left-m u-textbox-number" type="number" value={maxPeopleText} onChange={handleMaxPeopleChange} required/>
+        <input className="u-margin-left-m u-textbox-number" type="number" value={maxPeopleText} onChange={handleMaxPeopleChange} required="required"/>
 
         <br></br><br></br>
 
         <span className="u-bold">Class Years you're comfortable riding with:</span>
-        <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} required/>
+        <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} required="required"/>
         <span className="u-colorPrimary">Freshman</span>
-        <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} required/>
+        <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} required="required"/>
         <span className="u-colorPrimary">Sophomore</span>
-        <input className="u-margin-left-m" type="checkbox" checked={juniorBox} onChange={handleJuniorBox} required/>
+        <input className="u-margin-left-m" type="checkbox" checked={juniorBox} onChange={handleJuniorBox} required="required"/>
         <span className="u-colorPrimary">Junior</span>
-        <input className="u-margin-left-m" type="checkbox" checked={seniorBox} onChange={handleSeniorBox} required/>
+        <input className="u-margin-left-m" type="checkbox" checked={seniorBox} onChange={handleSeniorBox} required="required"/>
         <span className="u-colorPrimary">Senior</span>
 
         <br></br><br></br>
 
         <span className="u-bold">Any Extra Information?</span>
-        <input className="u-margin-left-m" type="text" value={extraRideInfo} onChange={handleExtraRideInfo} required/>
+        <input className="u-margin-left-m" type="text" value={extraRideInfo} onChange={handleExtraRideInfo} required="required"/>
 
         <br></br><br></br>
         
