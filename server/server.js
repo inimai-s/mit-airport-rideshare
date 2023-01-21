@@ -28,12 +28,15 @@ const path = require("path"); // provide utilities for working with file and dir
 const api = require("./api");
 const auth = require("./auth");
 
+require('dotenv').config();
+
 // socket stuff
 const socketManager = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your team database
-const mongoConnectionURL = "mongodb+srv://admin:KTL2Nc5G6eeUBdRp@cluster-reaction.nla1jyv.mongodb.net/?retryWrites=true&w=majority";
+//const mongoConnectionURL = "mongodb+srv://admin:KTL2Nc5G6eeUBdRp@cluster-reaction.nla1jyv.mongodb.net/?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.ATLAS_SRV;
 // TODO change database name to the name you chose
 const databaseName = "Testing1";
 
@@ -58,7 +61,8 @@ app.use(express.json());
 app.use(
   session({
     // TODO: add a SESSION_SECRET string in your .env file, and replace the secret with process.env.SESSION_SECRET
-    secret: "session-secret",
+    //secret: "session-secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -96,10 +100,10 @@ app.use((err, req, res, next) => {
 });
 
 // hardcode port to 3000 for now
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = http.Server(app);
 socketManager.init(server);
 
-server.listen(port, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log(`Server running on port: ${port}`);
 });
