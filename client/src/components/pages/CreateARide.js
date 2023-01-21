@@ -159,47 +159,47 @@ const CreateARide = (props) => {
       <br></br>
       <div>
         <span className="u-bold">Destination:</span>
-        <input className="u-margin-left-m" type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/><span className="u-colorPrimary">MIT</span>
-        <input className="u-margin-left-m" type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/><span className="u-colorPrimary">Logan Airport</span>
+        <input className="u-margin-left-m" type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange} required/><span className="u-colorPrimary">MIT</span>
+        <input className="u-margin-left-m" type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange} required/><span className="u-colorPrimary">Logan Airport</span>
 
         <br></br><br></br>
 
         <span className="u-bold">Meet-up Location for the riders:</span>
-        <input className="u-margin-left-m" type="text" value={meetupLocationText} onChange={handleMeetupLocationChange} />
+        <input className="u-margin-left-m" type="text" value={meetupLocationText} onChange={handleMeetupLocationChange} required/>
 
         <br></br><br></br>
 
         <span className="u-bold">Departure Start Date/Time:</span>
-        <input className="u-margin-left-m" type="date" value={startDate} onChange={handleStartDateChange}/>
-        <input type="time" value={startTime} onChange={handleStartTimeChange} />
+        <input className="u-margin-left-m" type="date" value={startDate} onChange={handleStartDateChange} required/>
+        <input type="time" value={startTime} onChange={handleStartTimeChange} required/>
 
         <br></br><br></br>
 
         <span className="u-bold">Departure End Date/Time:</span>
-        <input className="u-margin-left-m" type="date" value={endDate} onChange={handleEndDateChange}/>
-        <input type="time" value={endTime} onChange={handleEndTimeChange} />
+        <input className="u-margin-left-m" type="date" value={endDate} onChange={handleEndDateChange} required/>
+        <input type="time" value={endTime} onChange={handleEndTimeChange} required/>
 
         <br></br><br></br>
 
         <span className="u-bold">Max # people who can join you:</span>
-        <input className="u-margin-left-m u-textbox-number" type="number" value={maxPeopleText} onChange={handleMaxPeopleChange} />
+        <input className="u-margin-left-m u-textbox-number" type="number" value={maxPeopleText} onChange={handleMaxPeopleChange} required/>
 
         <br></br><br></br>
 
         <span className="u-bold">Class Years you're comfortable riding with:</span>
-        <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
+        <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} required/>
         <span className="u-colorPrimary">Freshman</span>
-        <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} />
+        <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} required/>
         <span className="u-colorPrimary">Sophomore</span>
-        <input className="u-margin-left-m" type="checkbox" checked={juniorBox} onChange={handleJuniorBox} />
+        <input className="u-margin-left-m" type="checkbox" checked={juniorBox} onChange={handleJuniorBox} required/>
         <span className="u-colorPrimary">Junior</span>
-        <input className="u-margin-left-m" type="checkbox" checked={seniorBox} onChange={handleSeniorBox} />
+        <input className="u-margin-left-m" type="checkbox" checked={seniorBox} onChange={handleSeniorBox} required/>
         <span className="u-colorPrimary">Senior</span>
 
         <br></br><br></br>
 
         <span className="u-bold">Any Extra Information?</span>
-        <input className="u-margin-left-m" type="text" value={extraRideInfo} onChange={handleExtraRideInfo} />
+        <input className="u-margin-left-m" type="text" value={extraRideInfo} onChange={handleExtraRideInfo} required/>
 
         <br></br><br></br>
         
