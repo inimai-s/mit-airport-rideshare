@@ -100,6 +100,16 @@ const CreateARide = (props) => {
   // Submit button
   const submitRide = () => {
     // Send stuff to Mongo
+
+    // Send an alert if the form is not completely filled
+    if ((!destinationMIT && !destinationLogan) || !meetupLocationText ||
+        !maxPeopleText || !startDate || !startTime || !endDate || !endTime ||
+        (!freshmanBox && !sophomoreBox && !juniorBox && !seniorBox)) {
+          alert("Please fill out the entire form before submitting!")
+          return;
+    }
+
+
     let stringDestination="MIT";
     if (destinationMIT===false){
       stringDestination="Logan Airport";
@@ -182,7 +192,7 @@ const CreateARide = (props) => {
         <br></br><br></br>
 
         <span className="u-bold">Max # people who can join you:</span>
-        <input className="u-margin-left-m u-textbox-number" type="number" value={maxPeopleText} onChange={handleMaxPeopleChange} required="required"/>
+        <input className="u-margin-left-m u-textbox-number" type="number" min="0" value={maxPeopleText} onChange={handleMaxPeopleChange} required="required"/>
 
         <br></br><br></br>
 
