@@ -100,6 +100,7 @@ const FindARide = (props) => {
         end_time={rideObj.end_time}
         maxPeople={rideObj.maxPeople}
         extra_ride_info={rideObj.extra_ride_info}
+        user_googleId_joined={rideObj.user_googleId_joined}
         freshman_box={rideObj.freshman_box}
         sophomore_box={rideObj.sophomore_box}
         junior_box={rideObj.junior_box}

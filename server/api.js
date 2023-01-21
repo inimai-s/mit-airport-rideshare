@@ -73,6 +73,7 @@ router.post("/ride", (req, res) => {
     junior_box: req.body.junior_box,
     senior_box: req.body.senior_box,
     extra_ride_info: req.body.extra_ride_info,
+    user_googleId_joined: req.body.user_googleId_joined,
   });
 
   // saves the newStory to MongoDB

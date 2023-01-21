@@ -125,6 +125,7 @@ const CreateARide = (props) => {
       junior_box: juniorBox,
       senior_box: seniorBox,
       extra_ride_info: extraRideInfo,
+      user_googleId_joined:[],
     };
 
     console.log(`props.user_googleid: ${props.user_googleid}`);
