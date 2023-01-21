@@ -8,6 +8,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 const FindARide = (props) => {
+  useEffect(() => {
+    get("/api/deleteRideCard").then(() => {
+      // do nothing
+    })
+  },[]);
+
   const [rides, setRides] = useState([]);
 
   //modal states and functions------------------

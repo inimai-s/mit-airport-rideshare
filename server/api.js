@@ -113,6 +113,29 @@ router.post("/updateUser", (req, res) => {
   });
 });
 
+const checkIfExpired = (ride_end_date, ride_end_time) => {
+  // returns a boolean: true if the current time is past the endDate + endTime
+  let current_ms = Date.now();
+  let ride_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
+
+  return current_ms > ride_ms;
+}
+
+router.get("/deleteRideCard", (req, res) => {
+  console.log("Deleting expired ride cards");
+
+  Ride.find({}).then((rides) => {
+    for (var i=0;i<rides.length;i++) {
+      isExpired = checkIfExpired(rides[i].end_date, rides[i].end_time);
+      if(isExpired) {
+        console.log("deleting");
+        console.log(`rides[i]: ${rides[i]._id}`);
+        Ride.deleteOne({_id: rides[i]._id}).then((student) => console.log("Deleted"));
+      }
+    }
+  })
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
