@@ -7,6 +7,7 @@ import CreateARide from "./pages/CreateARide.js";
 import FindARide from "./pages/FindARide.js";
 import MyProfile from "./pages/MyProfile.js";
 import EditMyProfile from "./pages/EditMyProfile.js";
+import Chatbook from "./pages/Chatbook.js";
 
 import jwt_decode from "jwt-decode";
 
@@ -23,6 +24,7 @@ import { get, post } from "../utilities";
  * Define the "App" component
  */
 const App = () => {
+  const [userId, set_userId] = useState(undefined);
   const [user_googleid, set_user_googleid] = useState(undefined);
   const [user_name, set_user_name] = useState(undefined);
   const [email, set_email] = useState(undefined);
@@ -35,6 +37,7 @@ const App = () => {
       if (user._id) {
         console.log(`User Info: ${JSON.stringify(user)}`)
         // they are registed in the database, and currently logged in.
+        set_userId(user._id);
         set_user_googleid(user.user_googleid);
         set_user_name(user.user_name);
         set_email(user.email);
@@ -63,6 +66,7 @@ const App = () => {
         console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
         console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
   
+        set_userId(user._id);
         set_user_googleid(decodedCredential.sub);
         set_user_name(decodedCredential.name);
         set_email(decodedCredential.email);
@@ -80,6 +84,7 @@ const App = () => {
   };
 
   const handleLogout = () => {
+    set_userId(undefined);
     set_user_googleid(undefined);
     set_user_name(undefined);
     set_email(undefined);
@@ -97,6 +102,7 @@ const App = () => {
 
         console.log(`Refresh Profile User Info: ${JSON.stringify(user)}`)
 
+        set_userId(user._id);
         set_user_googleid(user.user_googleid);
         set_user_name(user.user_name);
         set_email(user.email);
@@ -116,6 +122,7 @@ const App = () => {
         <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
         <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major} refreshProfile={refreshProfile}/>
         <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name} set_classYear={set_classYear} set_major={set_major}/>
+        <Chatbook path="/chat/" userId={userId} />
         <NotFound default />
       </Router>
       <Footer />

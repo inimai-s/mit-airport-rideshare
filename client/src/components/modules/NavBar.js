@@ -20,7 +20,7 @@ const NavBar = (props) => {
   return (
     <nav className="NavBar-container">
       <div className="NavBar-flex NavBar-linkContainer">
-        <div className="NavBar-title u-inlineBlock"><Link to="/" className="NavBar-title"><img src={flightTakeoffLogo} alt="Logo" className="NavBar-photo" /></Link></div>
+        <Link to="/" className="NavBar-title"><img src={flightTakeoffLogo} alt="Logo" className="NavBar-photo" /></Link>
         
         {/* <Link to="/createARide/" className="NavBar-link">
           Create a Ride
@@ -28,6 +28,10 @@ const NavBar = (props) => {
 
         <Link to="/findARide/" className="NavBar-link">
           Find a Ride
+        </Link>
+
+        <Link to="/chat/" className="NavBar-link">
+          My Chats
         </Link>
 
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
