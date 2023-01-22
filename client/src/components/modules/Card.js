@@ -17,7 +17,7 @@ const Card = (props) => {
   const handleRideJoined=()=>{
     console.log(`Need to join ${props.user_name.replace(/ .*/,'')}'s Ride`)
 
-    if(props.user_googleId_joined.length >= props.maxPeople) {
+    if(props.user_googleId_joined.length - 1 >= props.maxPeople) { // -1 to exclude the ride captain
       alert("This ride is at max capacity!");
       return;
     }
@@ -47,9 +47,9 @@ const Card = (props) => {
         <p className="Card-storyContent"><span className="u-bold">Meet-up Location:</span> <span className="u-colorPrimary">{props.meetup_location}</span></p>
         <p className="Card-storyContent"><span className="u-bold">Departure Start Date/Time:</span> <span className="u-colorPrimary">{props.start_date} {props.start_time}</span></p>
         <p className="Card-storyContent"><span className="u-bold">Departure End Date/Time:</span> <span className="u-colorPrimary">{props.end_date} {props.end_time}</span></p>
-        <p className="Card-storyContent"><span className="u-bold">Max # people who can join:</span> <span className="u-colorPrimary">{props.maxPeople}</span></p>
+        {/* <p className="Card-storyContent"><span className="u-bold">Max # people who can join:</span> <span className="u-colorPrimary">{props.maxPeople}</span></p> */}
         <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
-        <p className="Card-storyContent"><span className="u-bold">Spots Filled:</span> <span className="u-colorPrimary">{props.user_googleId_joined.length} / {props.maxPeople}</span></p>
+        <p className="Card-storyContent"><span className="u-bold">Additional Spots Filled:</span> <span className="u-colorPrimary">{props.user_googleId_joined.length - 1} / {props.maxPeople}</span></p>
         <br></br>
         <Button className="u-backgroundColorPrimary" onClick={handleRideJoined}>Join {props.user_name.replace(/ .*/,'')}'s Ride</Button>
       </div>
