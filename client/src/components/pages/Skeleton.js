@@ -2,9 +2,9 @@ import React from "react";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
 
 import "../../utilities.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Skeleton.css";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -41,7 +41,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           </Row>
           <br></br><br></br>
 
-          <p class="Skeleton-primaryBlueLine"></p>
+          <p className="Skeleton-primaryBlueLine"></p>
           <br></br>
           
           <Row className="text-center">
@@ -73,7 +73,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
 
           <br></br><br></br>
           <Row>
-            <Col xs={4}><h4 className="text-center">Save money on transpo<br></br><br></br></h4></Col>
+            <Col xs={4}><h4 className="text-center">Save money on transportation<br></br><br></br></h4></Col>
             <Col xs={4}></Col>
             <Col xs={4}></Col>
           </Row>
@@ -94,16 +94,6 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
               <Button size="lg" className="u-backgroundColorPrimary"><Link to="/findARide/" className="u-noTextDecoration"><span className="u-colorWhite">Let's Go!</span></Link></Button>
             </Col>
           </Row>
-        </Container>
-      </div>
-
-      <div className="Skeleton-websiteFooter">
-        <Container>
-          <h5>MIT Airport Rideshare</h5>
-          <br></br>
-          <p>Team rEActIon<br></br>
-          Created for 6.9620 web.lab at MIT<br></br><br></br>
-          Copyright 2023</p>
         </Container>
       </div>
     </>

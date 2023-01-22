@@ -7,7 +7,12 @@ import { post } from "../../utilities";
 
 import { Link } from "@reach/router";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+
 import ProfileCard from "../modules/ProfileCard";
 
 const MyProfile = (props) => {
@@ -64,6 +69,7 @@ const MyProfile = (props) => {
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>My Profile</h1>
+      <br></br>
       <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
       <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
       <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
@@ -79,8 +85,8 @@ const MyProfile = (props) => {
 
   return (
     <>
-      {masterModal}
-      {ridesJoinedModal}
+      <Container className="u-marginTopPage">{masterModal}</Container>
+      <Container className="u-marginBottomPage">{ridesJoinedModal}</Container>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./modules/NavBar.js";
+import Footer from "./modules/Footer.js";
 import { Router } from "@reach/router";
 
 import CreateARide from "./pages/CreateARide.js";
@@ -117,6 +118,7 @@ const App = () => {
         <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name} set_classYear={set_classYear} set_major={set_major}/>
         <NotFound default />
       </Router>
+      <Footer />
     </>
   );
 };

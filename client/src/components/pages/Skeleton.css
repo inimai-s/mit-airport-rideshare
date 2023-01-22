@@ -7,13 +7,6 @@
     background-size: cover;
 }
 
-.Skeleton-websiteFooter{
-    background-color: var(--primary);
-    color:#fff;
-    padding-top:50px;
-    padding-bottom:50px;
-}
-
 .movingImg{
     transition: 0.5s;
 }

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
 
 import "./MyProfile.css";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 import { get } from "../../utilities";
 import { post } from "../../utilities";
@@ -117,13 +122,13 @@ const EditMyProfile = (props) => {
         </>
     }else{
         masterModal=<>
-        <h1>Edit My Profile</h1>
-        <h4>Please login to Google with an @mit.edu email first!</h4>
+            <h1>Edit My Profile</h1>
+            <h4>Please login to Google with an @mit.edu email first!</h4>
         </>
     }
 
     return (
-        <>{masterModal}</>
+        <><Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container></>
     );
 };
 

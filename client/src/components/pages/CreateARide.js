@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
 
-// import { NewStory } from "../modules/NewPostInput.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 import { get } from "../../utilities";
 import { post } from "../../utilities";
@@ -225,7 +228,7 @@ const CreateARide = (props) => {
   }
 
   return (
-    <>{masterModal}</>
+    <><Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container></>
   );
 };
 

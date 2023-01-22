@@ -41,8 +41,20 @@ body {
   font-family: 'Poppins', sans-serif !important;
 }
 
+.u-marginTopPage{
+  margin-top:30px;
+}
+
+.u-marginBottomPage{
+  margin-bottom:100px;
+}
+
 .u-backgroundColorPrimary{
   background-color: var(--primary) !important;
+}
+
+.u-backgroundColorMedBlue{
+  background-color: var(--medium-blue) !important;
 }
 
 .u-noTextDecoration{

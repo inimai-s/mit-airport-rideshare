@@ -22,9 +22,9 @@ const NavBar = (props) => {
       <div className="NavBar-flex NavBar-linkContainer">
         <div className="NavBar-title u-inlineBlock"><Link to="/" className="NavBar-title"><img src={flightTakeoffLogo} alt="Logo" className="NavBar-photo" /></Link></div>
         
-        <Link to="/createARide/" className="NavBar-link">
+        {/* <Link to="/createARide/" className="NavBar-link">
           Create a Ride
-        </Link>
+        </Link> */}
 
         <Link to="/findARide/" className="NavBar-link">
           Find a Ride

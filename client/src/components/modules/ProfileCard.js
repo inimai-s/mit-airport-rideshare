@@ -41,7 +41,7 @@ const ProfileCard = (props) => {
         <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
         <p className="Card-storyContent"><span className="u-bold">Spots Filled:</span> <span className="u-colorPrimary">{props.user_googleId_joined.length} / {props.maxPeople}</span></p>
         <br></br>
-        <Button variant="primary" onClick={handleLeaveRide}>Leave {props.user_name.replace(/ .*/,'')}'s Ride</Button>
+        <Button className="u-backgroundColorPrimary" onClick={handleLeaveRide}>Leave {props.user_name.replace(/ .*/,'')}'s Ride</Button>
       </div>
     </div>
   );

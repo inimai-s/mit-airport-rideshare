@@ -4,6 +4,12 @@ import Card from "../modules/Card.js";
 import { get } from "../../utilities";
 import { post } from "../../utilities";
 
+import { Link } from "@reach/router";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -175,6 +181,10 @@ const FindARide = (props) => {
       <Button className="u-backgroundColorPrimary" onClick={handleShow}>
         Filter Rides
       </Button>
+      <br></br><br></br>
+
+      Can't find a ride that fits your schedule?
+      <Button variant="info" className="u-margin-left-m u-backgroundColorMedBlue"><Link to="/createARide/" className="u-noTextDecoration"><span className="u-colorWhite">Create your own ride!</span></Link></Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -231,7 +241,7 @@ const FindARide = (props) => {
   }
 
   return (
-    <>{masterModal}</>
+    <><Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container></>
   );
 };
 
