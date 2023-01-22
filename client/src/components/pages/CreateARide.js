@@ -142,8 +142,6 @@ const CreateARide = (props) => {
       user_googleId_joined:[props.user_googleid],
     };
 
-    console.log(body.user_googleId_joined);
-
     console.log(`props.user_googleid: ${props.user_googleid}`);
     console.log(`body.user_googleid: ${body.user_googleid}`);
 
@@ -165,6 +163,7 @@ const CreateARide = (props) => {
     setJuniorBox(false);
     setSeniorBox(false);
     setExtraRideInfo("");
+    setMaxPeopleText("");
   };
 
   let masterModal = null;
