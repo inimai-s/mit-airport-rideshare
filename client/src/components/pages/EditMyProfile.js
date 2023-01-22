@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
 
 import "./MyProfile.css";
 
@@ -112,7 +113,7 @@ const EditMyProfile = (props) => {
             <input className="u-margin-left-m" type="text" value={majorText} onChange={handleMajorChange} />
 
             <br></br><br></br>
-            <button onClick={submitProfileUpdates} className="u-marginLeft-m">Submit Edits!</button>
+            <Button className="u-backgroundColorPrimary u-marginLeft-m" onClick={submitProfileUpdates}>Submit Edits!</Button>
         </>
     }else{
         masterModal=<>

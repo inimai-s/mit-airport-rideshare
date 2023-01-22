@@ -34,8 +34,7 @@
   justify-content:space-between;
 }
 
-.NavBar-profilePhoto{
-  width:30px;
+.NavBar-photo{
   height:30px;
   border-radius:50%;
   vertical-align:middle;

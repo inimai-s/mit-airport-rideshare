@@ -22,7 +22,7 @@ const MyProfile = (props) => {
       <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
       <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
       <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{props.major}</span></p>
-      <Button><Link to="/editMyProfile/"><span className="u-colorWhite">Edit</span></Link></Button>
+      <Button className="u-backgroundColorPrimary"><Link to="/editMyProfile/" className="u-noTextDecoration"><span className="u-colorWhite">Edit</span></Link></Button>
     </>
   }else{
     masterModal=<>

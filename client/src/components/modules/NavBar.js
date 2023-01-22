@@ -7,6 +7,10 @@ import { GoogleOAuthProvider, GoogleLogin, GoogleLogout, googleLogout } from "@r
 
 import "../../utilities.css";
 
+import flightTakeoffLogo from "./images/flightTakeoffLogo.png"
+
+import Button from 'react-bootstrap/Button';
+
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "354424873499-ns84n5jbt5benp32pf6fkvar91ffghi5.apps.googleusercontent.com";
 
@@ -16,7 +20,7 @@ const NavBar = (props) => {
   return (
     <nav className="NavBar-container">
       <div className="NavBar-flex NavBar-linkContainer">
-        <div className="NavBar-title u-inlineBlock"><Link to="/" className="NavBar-title">MIT Airport Rideshare</Link></div>
+        <div className="NavBar-title u-inlineBlock"><Link to="/" className="NavBar-title"><img src={flightTakeoffLogo} alt="Logo" className="NavBar-photo" /></Link></div>
         
         <Link to="/createARide/" className="NavBar-link">
           Create a Ride
@@ -30,19 +34,17 @@ const NavBar = (props) => {
           {props.user_googleid ? (
             <>
               <Link to="/myProfile/" className="NavBar-link">
-                <img src={props.photoLink} alt="Profile Image" className="NavBar-profilePhoto" />
+                <img src={props.photoLink} alt="Profile Image" className="NavBar-photo" />
               </Link>
 
-              <button
-                onClick={() => {
+              <Button variant="light" onClick={() => {
                   googleLogout();
                   props.handleLogout();
                 }}
 
-                className="u-margin-left-m"
-              >
+                className="u-margin-left-m">
                 Logout
-              </button>
+              </Button>
             </>
           ) : (
             <div>

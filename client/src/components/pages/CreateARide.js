@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
 
 // import { NewStory } from "../modules/NewPostInput.js";
 
@@ -213,7 +214,7 @@ const CreateARide = (props) => {
 
         <br></br><br></br>
         
-        <button onClick={submitRide}>Submit!</button>
+        <Button className="u-backgroundColorPrimary" onClick={submitRide}>Submit!</Button>
       </div>
     </>
   }else{

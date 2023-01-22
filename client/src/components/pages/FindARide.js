@@ -172,7 +172,7 @@ const FindARide = (props) => {
     masterModal=<>
       <h1>Find A Ride</h1>
       
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="u-backgroundColorPrimary" onClick={handleShow}>
         Filter Rides
       </Button>
 
@@ -214,7 +214,8 @@ const FindARide = (props) => {
           <Button variant="secondary" onClick={handleClear}>
             Clear Preferences
           </Button>
-          <Button variant="primary" onClick={handleSave}>
+          
+          <Button className="u-backgroundColorPrimary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>
