@@ -17,8 +17,13 @@ const Card = (props) => {
   const handleRideJoined=()=>{
     console.log(`Need to join ${props.user_name.replace(/ .*/,'')}'s Ride`)
 
+    if(props.user_googleId_joined.length >= props.maxPeople) {
+      alert("This ride is at max capacity!");
+      return;
+    }
+
     if(props.user_googleId_joined.includes(props.my_googleid)) {
-      alert("You have already joined this ride");
+      alert("You have already joined this ride!");
       return;
     }
 
@@ -44,6 +49,7 @@ const Card = (props) => {
         <p className="Card-storyContent"><span className="u-bold">Departure End Date/Time:</span> <span className="u-colorPrimary">{props.end_date} {props.end_time}</span></p>
         <p className="Card-storyContent"><span className="u-bold">Max # people who can join:</span> <span className="u-colorPrimary">{props.maxPeople}</span></p>
         <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
+        <p className="Card-storyContent"><span className="u-bold">Spots Filled:</span> <span className="u-colorPrimary">{props.user_googleId_joined.length} / {props.maxPeople}</span></p>
         <br></br>
         <Button variant="primary" onClick={handleRideJoined}>Join {props.user_name.replace(/ .*/,'')}'s Ride</Button>
       </div>
