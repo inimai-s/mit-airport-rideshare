@@ -17,6 +17,11 @@ const Card = (props) => {
   const handleRideJoined=()=>{
     console.log(`Need to join ${props.user_name.replace(/ .*/,'')}'s Ride`)
 
+    if(props.user_googleid == props.my_googleid) {
+      alert("You are the ride captain of this ride!");
+      return;
+    }
+
     if(props.user_googleId_joined.length - 1 >= props.maxPeople) { // -1 to exclude the ride captain
       alert("This ride is at max capacity!");
       return;
