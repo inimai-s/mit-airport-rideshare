@@ -113,6 +113,17 @@ router.post("/updateUser", (req, res) => {
   });
 });
 
+router.post("/joinRide", (req, res) => {
+  console.log("Joining a Ride");
+
+  Ride.findOne({_id: req.body._id}).then((ride) => {
+    ride.user_googleId_joined.push(req.body.my_googleid);
+    ride.save();
+  }).then(() => {
+    res.send({});
+  });
+});
+
 const checkIfExpired = (ride_end_date, ride_end_time) => {
   // returns a boolean: true if the current time is past the endDate + endTime
   let current_ms = Date.now();

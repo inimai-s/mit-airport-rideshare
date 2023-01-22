@@ -81,6 +81,7 @@ const FindARide = (props) => {
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
+
   useEffect(() => {
     get("/api/rides").then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
@@ -112,6 +113,7 @@ const FindARide = (props) => {
         sophomore_box={rideObj.sophomore_box}
         junior_box={rideObj.junior_box}
         senior_box={rideObj.senior_box}
+        my_googleid={props.user_googleid}
       />
     ));
   } else {

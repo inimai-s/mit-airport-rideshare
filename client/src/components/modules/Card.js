@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { get } from "../../utilities";
+import { post } from "../../utilities";
 
 import "./Card.css";
 import Button from 'react-bootstrap/Button';
@@ -15,6 +16,20 @@ const Card = (props) => {
   
   const handleRideJoined=()=>{
     console.log(`Need to join ${props.user_name.replace(/ .*/,'')}'s Ride`)
+
+    if(props.user_googleId_joined.includes(props.my_googleid)) {
+      alert("You have already joined this ride");
+      return;
+    }
+
+    const body = {
+      _id: props._id,
+      my_googleid: props.my_googleid,
+    }
+
+    post("/api/joinRide", body).then((ride) => {
+      location.reload();
+    });
   };
 
   return (
