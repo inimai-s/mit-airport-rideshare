@@ -122,7 +122,7 @@ const App = () => {
         <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
         <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major} refreshProfile={refreshProfile}/>
         <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name} set_classYear={set_classYear} set_major={set_major}/>
-        <Chatbook path="/chat/" userId={userId} />
+        <Chatbook path="/chat/" userId={userId} user_googleid={user_googleid} />
         <NotFound default />
       </Router>
       <Footer />
