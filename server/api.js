@@ -103,7 +103,8 @@ const checkDestination = (ride_destination, pref_destination) => {
 router.get("/activeRides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({active: true}).then((rides) => {
-    let unfilledRides=rides.filter(ride => (!(ride.user_googleId_joined.includes(req.query.user_googleid)) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
+    console.log(req.query.user_googleid);
+    let unfilledRides=rides.filter(ride => ((!(ride.user_googleId_joined.includes(req.query.user_googleid))) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
     res.send(unfilledRides)});
 });
 

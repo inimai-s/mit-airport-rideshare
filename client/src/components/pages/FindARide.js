@@ -203,7 +203,7 @@ const FindARide = (props) => {
     setJuniorBox(false);
     setSeniorBox(false);
 
-    get("/api/activeRides").then((rideObjs) => {
+    get("/api/activeRides",{user_googleid: props.user_googleid}).then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
