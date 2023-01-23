@@ -112,7 +112,7 @@ router.get("/inactiveRides", (req, res) => {
 });
 
 router.get("/filterRides", (req,res) => {
-  Ride.find({}).then((rides) => {
+  Ride.find({active: true}).then((rides) => {
     let filter1 = [...rides];
     if (req.query.destination!=="") {
       filter1 = rides.filter(ride => checkDestination(ride.destination,req.query.destination));
