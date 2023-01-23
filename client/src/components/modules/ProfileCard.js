@@ -17,6 +17,11 @@ const ProfileCard = (props) => {
     const handleLeaveRide=()=>{
         console.log(`Need to leave ${props.user_name.replace(/ .*/,'')}'s Ride`)
 
+        if(props.user_googleid === props.my_googleid) {
+          alert("You can't leave this ride because you are the ride captain");
+          return;
+        }
+
         const body = {
           _id: props._id,
           my_googleid: props.my_googleid,
