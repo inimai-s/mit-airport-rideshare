@@ -67,7 +67,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
             <Col xs={4} className="explanations movingImg">
               <img src={goTravel} className="explanation-img" alt="Travel together" />
               <h4 className="u-colorPrimary">Travel Together</h4>
-              <p>Once connected, you can chat with your rideshare group members</p>
+              <p>Chat with your rideshare group members to sort out logistics!</p>
             </Col>
           </Row>
 

@@ -3,9 +3,14 @@ import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
 import { post } from "../../utilities";
 
-import "./Card.css";
-import Button from 'react-bootstrap/Button';
+import { Link } from "@reach/router";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 /**
  * Card is a component for displaying content like stories
  *
@@ -13,7 +18,15 @@ import Button from 'react-bootstrap/Button';
 
 
 const Card = (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+    location.reload();
+  };
   
+  const handleShow = () => setShow(true);
+
   const handleRideJoined=()=>{
     console.log(`Need to join ${props.user_name.replace(/ .*/,'')}'s Ride`)
 
@@ -38,7 +51,7 @@ const Card = (props) => {
     }
 
     post("/api/joinRide", body).then((ride) => {
-      location.reload();
+      handleShow();
     });
 
     //-------------------------------------------------------------------
@@ -101,6 +114,20 @@ const Card = (props) => {
 
         <Button className="u-backgroundColorPrimary" onClick={handleRideJoined}>Join {props.user_name.replace(/ .*/,'')}'s Ride</Button>
 
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Successfully joined! </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            You've been added to the group chat for {props.user_name}'s ride to {props.destination}!
+            <br></br><br></br>
+            <Button className="u-backgroundColorPrimary">
+              <Link to="/chat/" className="u-noTextDecoration">
+                <span className="u-colorWhite">Go to chat!</span>
+              </Link>
+            </Button>
+          </Modal.Body>
+        </Modal>
       </div>
     </div>
   );
