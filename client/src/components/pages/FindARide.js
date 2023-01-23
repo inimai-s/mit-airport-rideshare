@@ -91,7 +91,7 @@ const FindARide = (props) => {
   // when it shows up on screen
 
   useEffect(() => {
-    get("/api/activeRides").then((rideObjs) => {
+    get("/api/activeRides",{user_googleid: props.user_googleid}).then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
@@ -146,6 +146,7 @@ const FindARide = (props) => {
     sophomore_box: sophomoreBox,
     junior_box: juniorBox,
     senior_box: seniorBox,
+    user_googleid: props.user_googleid,
   };
 
 
