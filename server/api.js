@@ -266,6 +266,21 @@ router.get("/getInactiveJoinedRides", (req, res) => {
   });
 });
 
+router.get("/getAllJoinedRides", (req, res) => {
+  console.log("in get joined rides request");
+  joined_rides_list = [];
+  console.log(`my google id: ${req.my_googleid}`);
+  Ride.find().then((rides) => {
+    for(var i=0;i<rides.length;i++) {
+      if(rides[i].user_googleId_joined.includes(req.query.my_googleid)) {
+        joined_rides_list.push(rides[i]);
+      }
+    }
+  }).then(() => {
+    res.send(joined_rides_list);
+  });
+});
+
 const checkIfExpired = (ride_end_date, ride_end_time) => {
   // returns a boolean: true if the current time is past the endDate + endTime
   let current_ms = Date.now();
