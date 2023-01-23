@@ -200,7 +200,7 @@ const CreateARide = (props) => {
         <br></br><br></br>
 
         <span className="u-bold">Max # people who can join you:</span>
-        <input className="u-margin-left-m u-textbox-number" type="number" min="0" value={maxPeopleText} onChange={handleMaxPeopleChange} required="required"/>
+        <input className="u-margin-left-m u-textbox-number" type="number" min="0" max="10" value={maxPeopleText} onChange={handleMaxPeopleChange} required="required"/>
 
         <br></br><br></br>
 
