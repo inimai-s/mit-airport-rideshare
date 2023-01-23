@@ -21,7 +21,7 @@ const ChatList = (props) => {
             key={i}
             setActiveUser={props.setActiveUser}
             rideJoined={rideJoined}
-            active={rideJoined === props.active}
+            active={rideJoined._id === props.active}
           />
         ))}
     </>

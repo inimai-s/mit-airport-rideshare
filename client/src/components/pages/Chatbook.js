@@ -79,7 +79,7 @@ const Chatbook = (props) => {
           rideName: `${rideObjs[0].user_name}'s Ride to ${rideObjs[0].destination}, ${rideObjs[0].start_date}`
         }
 
-        console.log(`recipient being passed into loadMessageHistory: ${recipient}`)
+        console.log(`recipient being passed into loadMessageHistory: ${JSON.stringify(recipient)}`)
         loadMessageHistory(recipient);
       }
     });
@@ -87,12 +87,11 @@ const Chatbook = (props) => {
 
   useEffect(() => {
     const addMessages = (data) => {
-      if (
-        (data.recipient._id === activeChat.recipient._id &&
-          data.sender._id === props.userId) ||
-        (data.sender._id === activeChat.recipient._id &&
-          data.recipient._id === props.userId)
-      ) {
+      console.log(`data.recipient._id: ${data.recipient._id}`);
+      console.log(`data.sender._id: ${data.sender._id}`);
+      console.log(`activeChat.recipient._id: ${activeChat.recipient._id}`);
+
+      if (data.recipient._id === activeChat.recipient._id) {
         setActiveChat(prevActiveChat => ({
           recipient: prevActiveChat.recipient,
           messages: prevActiveChat.messages.concat(data),
@@ -137,7 +136,7 @@ const Chatbook = (props) => {
             userId={props.userId}
             ridesJoined={ridesJoined}
             // users={activeUsers}
-            active={activeChat.recipient}
+            active={activeChat.recipient._id}
           />
         </div>
         <div className="Chatbook-chatContainer u-relative">

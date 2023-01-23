@@ -272,14 +272,14 @@ router.get("/chat", (req, res) => {
   let query;
 
   // get messages that are from me->you OR you->me
-  query = {
-    $or: [
-      { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
-      { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
-    ],
-  };
+  // query = {
+  //   $or: [
+  //     { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
+  //     { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
+  //   ],
+  // };
 
-  Message.find(query).then((messages) => res.send(messages));
+  Message.find({"recipient._id": req.query.recipient_id}).then((messages) => res.send(messages));
 });
 
 router.post("/message", auth.ensureLoggedIn, (req, res) => {
