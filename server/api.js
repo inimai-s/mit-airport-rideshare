@@ -320,10 +320,14 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
 
-  socketManager.getSocketFromUserID(req.user._id).emit("message", message);
-  if (req.user._id !== req.body.recipient._id) {
-    socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-  }
+  console.log(`JSON stringify of message: ${message}`)
+
+  socketManager.getIo().emit("message", message);
+  
+  // socketManager.getSocketFromUserID(req.user._id).emit("message", message);
+  // if (req.user._id !== req.body.recipient._id) {
+  //   socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
+  // }
   
 });
 

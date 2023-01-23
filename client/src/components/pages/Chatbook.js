@@ -92,6 +92,7 @@ const Chatbook = (props) => {
       console.log(`activeChat.recipient._id: ${activeChat.recipient._id}`);
 
       if (data.recipient._id === activeChat.recipient._id) {
+        console.log("data.recipient._id === activeChat.recipient._id")
         setActiveChat(prevActiveChat => ({
           recipient: prevActiveChat.recipient,
           messages: prevActiveChat.messages.concat(data),
