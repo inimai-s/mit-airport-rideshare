@@ -29,11 +29,13 @@ const FindARide = (props) => {
   const handleDestinationMITChange = (event) => {
     const value=event.target.checked;
     setDestinationMIT(value)
+    setDestinationLogan(!value)
   };
 
   const handleDestinationLoganChange = (event) => {
     const value=event.target.checked;
     setDestinationLogan(value)
+    setDestinationMIT(!value)
   };
 
   const [startDate, setStartDate] = useState("");
@@ -126,8 +128,11 @@ const FindARide = (props) => {
     ridesList = <div>No rides!</div>;
   }
 
-  let stringDestination="MIT";
-  if (destinationMIT===false){
+  let stringDestination="";
+  if (destinationMIT===true) {
+    stringDestination="MIT";
+  }
+  else if (destinationLogan===true){
     stringDestination="Logan Airport";
   }
   
@@ -148,11 +153,40 @@ const FindARide = (props) => {
 
   const handleClose = () => setShow(false);
   const handleSave = () => {
+    if ((startDate==="" && endDate!=="") && (startTime==="" && endTime==="")) {
+      alert("Please input start date and end date or start date only to filter by date.");
+      return;
+    }
+    else if (((startTime==="" && endTime!=="") || (startTime!=="" && endTime==="")) && startDate==="") {
+      alert("Please input start time and end time to filter by time intervals.");
+      return;
+    }
+    else if (startDate!=="" && startTime!=="" && endDate!=="" && endTime!=="") {
+      let ride_start_ms = new Date(startDate.concat(" ").concat(startTime));
+      let ride_end_ms = new Date(endDate.concat(" ").concat(endTime));
+      if (ride_start_ms>ride_end_ms){
+        alert("Invalid time interval.");
+        return;
+      }
+    }
     setShow(false);
     get("/api/filterRides",body).then((rideObjs) => {
     let reversedRideObjs = rideObjs.reverse();
       setRides(reversedRideObjs);
     });
+    // if (destinationMIT===false && destinationLogan===false) {
+    //   setDestinationMIT(false);
+    //   setDestinationLogan(false);
+    // }
+    // if (startDate!=="")
+    // setStartDate("");
+    // setStartTime("");
+    // setEndDate("");
+    // setEndTime("");
+    // setFreshmanBox(false);
+    // setSophomoreBox(false);
+    // setJuniorBox(false);
+    // setSeniorBox(false);
   };
   const handleShow = () => setShow(true);
   const handleClear=()=>{

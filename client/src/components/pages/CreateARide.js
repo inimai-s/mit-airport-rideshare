@@ -18,11 +18,13 @@ const CreateARide = (props) => {
   const handleDestinationMITChange = (event) => {
       const value=event.target.checked;
       setDestinationMIT(value)
+      setDestinationLogan(!value)
   };
 
   const handleDestinationLoganChange = (event) => {
     const value=event.target.checked;
     setDestinationLogan(value)
+    setDestinationMIT(!value)
   };
 
   // Your meet up Location

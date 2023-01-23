@@ -6,7 +6,6 @@
 | This file defines the routes for your server.
 |
 */
-
 const express = require("express");
 
 // import models so we can interact with the database
@@ -22,6 +21,8 @@ const router = express.Router();
 
 //initialize socket
 const socketManager = require("./server-socket");
+const { listen } = require("socket.io");
+const { length } = require("file-loader");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -44,14 +45,104 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+const checkTime = (ride_start_date, ride_start_time, ride_end_date, ride_end_time, start_date_pref, start_time_pref, end_date_pref, end_time_pref) => {
+  let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
+  let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
+  let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
+  let end_pref_ms = new Date(end_date_pref.concat(" ").concat(end_time_pref));
+  return ((ride_start_ms<=end_pref_ms) && (ride_end_ms>=start_pref_ms));
+};
+
+const checkInInterval = (ride_start_time,ride_end_time, ride_start_date, ride_end_date, start_date_pref,start_time_pref) => {
+  let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
+  let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
+  let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
+  return ((ride_start_ms<=start_pref_ms) && (start_pref_ms<=ride_end_ms));
+}
+
+const filterByTime = (ride_start_time, ride_end_time, start_time_pref, end_time_pref) => {
+  let ride_start_date="2023-01-01";
+  let ride_end_date = "2023-01-01";
+  let start_date_pref="2023-01-01";
+  let end_date_pref="2023-01-01";
+  let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
+  let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
+  if (ride_start_ms>ride_end_ms) {
+    ride_end_date="2023-01-02";
+  }
+  let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
+  let end_pref_ms = new Date(end_date_pref.concat(" ").concat(end_time_pref));
+  if (start_pref_ms>end_pref_ms) {
+    end_date_pref="2023-01-02";
+  }
+  return checkTime(ride_start_date,ride_start_time,ride_end_date,ride_end_time,start_date_pref,start_time_pref,end_date_pref,end_time_pref);
+};
+
+const checkClassYear = (ride_class_year, pref_f, pref_sph, pref_j, pref_s) => {
+  let canRide = false;
+  if ((ride_class_year==="Freshman") && (pref_f==="true")) {
+    canRide = true;
+  }
+  else if ((ride_class_year==="Sophomore") && (pref_sph==="true")) {
+    canRide = true;
+  }
+  else if ((ride_class_year==="Junior") && (pref_j==="true")) {
+    canRide = true;
+  }
+  else if ((ride_class_year==="Senior") && (pref_s==="true")) {
+    canRide = true;
+  }
+  return canRide;
+};
+
+const checkDestination = (ride_destination, pref_destination) => {
+  return (ride_destination === pref_destination);
+};
+
 router.get("/rides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({}).then((rides) => res.send(rides));
 });
 
-router.get("/filterRides",(req,res)=>{
-  Ride.find({destination: req.query.destination, start_date: req.query.start_date, end_date: req.query.end_date, end_time: req.query.end_time, freshman_box:req.query.freshman_box, sophomore_box:req.query.sophomore_box, junior_box: req.query.junior_box, senior_box:req.query.senior_box}).then((rides) => res.send(rides));
+router.get("/filterRides", (req,res) => {
+  Ride.find({}).then((rides) => {
+    let filter1 = [...rides];
+    if (req.query.destination!=="") {
+      filter1 = rides.filter(ride => checkDestination(ride.destination,req.query.destination));
+    }
+    let filter2 = [...filter1];
+    if (req.query.start_date!=="") {
+      filter2=filter1.filter(ride => (ride.start_date===req.query.start_date));
+    }
+    let filter3 = [...filter2];
+    if ((req.query.freshman_box==="true") || (req.query.sophomore_box==="true") || (req.query.junior_box==="true") || (req.query.senior_box==="true")) {
+      filter3=filter2.filter(ride => checkClassYear(ride.classYear,req.query.freshman_box,req.query.sophomore_box,req.query.junior_box,req.query.senior_box));
+    }
+    let filter4 = [...filter3];
+    if (req.query.start_date!=="" && req.query.end_date!=="" && req.query.start_time!=="" && req.query.end_time!=="") {
+      filter4 = filter3.filter(ride => checkTime(ride.start_date,ride.start_time,ride.end_date,ride.end_time,req.query.start_date,req.query.start_time,req.query.end_date,req.query.end_time));
+    }
+    let filter5=[...filter4]
+    if (req.query.start_date!=="" && req.query.end_date!=="") {
+      filter5=filter4.filter(ride => (ride.start_date===req.query.start_date && ride.end_date===req.query.end_date));
+    }
+    let filter6=[...filter5]
+    if (req.query.start_time!=="" && req.query.end_time!=="" && req.query.start_date==="" && req.query.end_date==="") {
+      filter6=filter5.filter(ride => filterByTime(ride.start_time,ride.end_time,req.query.start_time,req.query.end_time));
+    }
+    let filter7 = [...filter6];
+    if (req.query.start_time!=="" && req.query.start_date!=="" && req.query.end_time==="" && req.query.end_date==="") {
+      filter7=filter6.filter(ride => checkInInterval(ride.start_time,ride.end_time, ride.start_date, ride.end_date, req.query.start_date,req.query.start_time));
+    }
+    res.send(filter7);
+  }); 
 });
+
+
+//router.get("/filterRides",(req,res)=>{
+//  Ride.find({destination: req.query.destination, start_date: req.query.start_date, end_date: req.query.end_date, end_time: req.query.end_time, freshman_box:req.query.freshman_box, sophomore_box:req.query.sophomore_box, junior_box: req.query.junior_box, senior_box:req.query.senior_box}).then((rides) => res.send(rides));
+//});
 
 router.post("/ride", (req, res) => {
   // TODO (step1) create a new Ride document and put it into the collection using the model
