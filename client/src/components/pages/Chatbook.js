@@ -12,11 +12,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-const ALL_CHAT = {
-  _id: "ALL_CHAT",
-  name: "ALL CHAT",
-};
-
 /**
  * Page component to display when at the "/chat" route
  *
@@ -41,10 +36,12 @@ const Chatbook = (props) => {
    */
 
   const [ridesJoined, setRidesJoined] = useState([]);
-  // const [activeUsers, setActiveUsers] = useState([]);
 
   const [activeChat, setActiveChat] = useState({
-    recipient: ALL_CHAT,
+    recipient: {
+      _id: "dummy id",
+      rideName: "dummy ride name",
+    },
     messages: [],
   });
 
@@ -54,31 +51,38 @@ const Chatbook = (props) => {
         recipient: recipient,
         messages: messages,
       });
+    }).then(() => {
+      console.log(`activeChat: ${JSON.stringify(activeChat)}`);
     });
   };
-
-  // useEffect(() => {
-  //   document.title = "Chatbook";
-  // }, []);
 
   useEffect(() => {
     loadMessageHistory(activeChat.recipient);
   }, [activeChat.recipient._id]);
 
-  const query = {
-    my_googleid: props.user_googleid,
-  };
-
-  get("/api/getJoinedRides", query).then((rideObjs) => {
-    console.log("getting Joined Rides list");
-    console.log(`rideObjs: ${rideObjs}`);
-    console.log(`props.user_googleid for Chatbook.js: ${props.user_googleid}`);
-    let reversedRideObjs = rideObjs.reverse();
-    setRidesJoined(reversedRideObjs);
-  });
-
   useEffect(() => {
-    // put stuff in here eventually
+    const query = {
+      my_googleid: props.user_googleid,
+    };
+
+    get("/api/getJoinedRides", query).then((rideObjs) => {
+      // console.log("getting Joined Rides list");
+      // console.log(`rideObjs: ${rideObjs}`);
+      // console.log(`props.user_googleid for Chatbook.js: ${props.user_googleid}`);
+  
+      let reversedRideObjs = rideObjs.reverse();
+      setRidesJoined(reversedRideObjs);
+  
+      if (reversedRideObjs.length > 0){
+        let recipient = {
+          _id: rideObjs[0]._id,
+          rideName: `${rideObjs[0].user_name}'s Ride to ${rideObjs[0].destination}, ${rideObjs[0].start_date}`
+        }
+
+        console.log(`recipient being passed into loadMessageHistory: ${recipient}`)
+        loadMessageHistory(recipient);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -87,8 +91,7 @@ const Chatbook = (props) => {
         (data.recipient._id === activeChat.recipient._id &&
           data.sender._id === props.userId) ||
         (data.sender._id === activeChat.recipient._id &&
-          data.recipient._id === props.userId) ||
-        (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
+          data.recipient._id === props.userId)
       ) {
         setActiveChat(prevActiveChat => ({
           recipient: prevActiveChat.recipient,
@@ -102,20 +105,15 @@ const Chatbook = (props) => {
     };
   }, [activeChat.recipient._id, props.userId]);
 
-  // useEffect(() => {
-  //   const callback = (data) => {
-  //     setActiveUsers([ALL_CHAT].concat(data.activeUsers));
-  //   };
-  //   socket.on("activeUsers", callback);
-  //   return () => {
-  //     socket.off("activeUsers", callback);
-  //   };
-  // }, []);
+  const setActiveUser = (rideObj) => {
+    if (rideObj._id !== activeChat.recipient._id) {
+      let myRecipient = {
+        _id: rideObj._id,
+        rideName: `${rideObj.user_name}'s Ride to ${rideObj.destination}, ${rideObj.start_date}`
+      }
 
-  const setActiveUser = (user) => {
-    if (user._id !== activeChat.recipient._id) {
       setActiveChat({
-        recipient: user,
+        recipient: myRecipient,
         messages: [],
       });
     }
@@ -129,23 +127,31 @@ const Chatbook = (props) => {
     <h4>Please login to Google with an @mit.edu email first!</h4>
     </> 
   }else{
-    masterModal=<>
-    <h1>My Chats</h1>
-    <div className="u-flex u-relative Chatbook-container">
-      <div className="Chatbook-userList">
-        <ChatList
-          setActiveUser={setActiveUser}
-          userId={props.userId}
-          ridesJoined={ridesJoined}
-          // users={activeUsers}
-          active={activeChat.recipient}
-        />
+    if (ridesJoined.length > 0){
+      masterModal=<>
+      <h1>My Chats</h1>
+      <div className="u-flex u-relative Chatbook-container">
+        <div className="Chatbook-userList">
+          <ChatList
+            setActiveUser={setActiveUser}
+            userId={props.userId}
+            ridesJoined={ridesJoined}
+            // users={activeUsers}
+            active={activeChat.recipient}
+          />
+        </div>
+        <div className="Chatbook-chatContainer u-relative">
+          <Chat data={activeChat} />
+        </div>
       </div>
-      <div className="Chatbook-chatContainer u-relative">
-        <Chat data={activeChat} />
-      </div>
-    </div>
-    </>
+      </>
+    }else{
+      masterModal=<>
+      <h1>My Chats</h1>
+      <p>You are not part of any rides, join or create one now to be part of a chat!</p>
+      </>
+    }
+    
   }
 
   return (

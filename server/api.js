@@ -179,18 +179,14 @@ router.get("/deleteRideCard", (req, res) => {
 
 router.get("/chat", (req, res) => {
   let query;
-  if (req.query.recipient_id === "ALL_CHAT") {
-    // get any message sent by anybody to ALL_CHAT
-    query = { "recipient._id": "ALL_CHAT" };
-  } else {
-    // get messages that are from me->you OR you->me
-    query = {
-      $or: [
-        { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
-        { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
-      ],
-    };
-  }
+
+  // get messages that are from me->you OR you->me
+  query = {
+    $or: [
+      { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
+      { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
+    ],
+  };
 
   Message.find(query).then((messages) => res.send(messages));
 });
@@ -209,14 +205,11 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
 
-  if (req.body.recipient._id == "ALL_CHAT") {
-    socketManager.getIo().emit("message", message);
-  } else {
-    socketManager.getSocketFromUserID(req.user._id).emit("message", message);
-    if (req.user._id !== req.body.recipient._id) {
-      socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-    }
+  socketManager.getSocketFromUserID(req.user._id).emit("message", message);
+  if (req.user._id !== req.body.recipient._id) {
+    socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
   }
+  
 });
 
 router.get("/activeUsers", (req, res) => {

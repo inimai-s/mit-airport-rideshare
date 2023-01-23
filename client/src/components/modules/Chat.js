@@ -30,7 +30,7 @@ import "./Chat.css";
 const Chat = (props) => {
   return (
     <div className="u-flexColumn Chat-container">
-      <h3>Chatting with {props.data.recipient.user_name}</h3>
+      <h3>Chat: {props.data.recipient.rideName}</h3>
       <div className="Chat-historyContainer">
         {props.data.messages.map((m, i) => (
           <SingleMessage message={m} key={i} />
