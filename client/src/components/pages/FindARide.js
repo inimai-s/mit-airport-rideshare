@@ -172,8 +172,9 @@ const FindARide = (props) => {
     setShow(false);
     get("/api/filterRides",body).then((rideObjs) => {
     let reversedRideObjs = rideObjs.reverse();
-      setRides(reversedRideObjs);
+      setActiveRides(reversedRideObjs);
     });
+    
     // if (destinationMIT===false && destinationLogan===false) {
     //   setDestinationMIT(false);
     //   setDestinationLogan(false);
