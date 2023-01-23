@@ -174,7 +174,7 @@ const FindARide = (props) => {
     let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
-    
+
     // if (destinationMIT===false && destinationLogan===false) {
     //   setDestinationMIT(false);
     //   setDestinationLogan(false);
@@ -244,7 +244,7 @@ const FindARide = (props) => {
 
           <br></br><br></br>
 
-          <span className="u-bold">Class Years you're comfortable riding with:</span>
+          <span className="u-bold">Ride Captain class year:</span>
           <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
           <span className="u-colorPrimary">Freshman</span>
           <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} />
