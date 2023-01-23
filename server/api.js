@@ -141,7 +141,8 @@ router.get("/filterRides", (req,res) => {
     if (req.query.start_time!=="" && req.query.start_date!=="" && req.query.end_time==="" && req.query.end_date==="") {
       filter7=filter6.filter(ride => checkInInterval(ride.start_time,ride.end_time, ride.start_date, ride.end_date, req.query.start_date,req.query.start_time));
     }
-    res.send(filter7);
+    let unfilledRides=filter7.filter(ride => ((ride.user_googleId_joined.length-1)<ride.maxPeople));
+    res.send(unfilledRides);
   }); 
 });
 
