@@ -100,9 +100,13 @@ const checkDestination = (ride_destination, pref_destination) => {
   return (ride_destination === pref_destination);
 };
 
-router.get("/rides", (req, res) => {
+router.get("/activeRides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
-  Ride.find({}).then((rides) => res.send(rides));
+  Ride.find({active: true}).then((rides) => res.send(rides));
+});
+
+router.get("/inactiveRides", (req, res) => {
+  Ride.find({active: false}).then((rides) => res.send(rides));
 });
 
 router.get("/filterRides", (req,res) => {
@@ -166,6 +170,7 @@ router.post("/ride", (req, res) => {
     senior_box: req.body.senior_box,
     extra_ride_info: req.body.extra_ride_info,
     user_googleId_joined: req.body.user_googleId_joined,
+    active: req.body.active,
   });
 
   // saves the newStory to MongoDB
@@ -228,11 +233,11 @@ router.post("/leaveRide", (req, res) => {
   });
 });
 
-router.get("/getJoinedRides", (req, res) => {
+router.get("/getActiveJoinedRides", (req, res) => {
   console.log("in get joined rides request");
   joined_rides_list = [];
   console.log(`my google id: ${req.my_googleid}`);
-  Ride.find({}).then((rides) => {
+  Ride.find({active: true}).then((rides) => {
     for(var i=0;i<rides.length;i++) {
       if(rides[i].user_googleId_joined.includes(req.query.my_googleid)) {
         joined_rides_list.push(rides[i]);
@@ -240,6 +245,21 @@ router.get("/getJoinedRides", (req, res) => {
     }
   }).then(() => {
     res.send(joined_rides_list);
+  });
+});
+
+router.get("/getInactiveJoinedRides", (req, res) => {
+  // console.log("in get joined rides request");
+  ride_history_list = [];
+  console.log(`my google id: ${req.my_googleid}`);
+  Ride.find({active: false}).then((rides) => {
+    for(var i=0;i<rides.length;i++) {
+      if(rides[i].user_googleId_joined.includes(req.query.my_googleid)) {
+        ride_history_list.push(rides[i]);
+      }
+    }
+  }).then(() => {
+    res.send(ride_history_list);
   });
 });
 
@@ -251,19 +271,23 @@ const checkIfExpired = (ride_end_date, ride_end_time) => {
   return current_ms > ride_ms;
 }
 
-router.get("/deleteRideCard", (req, res) => {
-  console.log("Deleting expired ride cards");
+router.post("/setRideCardActivity", (req, res) => {
+  console.log("Setting expired ride cards to inactive");
 
-  Ride.find({}).then((rides) => {
+  Ride.find({active: true}).then((rides) => {
     for (var i=0;i<rides.length;i++) {
       isExpired = checkIfExpired(rides[i].end_date, rides[i].end_time);
       if(isExpired) {
-        console.log("deleting");
+        // console.log("deleting");
         console.log(`rides[i]: ${rides[i]._id}`);
-        Ride.deleteOne({_id: rides[i]._id}).then((student) => console.log("Deleted"));
+        rides[i].active = false;
+        rides[i].save();
+        // Ride.deleteOne({_id: rides[i]._id}).then((student) => console.log("Deleted"));
       }
     }
-  })
+  }).then(() => {
+    res.send({});
+  });
 });
 
 // Chats

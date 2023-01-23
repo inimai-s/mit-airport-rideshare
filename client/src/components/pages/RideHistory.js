@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./MyProfile.css";
+import "./RideHistory.css";
 
 import { get } from "../../utilities";
 import { post } from "../../utilities";
@@ -13,33 +13,29 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-import ProfileCard from "../modules/ProfileCard";
+import RideHistoryCard from "../modules/RideHistoryCard";
 
-const MyProfile = (props) => {
+const RideHistory = (props) => {
 
-  const [ridesJoined, setRidesJoined] = useState([]);
+  const [oldRides, setOldRides] = useState([]);
 
   const query = {
     my_googleid: props.user_googleid,
   };
-  
-  useEffect(() => {
-    props.refreshProfile();
-  },[]);
 
-  get("/api/getActiveJoinedRides", query).then((rideObjs) => {
-    console.log("getting Joined Rides list");
+  get("/api/getInactiveJoinedRides", query).then((rideObjs) => {
+    console.log("getting ride history list");
     console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
     let reversedRideObjs = rideObjs.reverse();
-    setRidesJoined(reversedRideObjs);
+    setOldRides(reversedRideObjs);
   });
 
-  let ridesJoinedModal = null;
-  const hasJoinedRides = ridesJoined.length !== 0;
+  let rideHistoryModal = null;
+  const hasJoinedRides = oldRides.length !== 0;
   if (hasJoinedRides) {
-    ridesJoinedModal = ridesJoined.map((rideObj) => (
-      <ProfileCard
-        key={`ProfileCard_${rideObj._id}`}
+    rideHistoryModal = oldRides.map((rideObj) => (
+      <RideHistoryCard
+        key={`RideHistoryCard_${rideObj._id}`}
         _id={rideObj._id}
         user_name={rideObj.user_name}
         user_googleid={rideObj.user_googleid}
@@ -62,23 +58,23 @@ const MyProfile = (props) => {
       />
     ));
   } else {
-    ridesJoinedModal = <div>No rides joined!</div>;
+    rideHistoryModal = <div>No ride history!</div>;
   }
 
   let masterModal = null;
   if (props.user_googleid && props.user_name){
     masterModal=<>
-      <h1>My Profile</h1>
+      <h1>My Ride History</h1>
       <br></br>
-      <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
+      {/* <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
       <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
       <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
       <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{props.major}</span></p>
-      <Button className="u-backgroundColorPrimary"><Link to="/editMyProfile/" className="u-noTextDecoration"><span className="u-colorWhite">Edit</span></Link></Button>
+      <Button className="u-backgroundColorPrimary"><Link to="/editMyProfile/" className="u-noTextDecoration"><span className="u-colorWhite">Edit</span></Link></Button> */}
     </>
   }else{
     masterModal=<>
-      <h1>My Profile</h1>
+      <h1>My Ride History</h1>
       <h4>Please login to Google with an @mit.edu email first!</h4>
     </>
   }
@@ -86,9 +82,9 @@ const MyProfile = (props) => {
   return (
     <>
       <Container className="u-marginTopPage">{masterModal}</Container>
-      <Container className="u-marginBottomPage">{ridesJoinedModal}</Container>
+      <Container className="u-marginBottomPage">{rideHistoryModal}</Container>
     </>
   );
 };
 
-export default MyProfile;
+export default RideHistory;

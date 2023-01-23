@@ -15,12 +15,12 @@ import Modal from 'react-bootstrap/Modal';
 
 const FindARide = (props) => {
   useEffect(() => {
-    get("/api/deleteRideCard").then(() => {
+    post("/api/setRideCardActivity").then(() => {
       // do nothing
     })
   },[]);
 
-  const [rides, setRides] = useState([]);
+  const [activeRides, setActiveRides] = useState([]);
 
   //modal states and functions------------------
   const [destinationMIT, setDestinationMIT]=useState(false);
@@ -91,16 +91,16 @@ const FindARide = (props) => {
   // when it shows up on screen
 
   useEffect(() => {
-    get("/api/rides").then((rideObjs) => {
+    get("/api/activeRides").then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
-      setRides(reversedRideObjs);
+      setActiveRides(reversedRideObjs);
     });
   }, []);
 
   let ridesList = null;
-  const hasRides = rides.length !== 0;
+  const hasRides = activeRides.length !== 0;
   if (hasRides) {
-    ridesList = rides.map((rideObj) => (
+    ridesList = activeRides.map((rideObj) => (
       <Card
         key={`Card_${rideObj._id}`}
         _id={rideObj._id}
@@ -201,9 +201,9 @@ const FindARide = (props) => {
     setJuniorBox(false);
     setSeniorBox(false);
 
-    get("/api/rides").then((rideObjs) => {
+    get("/api/activeRides").then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
-      setRides(reversedRideObjs);
+      setActiveRides(reversedRideObjs);
     });
   };
 

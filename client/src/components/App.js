@@ -19,6 +19,7 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import RideHistory from "./pages/RideHistory.js";
 
 /**
  * Define the "App" component
@@ -138,6 +139,7 @@ const App = () => {
         <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major} refreshProfile={refreshProfile}/>
         <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name} set_classYear={set_classYear} set_major={set_major}/>
         <Chatbook path="/chat/" userId={userId} user_googleid={user_googleid} />
+        <RideHistory path="/rideHistory" user_googleid={user_googleid} user_name={user_name}/>
         <NotFound default />
       </Router>
       <Footer />

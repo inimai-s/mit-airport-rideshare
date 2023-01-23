@@ -30,6 +30,10 @@ const NavBar = (props) => {
           Find a Ride
         </Link>
 
+        <Link to="/rideHistory" className="NavBar-link">
+          Ride History
+        </Link>
+
         <Link to="/chat/" className="NavBar-link">
           My Chats
         </Link>

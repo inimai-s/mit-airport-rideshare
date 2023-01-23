@@ -19,6 +19,7 @@ const RideSchema = new mongoose.Schema({
   senior_box: Boolean,
   extra_ride_info: String,
   user_googleId_joined:[String],
+  active: Boolean,
 });
 
 // compile model from schema
