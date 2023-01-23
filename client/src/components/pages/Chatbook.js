@@ -65,7 +65,7 @@ const Chatbook = (props) => {
       my_googleid: props.user_googleid,
     };
 
-    get("/api/getJoinedRides", query).then((rideObjs) => {
+    get("/api/getActiveJoinedRides", query).then((rideObjs) => {
       // console.log("getting Joined Rides list");
       // console.log(`rideObjs: ${rideObjs}`);
       // console.log(`props.user_googleid for Chatbook.js: ${props.user_googleid}`);
