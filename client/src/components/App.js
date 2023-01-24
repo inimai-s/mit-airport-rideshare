@@ -62,39 +62,39 @@ const App = () => {
     const decodedCredential = jwt_decode(userToken);
     console.log(`Logged in as ${decodedCredential.name}`);
 
-    post("/api/login", { token: userToken }).then((user) => {
-      console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
-      console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
+    // post("/api/login", { token: userToken }).then((user) => {
+    //   console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
+    //   console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
 
-      set_userId(user._id);
-      set_user_googleid(decodedCredential.sub);
-      set_user_name(decodedCredential.name);
-      set_email(decodedCredential.email);
-      set_photoLink(decodedCredential.picture);
-      set_classYear(user.classYear);
-      set_major(user.major);
+    //   set_userId(user._id);
+    //   set_user_googleid(decodedCredential.sub);
+    //   set_user_name(decodedCredential.name);
+    //   set_email(decodedCredential.email);
+    //   set_photoLink(decodedCredential.picture);
+    //   set_classYear(user.classYear);
+    //   set_major(user.major);
 
-      post("/api/initsocket", { socketid: socket.id });
-    });
+    //   post("/api/initsocket", { socketid: socket.id });
+    // });
     
-    // if (decodedCredential.email.endsWith('@mit.edu')){
-    //   post("/api/login", { token: userToken }).then((user) => {
-    //     console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
-    //     console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
+    if (decodedCredential.email.endsWith('@mit.edu')){
+      post("/api/login", { token: userToken }).then((user) => {
+        console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
+        console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
   
-    //     set_userId(user._id);
-    //     set_user_googleid(decodedCredential.sub);
-    //     set_user_name(decodedCredential.name);
-    //     set_email(decodedCredential.email);
-    //     set_photoLink(decodedCredential.picture);
-    //     set_classYear(user.classYear);
-    //     set_major(user.major);
+        set_userId(user._id);
+        set_user_googleid(decodedCredential.sub);
+        set_user_name(decodedCredential.name);
+        set_email(decodedCredential.email);
+        set_photoLink(decodedCredential.picture);
+        set_classYear(user.classYear);
+        set_major(user.major);
 
-    //     post("/api/initsocket", { socketid: socket.id });
-    //   });
-    // }else{
-    //   window.alert("Please login with an @mit.edu email!");
-    // }
+        post("/api/initsocket", { socketid: socket.id });
+      });
+    }else{
+      window.alert("Please login with an @mit.edu email!");
+    }
 
     
   };

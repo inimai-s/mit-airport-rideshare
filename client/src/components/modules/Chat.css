@@ -1,5 +1,8 @@
 .Chat-container {
   height: 100%;
+  background-color:var(--grey);
+  border-radius: var(--xs);
+  padding:30px;
 }
 
 .Chat-newContainer {

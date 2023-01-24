@@ -21,11 +21,12 @@
 
 
 :root {
-  --primary: #2155CD;
+  --primary: #004385;
   --medium-blue: #0AA1DD;
-  --primary--dim: #6987db;
+  --primary--dim: #5f88b0;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
+  --lightgrey: #f5f5f5;
   --grey: #f7f7f7;
   --white: #fff;
 
@@ -33,6 +34,7 @@
   --s: 8px;
   --m: 16px;
   --l: 24px;
+  --xl: 32px;
 }
 
 body {
@@ -128,12 +130,28 @@ form {
   color: var(--primary--dim);
 }
 
+.u-margin-top-s{
+  margin-top: var(--s);
+}
+
 .u-margin-left-s{
   margin-left: var(--s);
 }
 
 .u-margin-left-m{
   margin-left: var(--m);
+}
+
+.u-margin-right-m{
+  margin-right: var(--m);
+}
+
+.u-margin-left-l{
+  margin-left: var(--l);
+}
+
+.u-margin-left-xl{
+  margin-left: var(--xl);
 }
 
 .u-fontsize-m{
@@ -146,4 +164,23 @@ form {
 
 .u-textbox-number{
   width: 50px;
+}
+
+.u-extraLightGreyCard{
+  background-color:var(--grey);
+  border-radius:15px;
+  padding:30px;
+}
+
+.u-lightGreyCard{
+  background-color:var(--lightgrey);
+  border-radius:15px;
+  padding:30px;
+  box-shadow:10px 10px var(--darkgrey);
+}
+
+.u-darkGreyOutline{
+  border: var(--darkgrey) 2px solid;
+  border-radius: var(--xs);
+  padding:16px;
 }

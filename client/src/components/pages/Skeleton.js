@@ -66,14 +66,14 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
 
             <Col xs={4} className="explanations movingImg">
               <img src={goTravel} className="explanation-img" alt="Travel together" />
-              <h4 className="u-colorPrimary">Travel Together</h4>
-              <p>Chat with your rideshare group members to sort out logistics!</p>
+              <h4 className="u-colorPrimary">Chat Together</h4>
+              <p>Chat with your rideshare group members to sort out logistics, then travel together!</p>
             </Col>
           </Row>
 
           <br></br><br></br>
           <Row>
-            <Col xs={4}><h4 className="text-center">Save money on transportation<br></br><br></br></h4></Col>
+            <Col xs={4}><h4 className="text-center">Save money on ridesharing<br></br><br></br></h4></Col>
             <Col xs={4}></Col>
             <Col xs={4}></Col>
           </Row>

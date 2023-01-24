@@ -106,6 +106,7 @@ const EditMyProfile = (props) => {
     if (props.user_googleid && props.user_name){
         masterModal=<>
             <h1>Edit My Profile</h1>
+            <br></br>
 
             <span className="u-bold">Class Year:</span>
             <input className="u-margin-left-m" type="radio" name="classYear" value="Freshman" checked={classYearFreshman} onChange={handleFreshmanChange}/> <span className="u-colorPrimary">Freshman</span>

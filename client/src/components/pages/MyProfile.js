@@ -68,13 +68,17 @@ const MyProfile = (props) => {
   let masterModal = null;
   if (props.user_googleid && props.user_name){
     masterModal=<>
-      <h1>My Profile</h1>
-      <br></br>
+    <h1>My Profile</h1>
+    <br></br>
+
+    <div className="u-darkGreyOutline">
       <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
       <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
       <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
       <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{props.major}</span></p>
       <Button className="u-backgroundColorPrimary"><Link to="/editMyProfile/" className="u-noTextDecoration"><span className="u-colorWhite">Edit</span></Link></Button>
+    </div>
+    <br></br><br></br>
     </>
   }else{
     masterModal=<>
@@ -86,7 +90,8 @@ const MyProfile = (props) => {
   return (
     <>
       <Container className="u-marginTopPage">{masterModal}</Container>
-      <Container className="u-marginBottomPage">{ridesJoinedModal}</Container>
+      
+      <Container className="u-marginBottomPage"><h2>Joined Rides:</h2>{ridesJoinedModal}</Container>
     </>
   );
 };

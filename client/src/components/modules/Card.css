@@ -1,11 +1,9 @@
 .Card-container {
-  border: var(--darkgrey) 1px solid;
-  border-radius: var(--xs);
-  margin-top: var(--m);
+  margin-top: 32px;
 }
 
 .Card-container:first-of-type {
-  margin-top: var(--l);
+  margin-top: 48px;
 }
 
 .Card-story,

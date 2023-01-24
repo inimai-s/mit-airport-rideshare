@@ -1,6 +1,9 @@
 .Chatbook-container {
   height: calc(100vh - 120px);
-  width: 100%
+  width: 100%;
+  border: var(--darkgrey) 2px solid;
+  border-radius: var(--xs);
+  padding:16px;
 }
 
 .Chatbook-userList {

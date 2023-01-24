@@ -11,7 +11,7 @@ import "./SingleMessage.css";
 const SingleMessage = (props) => {
   return (
     <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
-      <span className=" SingleMessage-sender u-bold">{props.message.sender.user_name + ":"}</span>
+      <span className="SingleMessage-sender u-bold">{props.message.sender.user_name + ":"}</span>
       <span className="SingleMessage-content">{props.message.content}</span>
     </div>
   );

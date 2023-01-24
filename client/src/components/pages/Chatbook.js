@@ -130,6 +130,8 @@ const Chatbook = (props) => {
     if (ridesJoined.length > 0){
       masterModal=<>
       <h1>My Chats</h1>
+      <p>You are a part of a group chat for each ride that you've joined!</p>
+      <br></br><br></br>
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-userList">
           <ChatList

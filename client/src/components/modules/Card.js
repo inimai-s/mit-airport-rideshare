@@ -98,37 +98,45 @@ const Card = (props) => {
   };
 
   return (
-    <div className="Card-container">
-      <div className="Card-story">
-        <h2><img src={props.photoLink} alt="Profile Image" className="Card-profilePhoto"/><span className="u-margin-left-m">{props.user_name}</span></h2>
-        <p className="Card-storyContent"><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
-        <br></br>
-        <p className="Card-storyContent"><span className="u-bold">Destination:</span> <span className="u-colorPrimary">{props.destination}</span></p>
-        <p className="Card-storyContent"><span className="u-bold">Meet-up Location:</span> <span className="u-colorPrimary">{props.meetup_location}</span></p>
-        <p className="Card-storyContent"><span className="u-bold">Departure Start Date/Time:</span> <span className="u-colorPrimary">{props.start_date} {props.start_time}</span></p>
-        <p className="Card-storyContent"><span className="u-bold">Departure End Date/Time:</span> <span className="u-colorPrimary">{props.end_date} {props.end_time}</span></p>
-        {/* <p className="Card-storyContent"><span className="u-bold">Max # people who can join:</span> <span className="u-colorPrimary">{props.maxPeople}</span></p> */}
-        <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
-        <p className="Card-storyContent"><span className="u-bold">Additional Spots Filled:</span> <span className="u-colorPrimary">{props.user_googleId_joined.length - 1} / {props.maxPeople}</span></p>
-        <br></br>
+    <div className="u-lightGreyCard Card-container">
+      <Row>
+        <Col xs={5}>
+          <h2><img src={props.photoLink} alt="Profile Image" className="Card-profilePhoto"/><span className="u-margin-left-m">{props.user_name}</span></h2>
+          <p className="Card-storyContent"><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
+          <br></br>
+          <p className="Card-storyContent"><span className="u-bold">Additional Spots Filled:</span> <span className="u-colorPrimary">{props.user_googleId_joined.length - 1} / {props.maxPeople}</span></p>
+          <Button className="u-backgroundColorPrimary u-margin-top-s" onClick={handleRideJoined}>Join {props.user_name.replace(/ .*/,'')}'s Ride</Button>
+        </Col>
 
-        <Button className="u-backgroundColorPrimary" onClick={handleRideJoined}>Join {props.user_name.replace(/ .*/,'')}'s Ride</Button>
+        <Col xs={7}>
+          <p className="Card-storyContent"><span className="u-bold">Destination:</span> <span className="u-colorPrimary">{props.destination}</span></p>
+          <p className="Card-storyContent"><span className="u-bold">Meet-up Location:</span> <span className="u-colorPrimary">{props.meetup_location}</span></p>
+          <br></br>
+          <p className="Card-storyContent"><span className="u-bold">Departure Start Date/Time:</span> <span className="u-colorPrimary">{props.start_date} {props.start_time}</span></p>
+          <p className="Card-storyContent"><span className="u-bold">Departure End Date/Time:</span> <span className="u-colorPrimary">{props.end_date} {props.end_time}</span></p>
+          <br></br>
+          <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
+        </Col>
+      </Row>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Successfully joined! </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            You've been added to the group chat for {props.user_name}'s ride to {props.destination}!
-            <br></br><br></br>
-            <Button className="u-backgroundColorPrimary">
-              <Link to="/chat/" className="u-noTextDecoration">
-                <span className="u-colorWhite">Go to chat!</span>
-              </Link>
-            </Button>
-          </Modal.Body>
-        </Modal>
-      </div>
+      <br></br>
+
+      
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Successfully joined!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          You've been added to the group chat for {props.user_name}'s ride to {props.destination}!
+          <br></br><br></br>
+          <Button className="u-backgroundColorPrimary">
+            <Link to="/chat/" className="u-noTextDecoration">
+              <span className="u-colorWhite">Go to chat!</span>
+            </Link>
+          </Button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

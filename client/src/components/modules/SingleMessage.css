@@ -4,7 +4,7 @@
 }
 
 .SingleMessage-sender {
-  width: 106px;
+  width: 120px;
   margin-right: var(--xs);
   flex-shrink: 0;
 }

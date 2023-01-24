@@ -125,7 +125,7 @@ const FindARide = (props) => {
       />
     ));
   } else {
-    ridesList = <div>No rides!</div>;
+    ridesList = <div><br></br><span className="u-bold">No rides listed yet!</span></div>;
   }
 
   let stringDestination="";
@@ -219,8 +219,8 @@ const FindARide = (props) => {
       </Button>
       <br></br><br></br>
 
-      Can't find a ride that fits your schedule?
-      <Button variant="info" className="u-margin-left-m u-backgroundColorMedBlue"><Link to="/createARide/" className="u-noTextDecoration"><span className="u-colorWhite">Create your own ride!</span></Link></Button>
+      <span className="u-margin-right-m">Can't find a ride that fits your schedule?</span>
+      <Button variant="info" className="u-backgroundColorMedBlue"><Link to="/createARide/" className="u-noTextDecoration"><span className="u-colorWhite">Create your own ride!</span></Link></Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -228,8 +228,8 @@ const FindARide = (props) => {
         </Modal.Header>
         <Modal.Body>
           <span className="u-bold">Destination: </span>
-          <input type="radio" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/><span className="u-colorPrimary">MIT</span>
-          <input type="radio" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/><span className="u-colorPrimary">Logan Airport</span>
+          <input type="radio" className="u-margin-left-m" name="destination" value="mit" checked={destinationMIT} onChange={handleDestinationMITChange}/><span className="u-colorPrimary u-margin-left-s">MIT</span>
+          <input type="radio" className="u-margin-left-m" name="destination" value="loganAirport" checked={destinationLogan} onChange={handleDestinationLoganChange}/><span className="u-colorPrimary u-margin-left-s">Logan Airport</span>
 
           <br></br><br></br>
 
@@ -247,13 +247,13 @@ const FindARide = (props) => {
 
           <span className="u-bold">Ride Captain class year:</span>
           <input className="u-margin-left-m" type="checkbox" checked={freshmanBox} onChange={handleFreshmanBoxChange} />
-          <span className="u-colorPrimary">Freshman</span>
+          <span className="u-colorPrimary u-margin-left-s">Freshman</span>
           <input className="u-margin-left-m" type="checkbox" checked={sophomoreBox} onChange={handleSophomoreBox} />
-          <span className="u-colorPrimary">Sophomore</span>
+          <span className="u-colorPrimary u-margin-left-s">Sophomore</span>
           <input className="u-margin-left-m" type="checkbox" checked={juniorBox} onChange={handleJuniorBox} />
-          <span className="u-colorPrimary">Junior</span>
+          <span className="u-colorPrimary u-margin-left-s">Junior</span>
           <input className="u-margin-left-m" type="checkbox" checked={seniorBox} onChange={handleSeniorBox} />
-          <span className="u-colorPrimary">Senior</span>
+          <span className="u-colorPrimary u-margin-left-s">Senior</span>
 
         </Modal.Body>
         <Modal.Footer>

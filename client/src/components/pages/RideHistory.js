@@ -65,12 +65,7 @@ const RideHistory = (props) => {
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>My Ride History</h1>
-      <br></br>
-      {/* <h2><span><img src={props.photoLink} alt="Profile Image" className="MyProfile-profilePhoto"></img></span><span className="u-margin-left-m">{props.user_name}</span></h2>
-      <p><span className="u-bold">Email:</span> <span className="u-colorPrimary">{props.email}</span></p>
-      <p><span className="u-bold">Class Year:</span> <span className="u-colorPrimary">{props.classYear}</span></p>
-      <p><span className="u-bold">Major:</span> <span className="u-colorPrimary">{props.major}</span></p>
-      <Button className="u-backgroundColorPrimary"><Link to="/editMyProfile/" className="u-noTextDecoration"><span className="u-colorWhite">Edit</span></Link></Button> */}
+      <p>This page shows your completed rides!</p>
     </>
   }else{
     masterModal=<>

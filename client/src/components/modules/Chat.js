@@ -29,8 +29,9 @@ import "./Chat.css";
  */
 const Chat = (props) => {
   return (
-    <div className="u-flexColumn Chat-container">
-      <h3>Chat: {props.data.recipient.rideName}</h3>
+    <div className="u-flexColumn Chat-container u-extraLightGreyCard">
+      <h3 className="u-colorMediumBlue">Chat: {props.data.recipient.rideName}</h3>
+      <br></br>
       <div className="Chat-historyContainer">
         {props.data.messages.map((m, i) => (
           <SingleMessage message={m} key={i} />
