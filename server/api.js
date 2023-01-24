@@ -48,13 +48,8 @@ router.post("/initsocket", (req, res) => {
 
 const checkTime = (ride_start_date, ride_start_time, ride_end_date, ride_end_time, start_date_pref, start_time_pref, end_date_pref, end_time_pref) => {
   let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
-  //let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
   let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
   let end_pref_ms = new Date(end_date_pref.concat(" ").concat(end_time_pref));
-  console.log(ride_start_ms);
-  console.log(start_pref_ms);
-  console.log(end_pref_ms);
-  console.log((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
   return ((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
 };
 
@@ -63,6 +58,13 @@ const checkInInterval = (ride_start_time,ride_end_time, ride_start_date, ride_en
   let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
   let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
   return ((ride_start_ms<=start_pref_ms) && (start_pref_ms<=ride_end_ms));
+}
+
+const filterByDate = (start_date_pref, end_date_pref, ride_start_date, ride_start_time) => {
+  let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
+  let start_pref_ms = new Date(start_date_pref.concat(" ").concat("00:00"));
+  let end_pref_ms = new Date(end_date_pref.concat(" ").concat("23:59"));
+  return ((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
 }
 
 const filterByTime = (ride_start_time, ride_end_time, start_time_pref, end_time_pref) => {
@@ -123,7 +125,7 @@ router.get("/filterRides", (req,res) => {
       filter1 = rides.filter(ride => checkDestination(ride.destination,req.query.destination));
     }
     let filter2 = [...filter1];
-    if (req.query.start_date!=="") {
+    if (req.query.start_date!=="" && req.query.start_time==="" && req.query.end_time==="" && req.query.end_date==="") {
       filter2=filter1.filter(ride => (ride.start_date===req.query.start_date));
     }
     let filter3 = [...filter2];
@@ -135,8 +137,8 @@ router.get("/filterRides", (req,res) => {
       filter4 = filter3.filter(ride => checkTime(ride.start_date,ride.start_time,ride.end_date,ride.end_time,req.query.start_date,req.query.start_time,req.query.end_date,req.query.end_time));
     }
     let filter5=[...filter4]
-    if (req.query.start_date!=="" && req.query.end_date!=="") {
-      filter5=filter4.filter(ride => (ride.start_date===req.query.start_date && ride.end_date===req.query.end_date));
+    if (req.query.start_date!=="" && req.query.end_date!=="" && req.query.start_time==="" && req.query.end_time==="") {
+      filter5=filter4.filter(ride => filterByDate(req.query.start_date,req.query.end_date,ride.start_date,ride.start_time));
     }
     let filter6=[...filter5]
     if (req.query.start_time!=="" && req.query.end_time!=="" && req.query.start_date==="" && req.query.end_date==="") {
