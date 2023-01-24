@@ -23,7 +23,7 @@
 :root {
   --primary: #004385;
   --medium-blue: #0AA1DD;
-  --primary--dim: #5f88b0;
+  --primary--dim: #e5eef7;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
   --lightgrey: #f5f5f5;
@@ -43,6 +43,9 @@ body {
   font-family: 'Poppins', sans-serif !important;
 }
 
+.u-massiveFont{
+  font-size:80px;
+}
 .u-marginTopPage{
   margin-top:30px;
 }
@@ -134,6 +137,10 @@ form {
   margin-top: var(--s);
 }
 
+.u-margin-top-m{
+  margin-top: var(--m);
+}
+
 .u-margin-left-s{
   margin-left: var(--s);
 }
@@ -152,6 +159,10 @@ form {
 
 .u-margin-left-xl{
   margin-left: var(--xl);
+}
+
+.u-margin-right-xl{
+  margin-right: var(--xl);
 }
 
 .u-fontsize-m{

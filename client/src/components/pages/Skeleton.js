@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 import findARide from './images/undraw_findARide.svg';
 import joinARide from './images/undraw_joinARide.svg';
 import goTravel from './images/undraw_goTravel.svg';
+import carImage from './images/undraw_navigator.svg';
 
 import { Link } from "@reach/router";
 
@@ -24,21 +25,15 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
     <>
       <div className="Skeleton-websiteHeader">
         <Container>
-          <h1>MIT Airport Rideshare</h1>
-          <br></br>
-          <h5>Find other MIT students <br></br><br></br>
-          Rideshare to & from Logan Airport!</h5>
+          <h1 className="u-massiveFont">MIT Airport Rideshare</h1>
+          <br></br><br></br>
+          <h4 className="u-colorWhite">Connect with other MIT students who are ridesharing to & from Logan Airport<br></br><br></br>
+            Carpool together!</h4>
         </Container>
       </div>
 
       <div className="Skeleton-marginBottomLarge">
         <Container>
-          <br></br><br></br>
-
-          <Row className="text-center">
-            <h5>Our platform enables you to connect with other MIT students<br></br><br></br>
-            Carpool to the airport together!</h5>
-          </Row>
           <br></br><br></br>
 
           <p className="Skeleton-primaryBlueLine"></p>
@@ -67,30 +62,16 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
             <Col xs={4} className="explanations movingImg">
               <img src={goTravel} className="explanation-img" alt="Travel together" />
               <h4 className="u-colorPrimary">Chat Together</h4>
-              <p>Chat with your rideshare group members to sort out logistics, then travel together!</p>
+              <p>Chat with your rideshare group members to sort logistics, then travel together!</p>
             </Col>
           </Row>
 
           <br></br><br></br>
-          <Row>
-            <Col xs={4}><h4 className="text-center">Save money on ridesharing<br></br><br></br></h4></Col>
-            <Col xs={4}></Col>
-            <Col xs={4}></Col>
-          </Row>
-          <Row>
-            <Col xs={4}></Col>
-            <Col xs={4}><h4 className="text-center u-colorPrimary">Feel safer when carpooling<br></br><br></br></h4></Col>
-            <Col xs={4}></Col>
-          </Row>
-          <Row>
-            <Col xs={4}></Col>
-            <Col xs={4}></Col>
-            <Col xs={4}><h4 className="text-center u-colorMediumBlue">Meet other MIT students!<br></br><br></br></h4></Col>
-          </Row>
-          <br></br><br></br>
-
           <Row className="text-center">
             <Col>
+              <h4 className="text-center">Save money on ridesharing</h4>
+              <h4 className="text-center u-colorPrimary u-margin-top-m">Feel safer when carpooling</h4>
+              <h4 className="text-center u-colorMediumBlue u-margin-top-m">Meet other MIT students!</h4><br></br>
               <Button size="lg" className="u-backgroundColorPrimary"><Link to="/findARide/" className="u-noTextDecoration"><span className="u-colorWhite">Let's Go!</span></Link></Button>
             </Col>
           </Row>
