@@ -222,7 +222,7 @@ const FindARide = (props) => {
       <span className="u-margin-right-m">Can't find a ride that fits your schedule?</span>
       <Button variant="info" className="u-backgroundColorMedBlue"><Link to="/createARide/" className="u-noTextDecoration"><span className="u-colorWhite">Create your own ride!</span></Link></Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Filter Settings</Modal.Title>
         </Modal.Header>

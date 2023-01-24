@@ -27,8 +27,8 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
         <Container>
           <h1 className="u-massiveFont">MIT Airport Rideshare</h1>
           <br></br><br></br>
-          <h4 className="u-colorWhite">Connect with other MIT students who are ridesharing to & from Logan Airport<br></br><br></br>
-            Carpool together!</h4>
+          <h4 className="u-colorWhite">Connect with other MIT students<br></br><br></br>
+            Rideshare to & from Logan Airport together!</h4>
         </Container>
       </div>
 
