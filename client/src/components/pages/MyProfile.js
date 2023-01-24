@@ -27,6 +27,9 @@ const MyProfile = (props) => {
     props.refreshProfile();
   },[]);
 
+
+
+
   get("/api/getActiveJoinedRides", query).then((rideObjs) => {
     console.log("getting Joined Rides list");
     console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
@@ -92,7 +95,7 @@ const MyProfile = (props) => {
     <>
       <Container className="u-marginTopPage">{masterModal}</Container>
       
-      <Container className="u-marginBottomPage"><h2>Joined Rides:</h2>{ridesJoinedModal}</Container>
+      <Container className="u-marginBottomPage"><h2>My Active Rides:</h2>{ridesJoinedModal}</Container>
     </>
   );
 };
