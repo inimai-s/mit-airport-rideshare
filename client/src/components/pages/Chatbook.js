@@ -143,7 +143,7 @@ const Chatbook = (props) => {
           />
         </div>
         <div className="Chatbook-chatContainer u-relative">
-          <Chat data={activeChat} />
+          <Chat data={activeChat} userId={props.userId}/>
         </div>
       </div>
       </>

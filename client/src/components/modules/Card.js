@@ -164,12 +164,15 @@ const Card = (props) => {
 
       
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Successfully joined!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          You've been added to the group chat for {props.user_name}'s ride to {props.destination}!
+          You can see all the rides you've joined in <Link to="/myProfile/">My Profile</Link>
+          <br></br><br></br>
+
+          You've also been added to the group chat for {props.user_name}'s ride to {props.destination}!
           <br></br><br></br>
           <Button className="u-backgroundColorPrimary">
             <Link to="/chat/" className="u-noTextDecoration">

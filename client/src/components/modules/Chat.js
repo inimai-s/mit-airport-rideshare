@@ -34,7 +34,7 @@ const Chat = (props) => {
       <br></br>
       <div className="Chat-historyContainer">
         {props.data.messages.map((m, i) => (
-          <SingleMessage message={m} key={i} />
+          <SingleMessage message={m} key={i}  userId={props.userId}/>
         ))}
       </div>
       <div className="Chat-newContainer">
