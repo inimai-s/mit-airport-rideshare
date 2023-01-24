@@ -9,6 +9,8 @@
 .Chatbook-userList {
   flex: 0 0 220px;
   margin-right: var(--l);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .Chatbook-chatContainer {
