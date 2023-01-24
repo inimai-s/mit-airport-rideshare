@@ -58,6 +58,7 @@ const CreateARide = (props) => {
   const handleEndDateChange=(event)=>{
     const value = event.target.value;
     setEndDate(value);
+    setStartDate(value);
   }
 
   // Start Time
@@ -72,6 +73,7 @@ const CreateARide = (props) => {
   const handleEndTimeChange=(event)=>{
     const value = event.target.value;
     setEndTime(value);
+    setStartTime(value);
   }
 
   // Clas year checkboxes
@@ -199,13 +201,17 @@ const CreateARide = (props) => {
 
         <br></br><br></br>
 
-        <span className="u-bold u-margin-right-m">Departure Start Date/Time:</span>
+        {/* <span className="u-bold u-margin-right-m">Departure Start Date/Time:</span>
         <input type="date" value={startDate} onChange={handleStartDateChange} required/>
         <input type="time" value={startTime} onChange={handleStartTimeChange} required/>
 
         <br></br><br></br>
 
         <span className="u-bold u-margin-right-m">Departure End Date/Time:</span>
+        <input type="date" value={endDate} onChange={handleEndDateChange} required/>
+        <input type="time" value={endTime} onChange={handleEndTimeChange} required/> */}
+
+        <span className="u-bold u-margin-right-m">Ride Departure Date and Time:</span>
         <input type="date" value={endDate} onChange={handleEndDateChange} required/>
         <input type="time" value={endTime} onChange={handleEndTimeChange} required/>
 
