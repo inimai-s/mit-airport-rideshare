@@ -89,13 +89,12 @@ const FindARide = (props) => {
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
-
   useEffect(() => {
     get("/api/activeRides",{user_googleid: props.user_googleid}).then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
-  }, []);
+  }, [props.user_googleid]);
 
   let ridesList = null;
   const hasRides = activeRides.length !== 0;
