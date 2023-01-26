@@ -133,6 +133,12 @@ const CreateARide = (props) => {
       return;
     }
 
+    let current_ms=Date.now();
+    let end_date_time = new Date(endDate.concat(" ").concat(endTime));
+    if (current_ms>end_date_time) {
+      alert("Please input a valid date/time that hasn't passed.");
+      return;
+    }
 
     let stringDestination="MIT";
     if (destinationMIT===false){
