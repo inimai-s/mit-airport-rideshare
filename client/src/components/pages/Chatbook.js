@@ -83,7 +83,7 @@ const Chatbook = (props) => {
         loadMessageHistory(recipient);
       }
     });
-  }, []);
+  }, [props.user_googleid]);
 
   useEffect(() => {
     const addMessages = (data) => {
