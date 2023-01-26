@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 import ProfileCard from "../modules/ProfileCard";
 
@@ -90,11 +91,45 @@ const MyProfile = (props) => {
     </>
   }
 
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+
+  const handleGoToEditProfile = () => {
+    setShow(false);
+    location.replace("/editMyProfile/");
+  };
+
+  let updateProfileModal = null;
+  if(props.classYear === "" || props.classYear === "Unknown" || props.major === "" || props.major === "Unknown") {
+    updateProfileModal = <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Please Edit Your Profile!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <span className="u-bold">Let other user's know your class year and major! </span>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="u-primary" onClick={handleGoToEditProfile}>
+            Go to Edit Profile
+          </Button>
+          
+          <Button className="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  }
+
   return (
     <>
       <Container className="u-marginTopPage">{masterModal}</Container>
       
       <Container className="u-marginBottomPage"><h2>My Active Rides:</h2>{ridesJoinedModal}</Container>
+
+      {updateProfileModal}
     </>
   );
 };
