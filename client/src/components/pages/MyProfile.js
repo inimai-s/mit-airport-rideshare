@@ -18,24 +18,23 @@ import ProfileCard from "../modules/ProfileCard";
 const MyProfile = (props) => {
 
   const [ridesJoined, setRidesJoined] = useState([]);
-
-  const query = {
-    my_googleid: props.user_googleid,
-  };
   
   useEffect(() => {
     props.refreshProfile();
   },[]);
 
+  useEffect(() => {
+    const query = {
+      my_googleid: props.user_googleid,
+    };
 
-
-
-  get("/api/getActiveJoinedRides", query).then((rideObjs) => {
-    console.log("getting Joined Rides list");
-    console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
-    let reversedRideObjs = rideObjs.reverse();
-    setRidesJoined(reversedRideObjs);
-  });
+    get("/api/getActiveJoinedRides", query).then((rideObjs) => {
+      console.log("getting Joined Rides list");
+      console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
+      let reversedRideObjs = rideObjs.reverse();
+      setRidesJoined(reversedRideObjs);
+    });
+  }, [props.user_googleid]);
 
   let ridesJoinedModal = null;
   const hasJoinedRides = ridesJoined.length !== 0;
