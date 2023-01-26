@@ -128,6 +128,11 @@ const CreateARide = (props) => {
           return;
     }
 
+    if(parseInt(maxPeopleText) <= 0) {
+      alert("Please input 1 or more for the max number of people that can join your ride!");
+      return;
+    }
+
 
     let stringDestination="MIT";
     if (destinationMIT===false){
