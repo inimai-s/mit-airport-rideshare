@@ -19,16 +19,18 @@ const RideHistory = (props) => {
 
   const [oldRides, setOldRides] = useState([]);
 
-  const query = {
-    my_googleid: props.user_googleid,
-  };
-
-  get("/api/getInactiveJoinedRides", query).then((rideObjs) => {
-    console.log("getting ride history list");
-    console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
-    let reversedRideObjs = rideObjs.reverse();
-    setOldRides(reversedRideObjs);
-  });
+  useEffect(() => {
+    const query = {
+      my_googleid: props.user_googleid,
+    };
+  
+    get("/api/getInactiveJoinedRides", query).then((rideObjs) => {
+      console.log("getting ride history list");
+      console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
+      let reversedRideObjs = rideObjs.reverse();
+      setOldRides(reversedRideObjs);
+    });
+  }, [props.user_googleid]);
 
   let rideHistoryModal = null;
   const hasJoinedRides = oldRides.length !== 0;
