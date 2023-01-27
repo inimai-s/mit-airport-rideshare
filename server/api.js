@@ -207,6 +207,20 @@ router.get("/users", (req, res) => {
   User.find({user_googleid: req.query.user_googleid}).then((users) => res.send(users));
 });
 
+router.get("/displayRideMembers",(req,res) => {
+  Ride.find({_id:req.query._id}).then((ride) => {
+    console.log( `RIDE FOUND: ${ride.user_googleId_joined}`);
+    let memberNames=[];
+    for (var name in ride.user_googleId_joined) {
+      console.log( `NAMES FOUND: ${ride.user_googleId_joined}`);
+      memberNames.push(name);
+    }
+    console.log( `passed in id: ${req.query._id}`);
+    console.log( `member names: ${memberNames}`);
+    res.send(ride.user_googleId_joined);
+  })
+})
+
 router.post("/updateUser", (req, res) => {
   console.log("Updating user");
 
