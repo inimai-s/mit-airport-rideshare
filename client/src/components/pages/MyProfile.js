@@ -18,6 +18,12 @@ import ProfileCard from "../modules/ProfileCard";
 
 const MyProfile = (props) => {
 
+  useEffect(() => {
+    post("/api/setRideCardActivity").then(() => {
+      // do nothing
+    })
+  },[]);
+
   const [ridesJoined, setRidesJoined] = useState([]);
   
   useEffect(() => {
