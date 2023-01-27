@@ -113,9 +113,38 @@ const checkDestination = (ride_destination, pref_destination) => {
 router.get("/activeRides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({active: true}).then((rides) => {
-    console.log(req.query.user_googleid);
+    console.log(`user google id: ${req.query.user_googleid}`);
     let unfilledRides=rides.filter(ride => ((!(ride.user_googleId_joined.includes(req.query.user_googleid))) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
-    res.send(unfilledRides)});
+
+    let my_classyear = "";
+    User.findOne({user_googleid: req.query.user_googleid}).then((user) => {
+      console.log(`user info: ${JSON.stringify(user)}`);
+      my_classyear = user.classYear;
+      console.log(`user.classYear: ${user.classYear}`);
+    });
+
+    let validClassYearRides = [];
+    for(var i=0;i<unfilledRides.length;i++) {
+      if(my_classyear === "Freshman") {
+        if(unfilledRides[i].freshman_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      } else if (my_classyear === "Sophomore") {
+        if(unfilledRides[i].sophomore_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      } else if (my_classyear === "Junior") {
+        if(unfilledRides[i].junior_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      } else if (my_classyear === "Senior") {
+        if(unfilledRides[i].senior_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      }
+    }
+
+    res.send(validClassYearRides)});
 });
 
 router.get("/inactiveRides", (req, res) => {
