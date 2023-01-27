@@ -136,6 +136,22 @@ const Card = (props) => {
   modified_start_time = modifyTime(props.start_time);
   modified_end_time = modifyTime(props.end_time);
 
+  let members=[];
+
+  for (var i = 0; i<props.user_googleId_joined.length; i++) {
+    get("/api/getName",{user_googleid:props.user_googleId_joined[i]}).then((name) => {
+      //console.log(`RIDE NAMES: ${user.user_name}`);
+      //console.log(`TYPE NAMES: ${typeof user.user_name}`);
+      //console.log(`PUSH NAMES: ${ride_members.push(user.user_name)}`);
+      //console.log(`RIDE MEMS: ${ride_members}`);
+      //ride_members.push(user.user_name);
+      console.log(`TYPE NAMES: ${typeof name}`);
+      members.push(name);
+    })
+    console.log(`RIDE MEMS2: ${members}`);
+  }
+  console.log(`RIDE MEMBERS: ${members}`);
+
   return (
     <div className="u-lightGreyCard Card-container">
       <Row>
@@ -157,6 +173,7 @@ const Card = (props) => {
           <p className="Card-storyContent"><span className="u-bold">Ride Departure:</span> <span className="u-colorPrimary">{modified_end_date} at {modified_end_time}</span></p>
           <br></br>
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
+          <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members}</span></p>
         </Col>
       </Row>
 
