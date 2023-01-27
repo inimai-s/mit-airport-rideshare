@@ -133,6 +133,11 @@ const CreateARide = (props) => {
       return;
     }
 
+    if(parseInt(maxPeopleText) > 10) {
+      alert("Please input 10 or less for the max number of people that can join your ride!");
+      return;
+    }
+
     let current_ms=Date.now();
     let end_date_time = new Date(endDate.concat(" ").concat(endTime));
     if (current_ms>end_date_time) {
