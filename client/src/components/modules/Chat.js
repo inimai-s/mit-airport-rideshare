@@ -27,12 +27,20 @@ import "./Chat.css";
  * Proptypes
  * @param {ChatData} data
  */
+
 const Chat = (props) => {
+  useEffect(() => {
+    const el = document.getElementById('Chat-historyContainer');
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  });
+
   return (
     <div className="u-flexColumn Chat-container u-extraLightGreyCard">
       <h3 className="u-colorMediumBlue">Chat: {props.data.recipient.rideName}</h3>
       <br></br>
-      <div className="Chat-historyContainer">
+      <div className="Chat-historyContainer" id="Chat-historyContainer">
         {props.data.messages.map((m, i) => (
           <SingleMessage message={m} key={i}  userId={props.userId}/>
         ))}

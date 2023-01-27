@@ -97,6 +97,11 @@ const Chatbook = (props) => {
           recipient: prevActiveChat.recipient,
           messages: prevActiveChat.messages.concat(data),
         }));
+
+        const el = document.getElementById('Chat-historyContainer');
+        if (el) {
+          el.scrollTop = el.scrollHeight;
+        }
       }
     };
     socket.on("message", addMessages);

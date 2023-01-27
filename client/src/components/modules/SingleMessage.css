@@ -1,11 +1,11 @@
 .SingleMessage-container {
-  margin: 0 0 var(--xs);
+  margin: 0 0 var(--s);
   max-width: 100%;
 }
 
 .SingleMessage-sender {
   width: 120px;
-  margin-right: var(--xs);
+  margin-right: var(--s);
   flex-shrink: 0;
 }
 
