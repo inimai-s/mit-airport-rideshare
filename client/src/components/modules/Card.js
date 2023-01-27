@@ -136,21 +136,19 @@ const Card = (props) => {
   modified_start_time = modifyTime(props.start_time);
   modified_end_time = modifyTime(props.end_time);
 
-  let members=[];
+  const [members,setMembers] = useState("");
+  const handleMembers=(val)=>{
+    const mem = members.concat(val).concat(" ");
+    setMembers(mem);
+  };
 
-  for (var i = 0; i<props.user_googleId_joined.length; i++) {
-    get("/api/getName",{user_googleid:props.user_googleId_joined[i]}).then((name) => {
-      //console.log(`RIDE NAMES: ${user.user_name}`);
-      //console.log(`TYPE NAMES: ${typeof user.user_name}`);
-      //console.log(`PUSH NAMES: ${ride_members.push(user.user_name)}`);
-      //console.log(`RIDE MEMS: ${ride_members}`);
-      //ride_members.push(user.user_name);
-      console.log(`TYPE NAMES: ${typeof name}`);
-      members.push(name);
-    })
-    console.log(`RIDE MEMS2: ${members}`);
-  }
-  console.log(`RIDE MEMBERS: ${members}`);
+  useEffect(() => {
+    for (var i = 0; i<props.user_googleId_joined.length; i++) {
+      get("/api/getName2",{user_googleid:props.user_googleId_joined[i]}).then((user) => {
+        handleMembers(user.user_name);
+      })
+    }
+  },[props.user_googleId_joined]);
 
   return (
     <div className="u-lightGreyCard Card-container">
