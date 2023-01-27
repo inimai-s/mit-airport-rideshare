@@ -132,13 +132,15 @@ const App = () => {
     });
   };
 
+  console.log(`In App.js. classYear: ${classYear}`);
+
   return (
     <>
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} photoLink={photoLink}/>
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} user_googleid={user_googleid} />
         <CreateARide path="/createARide/" user_googleid={user_googleid} user_name={user_name} photoLink={photoLink} classYear={classYear}/>
-        <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name}/>
+        <FindARide path="/findARide/" user_googleid={user_googleid} user_name={user_name} class_year={classYear}/>
         <MyProfile path="/myProfile/" user_googleid={user_googleid} user_name={user_name} email={email} photoLink={photoLink} classYear={classYear} major={major} refreshProfile={refreshProfile}/>
         <EditMyProfile path="/editMyProfile/" user_googleid={user_googleid} user_name={user_name} set_classYear={set_classYear} set_major={set_major}/>
         <Chatbook path="/chat/" userId={userId} user_googleid={user_googleid} />

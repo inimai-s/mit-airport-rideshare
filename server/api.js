@@ -111,7 +111,38 @@ router.get("/activeRides", (req, res) => {
   Ride.find({active: true}).then((rides) => {
     console.log(req.query.user_googleid);
     let unfilledRides=rides.filter(ride => ((!(ride.user_googleId_joined.includes(req.query.user_googleid))) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
-    res.send(unfilledRides)});
+
+    // console.log(`unfilled length: ${unfilledRides.length}`);
+
+    let validClassYearRides = [];
+
+    for(var i=0;i<unfilledRides.length;i++) {
+      // console.log(`req.query.class_year: ${req.query.class_year}`);
+      if(req.query.class_year === "Freshman") {
+        if(unfilledRides[i].freshman_box) {
+          validClassYearRides.push(unfilledRides[i]);
+          console.log(`length: ${validClassYearRides.length}`);
+        }
+      } else if (req.query.class_year === "Sophomore") {
+        if(unfilledRides[i].sophomore_box) {
+          validClassYearRides.push(unfilledRides[i]);
+          console.log(`length: ${validClassYearRides.length}`);
+        }
+      } else if (req.query.class_year === "Junior") {
+        if(unfilledRides[i].junior_box) {
+          validClassYearRides.push(unfilledRides[i]);
+          console.log(`length: ${validClassYearRides.length}`);
+        }
+      } else if (req.query.class_year === "Senior") {
+        if(unfilledRides[i].senior_box) {
+          validClassYearRides.push(unfilledRides[i]);
+          console.log(`length: ${validClassYearRides.length}`);
+        }
+      }
+    }
+
+    res.send(validClassYearRides);
+    });
 });
 
 router.get("/inactiveRides", (req, res) => {

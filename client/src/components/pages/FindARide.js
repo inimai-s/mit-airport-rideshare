@@ -14,6 +14,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 const FindARide = (props) => {
+  // console.log(`In FindARide.js. props: ${JSON.stringify(props)}`);
+
+
   useEffect(() => {
     post("/api/setRideCardActivity").then(() => {
       // do nothing
@@ -89,12 +92,23 @@ const FindARide = (props) => {
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
+  // console.log(`props.class_year outside useEffect: ${props.class_year}`);
   useEffect(() => {
-    get("/api/activeRides",{user_googleid: props.user_googleid}).then((rideObjs) => {
+    const query = {
+      user_googleid: props.user_googleid,
+      class_year: props.class_year,
+    };
+
+    // console.log(`query, outside GET request: ${JSON.stringify(query)}`);
+    // console.log(`props.class_year ${props.class_year}`);
+
+    get("/api/activeRides", query).then((rideObjs) => {
+      // console.log(`query: ${JSON.stringify(query)}`);
+      // console.log(`QUERY`);
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
-  }, [props.user_googleid]);
+  }, [props.user_googleid, props.class_year]);
 
   let ridesList = null;
   const hasRides = activeRides.length !== 0;
@@ -202,7 +216,7 @@ const FindARide = (props) => {
     setJuniorBox(false);
     setSeniorBox(false);
 
-    get("/api/activeRides").then((rideObjs) => {
+    get("/api/activeRides", {user_googleid: props.user_googleid, class_year: props.class_year}).then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
