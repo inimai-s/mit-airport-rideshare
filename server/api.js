@@ -48,8 +48,25 @@ router.post("/initsocket", (req, res) => {
 
 const checkTime = (ride_start_date, ride_start_time, ride_end_date, ride_end_time, start_date_pref, start_time_pref, end_date_pref, end_time_pref) => {
   let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
+<<<<<<< HEAD
+=======
+  console.log(`String ride_start_ms: ${ride_start_date.concat(" ").concat(ride_start_time)}`)
+
+  //let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
+>>>>>>> 675a6e14390baab2f762d97b8e0ac41e13c95def
   let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
+  console.log(`String start_pref_ms: ${start_date_pref.concat(" ").concat(start_time_pref)}`)
+
   let end_pref_ms = new Date(end_date_pref.concat(" ").concat(end_time_pref));
+<<<<<<< HEAD
+=======
+  console.log(`String end_pref_ms: ${end_date_pref.concat(" ").concat(end_time_pref)}`)
+
+  console.log(ride_start_ms);
+  console.log(start_pref_ms);
+  console.log(end_pref_ms);
+  console.log((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
+>>>>>>> 675a6e14390baab2f762d97b8e0ac41e13c95def
   return ((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
 };
 
@@ -109,9 +126,38 @@ const checkDestination = (ride_destination, pref_destination) => {
 router.get("/activeRides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({active: true}).then((rides) => {
-    console.log(req.query.user_googleid);
+    console.log(`user google id: ${req.query.user_googleid}`);
     let unfilledRides=rides.filter(ride => ((!(ride.user_googleId_joined.includes(req.query.user_googleid))) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
-    res.send(unfilledRides)});
+
+    let my_classyear = "";
+    User.findOne({user_googleid: req.query.user_googleid}).then((user) => {
+      console.log(`user info: ${JSON.stringify(user)}`);
+      my_classyear = user.classYear;
+      console.log(`user.classYear: ${user.classYear}`);
+    });
+
+    let validClassYearRides = [];
+    for(var i=0;i<unfilledRides.length;i++) {
+      if(my_classyear === "Freshman") {
+        if(unfilledRides[i].freshman_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      } else if (my_classyear === "Sophomore") {
+        if(unfilledRides[i].sophomore_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      } else if (my_classyear === "Junior") {
+        if(unfilledRides[i].junior_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      } else if (my_classyear === "Senior") {
+        if(unfilledRides[i].senior_box) {
+          validClassYearRides.push(unfilledRides[i]);
+        }
+      }
+    }
+
+    res.send(validClassYearRides)});
 });
 
 router.get("/inactiveRides", (req, res) => {

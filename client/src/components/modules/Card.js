@@ -196,9 +196,14 @@ const Card = (props) => {
           <Modal.Title>Successfully joined!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+<<<<<<< HEAD
           You can see all the rides you've joined in <Link to="/myProfile/">My Profile</Link>
           <br></br><br></br>
 
+=======
+          You can see all the rides you're part of in <Link to="/myProfile/">My Profile</Link>
+          <br></br><br></br>
+>>>>>>> 675a6e14390baab2f762d97b8e0ac41e13c95def
           You've also been added to the group chat for {props.user_name}'s ride to {props.destination}!
           <br></br><br></br>
           <Button className="u-backgroundColorPrimary">
