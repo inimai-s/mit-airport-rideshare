@@ -145,6 +145,10 @@ form {
   margin-left: var(--s);
 }
 
+.u-margin-left-xs{
+  margin-left: var(--xs);
+}
+
 .u-margin-left-m{
   margin-left: var(--m);
 }

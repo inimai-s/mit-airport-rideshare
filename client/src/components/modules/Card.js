@@ -191,7 +191,7 @@ const Card = (props) => {
           <br></br><br></br>
           <Button className="u-backgroundColorPrimary">
             <Link to="/chat/" className="u-noTextDecoration">
-              <span className="u-colorWhite">Go to chat!</span>
+              <span className="u-colorWhite">Go to My Chats page!</span>
             </Link>
           </Button>
         </Modal.Body>

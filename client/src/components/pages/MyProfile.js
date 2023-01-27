@@ -114,7 +114,7 @@ const MyProfile = (props) => {
           <Modal.Title>Please Edit Your Profile!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <span className="u-bold">Let other user's know your class year and major! </span>
+        <span className="u-bold">Fill in both your class year and major! </span>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="u-primary" onClick={handleGoToEditProfile}>

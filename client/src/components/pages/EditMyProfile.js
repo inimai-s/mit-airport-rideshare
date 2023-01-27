@@ -98,6 +98,8 @@ const EditMyProfile = (props) => {
             if(majorText !== ""){
                 props.set_major(majorText);
             }
+
+            location.replace("/myProfile/");
         });
 
         setClassYearFreshman(false);
