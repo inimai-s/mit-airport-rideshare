@@ -48,25 +48,10 @@ router.post("/initsocket", (req, res) => {
 
 const checkTime = (ride_start_date, ride_start_time, ride_end_date, ride_end_time, start_date_pref, start_time_pref, end_date_pref, end_time_pref) => {
   let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
-<<<<<<< HEAD
-=======
-  console.log(`String ride_start_ms: ${ride_start_date.concat(" ").concat(ride_start_time)}`)
-
-  //let ride_end_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
->>>>>>> 675a6e14390baab2f762d97b8e0ac41e13c95def
   let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
   console.log(`String start_pref_ms: ${start_date_pref.concat(" ").concat(start_time_pref)}`)
 
   let end_pref_ms = new Date(end_date_pref.concat(" ").concat(end_time_pref));
-<<<<<<< HEAD
-=======
-  console.log(`String end_pref_ms: ${end_date_pref.concat(" ").concat(end_time_pref)}`)
-
-  console.log(ride_start_ms);
-  console.log(start_pref_ms);
-  console.log(end_pref_ms);
-  console.log((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
->>>>>>> 675a6e14390baab2f762d97b8e0ac41e13c95def
   return ((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
 };
 
