@@ -34,3 +34,7 @@
   background: var(--primary--dim);
   color: var(--white);
 }
+
+.SingleMessage-myLink{
+  color: var(--white);
+}
