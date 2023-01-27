@@ -334,7 +334,14 @@ const checkIfExpired = (ride_end_date, ride_end_time) => {
   let current_ms = Date.now();
   let ride_ms = new Date(ride_end_date.concat(" ").concat(ride_end_time));
 
-  return current_ms > ride_ms;
+  // console.log("==================================")
+  // console.log(`ride_end_date: ${ride_end_date}`);
+  // console.log(`ride_end_time: ${ride_end_time}`);
+
+  // console.log(`current_ms: ${current_ms}`);
+  // console.log(`ride_ms: ${ride_ms.getTime()}`);
+
+  return current_ms > ride_ms.getTime();
 }
 
 router.post("/setRideCardActivity", (req, res) => {
