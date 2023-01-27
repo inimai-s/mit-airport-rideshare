@@ -136,31 +136,6 @@ const Card = (props) => {
   modified_start_time = modifyTime(props.start_time);
   modified_end_time = modifyTime(props.end_time);
 
-  // const displayRideMembers = () => {
-  //   let members=[];
-  //   console.log(props.user_googleId_joined);
-  //   for (let i = 0; i < props.user_googleId_joined-1; i++) {
-  //     console.log(`ID: ${props.user_googleId_joined[i]}`);
-  //     console.log(`array: ${props.user_googleId_joined}`);
-  //     get("/api/users",{user_googleid: props.user_googleId_joined[i]}).then((user) => {
-  //       members.push(user.user_name);
-  //     });
-  //   }
-  //   return members;
-  // };
-  // console.log(displayRideMembers());
-  // const mapRideMembers = () => {
-  //   let rideMembers = displayRideMembers();
-  //   let memberCards = rideMembers.map((user) => {
-  //     <p className="Card-storyContent"><span className="u-colorPrimary">{user}</span></p>
-  //   });
-  //   return memberCards;
-  // };
-  let ride_members=[];
-  get("/api/displayRideMembers",{_id:props._id}).then((name_array) => {
-    ride_members=name_array;
-  })
-
   return (
     <div className="u-lightGreyCard Card-container">
       <Row>
@@ -182,8 +157,6 @@ const Card = (props) => {
           <p className="Card-storyContent"><span className="u-bold">Ride Departure:</span> <span className="u-colorPrimary">{modified_end_date} at {modified_end_time}</span></p>
           <br></br>
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
-          <br></br>
-          <p className="Card-storyContent"><span className="u-bold">Ride Members:</span> <span className="u-colorPrimary">{ride_members}</span></p>
         </Col>
       </Row>
 

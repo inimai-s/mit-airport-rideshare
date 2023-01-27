@@ -49,8 +49,6 @@ router.post("/initsocket", (req, res) => {
 const checkTime = (ride_start_date, ride_start_time, ride_end_date, ride_end_time, start_date_pref, start_time_pref, end_date_pref, end_time_pref) => {
   let ride_start_ms = new Date(ride_start_date.concat(" ").concat(ride_start_time));
   let start_pref_ms = new Date(start_date_pref.concat(" ").concat(start_time_pref));
-  console.log(`String start_pref_ms: ${start_date_pref.concat(" ").concat(start_time_pref)}`)
-
   let end_pref_ms = new Date(end_date_pref.concat(" ").concat(end_time_pref));
   return ((start_pref_ms<=ride_start_ms) && (ride_start_ms<=end_pref_ms));
 };
@@ -111,38 +109,9 @@ const checkDestination = (ride_destination, pref_destination) => {
 router.get("/activeRides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({active: true}).then((rides) => {
-    console.log(`user google id: ${req.query.user_googleid}`);
+    console.log(req.query.user_googleid);
     let unfilledRides=rides.filter(ride => ((!(ride.user_googleId_joined.includes(req.query.user_googleid))) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
-
-    let my_classyear = "";
-    User.findOne({user_googleid: req.query.user_googleid}).then((user) => {
-      console.log(`user info: ${JSON.stringify(user)}`);
-      my_classyear = user.classYear;
-      console.log(`user.classYear: ${user.classYear}`);
-    });
-
-    let validClassYearRides = [];
-    for(var i=0;i<unfilledRides.length;i++) {
-      if(my_classyear === "Freshman") {
-        if(unfilledRides[i].freshman_box) {
-          validClassYearRides.push(unfilledRides[i]);
-        }
-      } else if (my_classyear === "Sophomore") {
-        if(unfilledRides[i].sophomore_box) {
-          validClassYearRides.push(unfilledRides[i]);
-        }
-      } else if (my_classyear === "Junior") {
-        if(unfilledRides[i].junior_box) {
-          validClassYearRides.push(unfilledRides[i]);
-        }
-      } else if (my_classyear === "Senior") {
-        if(unfilledRides[i].senior_box) {
-          validClassYearRides.push(unfilledRides[i]);
-        }
-      }
-    }
-
-    res.send(validClassYearRides)});
+    res.send(unfilledRides)});
 });
 
 router.get("/inactiveRides", (req, res) => {
@@ -237,20 +206,6 @@ router.get("/users", (req, res) => {
   console.log(`user_googleid to look for: ${req.query.user_googleid}`);
   User.find({user_googleid: req.query.user_googleid}).then((users) => res.send(users));
 });
-
-router.get("/displayRideMembers",(req,res) => {
-  Ride.find({_id:req.query._id}).then((ride) => {
-    console.log( `RIDE FOUND: ${ride.user_googleId_joined}`);
-    let memberNames=[];
-    for (var name in ride.user_googleId_joined) {
-      console.log( `NAMES FOUND: ${ride.user_googleId_joined}`);
-      memberNames.push(name);
-    }
-    console.log( `passed in id: ${req.query._id}`);
-    console.log( `member names: ${memberNames}`);
-    res.send(ride.user_googleId_joined);
-  })
-})
 
 router.post("/updateUser", (req, res) => {
   console.log("Updating user");
