@@ -243,8 +243,18 @@ router.post("/updateUser", (req, res) => {
 
   User.findOne({ user_googleid: req.body.user_googleid }).then((existingUser) => {
     console.log("Updating user info")
-    existingUser.classYear = req.body.classYear;
-    existingUser.major = req.body.major;
+    console.log(`req.body ${req.body}`)
+    console.log(`req.body.classYear ${req.body.classYear}`)
+    console.log(`req.body.major ${req.body.major}`)
+
+    if(req.body.classYear !== ""){
+      existingUser.classYear = req.body.classYear;
+    }
+    
+    if(req.body.major !== ""){
+      existingUser.major = req.body.major;
+    }
+    
     existingUser.save();
   }).then(() => {
     res.send({});

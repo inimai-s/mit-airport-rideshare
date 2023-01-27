@@ -90,51 +90,6 @@ const NavBar = (props) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      {/* <nav className="NavBar-container">
-        <div className="NavBar-flex NavBar-linkContainer">
-          <Link to="/" className="NavBar-title"><img src={flightTakeoffLogo} alt="Logo" className="NavBar-photo" /></Link>
-
-          <Link to="/findARide/" className="NavBar-link">
-            Find a Ride
-          </Link>
-
-          <Link to="/rideHistory" className="NavBar-link">
-            Ride History
-          </Link>
-
-          <Link to="/chat/" className="NavBar-link">
-            My Chats
-          </Link>
-
-          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            {props.user_googleid ? (
-              <>
-                <Link to="/myProfile/" className="NavBar-link">
-                  <img src={props.photoLink} alt="Profile Image" className="NavBar-photo" />
-                </Link>
-
-                <Button variant="light" onClick={() => {
-                    googleLogout();
-                    props.handleLogout();
-                  }}
-
-                  className="u-margin-left-m">
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <div>
-                <GoogleLogin 
-                onSuccess={props.handleLogin} 
-                onError={(err) => console.log(err)} 
-                />
-              </div>
-              
-            )}
-          </GoogleOAuthProvider>
-        </div>
-      </nav> */}
     </>
     
     

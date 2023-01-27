@@ -91,8 +91,13 @@ const EditMyProfile = (props) => {
         console.log(`This is the body being posted: ${JSON.stringify(body)}`)
 
         post("/api/updateUser", body).then((user) => {
-            props.set_classYear(classYearText);
-            props.set_major(majorText);
+            if(classYearText !== ""){
+                props.set_classYear(classYearText);
+            }
+
+            if(majorText !== ""){
+                props.set_major(majorText);
+            }
         });
 
         setClassYearFreshman(false);
