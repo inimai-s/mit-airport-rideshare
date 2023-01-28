@@ -26,7 +26,7 @@ const NavBar = (props) => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" variant="dark" className="u-backgroundColorPrimary">
+      <Navbar fixed="top" collapseOnSelect expand="lg" variant="dark" className="u-backgroundColorPrimary">
         <Container>
           <Navbar.Brand>
             <Link to="/" className="u-margin-right-m"><img src={flightTakeoffLogo} alt="Logo" className="NavBar-photo" /></Link>
