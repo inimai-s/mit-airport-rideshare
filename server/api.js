@@ -149,14 +149,6 @@ router.get("/inactiveRides", (req, res) => {
   Ride.find({active: false}).then((rides) => res.send(rides));
 });
 
-router.get("/getName",(req,res) => {
-  User.findOne({user_googleid:req.query.user_googleid}).then((user) => {
-    console.log(`USER NAME FROM API: ${user.user_name} from ${req.query.user_googleid}`);
-    console.log(`TYPE: ${typeof user.user_name}`);
-    res.send(user.user_name);
-  });
-});
-
 router.get("/getName2",(req,res) => {
   User.findOne({user_googleid:req.query.user_googleid}).then((user) => {
     //console.log(`USER NAME FROM API: ${user.user_name} from ${req.query.user_googleid}`);

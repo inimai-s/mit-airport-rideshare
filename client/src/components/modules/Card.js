@@ -138,8 +138,7 @@ const Card = (props) => {
 
   const [members,setMembers] = useState("");
   const handleMembers=(val)=>{
-    const mem = members.concat(val).concat(" ");
-    setMembers(mem);
+    setMembers(mem => mem.concat(val).concat(", "));
   };
 
   useEffect(() => {
@@ -171,7 +170,7 @@ const Card = (props) => {
           <p className="Card-storyContent"><span className="u-bold">Ride Departure:</span> <span className="u-colorPrimary">{modified_end_date} at {modified_end_time}</span></p>
           <br></br>
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
-          <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members}</span></p>
+          <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
         </Col>
       </Row>
 
