@@ -77,6 +77,20 @@ const ProfileCard = (props) => {
       modified_start_time = modifyTime(props.start_time);
       modified_end_time = modifyTime(props.end_time);
 
+  const [members,setMembers] = useState("");
+  const handleMembers=(val)=>{
+    setMembers(mem => mem.concat(val).concat(", "));
+  };
+
+  useEffect(() => {
+    for (var i = 0; i<props.user_googleId_joined.length; i++) {
+      get("/api/getName2",{user_googleid:props.user_googleId_joined[i]}).then((user) => {
+        handleMembers(user.user_name);
+      })
+    }
+  },[props.user_googleId_joined]);
+  
+
   return (
   
     <div className="u-lightGreyCard ProfileCard-container">
@@ -99,6 +113,7 @@ const ProfileCard = (props) => {
           <br></br>
 
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>  
+          <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
         </Col>
       </Row>
     </div>
