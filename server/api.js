@@ -268,6 +268,12 @@ router.post("/updateUser", (req, res) => {
   });
 });
 
+router.get("/getOneRide",(req,res) =>{
+  Ride.findOne({_id:req.query._id}).then((ride) => {
+    res.send(ride);
+  });
+});
+
 router.post("/joinRide", (req, res) => {
   console.log("Joining a Ride");
 
