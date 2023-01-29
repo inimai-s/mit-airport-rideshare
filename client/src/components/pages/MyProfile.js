@@ -110,7 +110,7 @@ const MyProfile = (props) => {
   if(props.classYear === "" || props.classYear === "Unknown" || props.major === "" || props.major === "Unknown") {
     updateProfileModal = <>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Please Edit Your Profile!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -119,10 +119,6 @@ const MyProfile = (props) => {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleGoToEditProfile}>
             Edit Profile
-          </Button>
-          
-          <Button onClick={handleClose}>
-            Close
           </Button>
         </Modal.Footer>
       </Modal>

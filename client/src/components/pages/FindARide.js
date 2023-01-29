@@ -301,7 +301,7 @@ const FindARide = (props) => {
     if(props.classYear === "" || props.classYear === "Unknown") {
       updateProfileModal = <>
       <Modal show={showProfileModal} onHide={handleCloseProfileModal}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Please fill in your Class Year!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -310,10 +310,6 @@ const FindARide = (props) => {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleGoToEditProfile}>
             Edit Profile
-          </Button>
-          
-          <Button onClick={handleCloseProfileModal}>
-            Close
           </Button>
         </Modal.Footer>
       </Modal>
