@@ -117,23 +117,23 @@ router.get("/activeRides", (req, res) => {
     let validClassYearRides = [];
 
     for(var i=0;i<unfilledRides.length;i++) {
-      // console.log(`req.query.class_year: ${req.query.class_year}`);
-      if(req.query.class_year === "Freshman") {
+      // console.log(`req.query.classYear: ${req.query.classYear}`);
+      if(req.query.classYear === "Freshman") {
         if(unfilledRides[i].freshman_box) {
           validClassYearRides.push(unfilledRides[i]);
           console.log(`length: ${validClassYearRides.length}`);
         }
-      } else if (req.query.class_year === "Sophomore") {
+      } else if (req.query.classYear === "Sophomore") {
         if(unfilledRides[i].sophomore_box) {
           validClassYearRides.push(unfilledRides[i]);
           console.log(`length: ${validClassYearRides.length}`);
         }
-      } else if (req.query.class_year === "Junior") {
+      } else if (req.query.classYear === "Junior") {
         if(unfilledRides[i].junior_box) {
           validClassYearRides.push(unfilledRides[i]);
           console.log(`length: ${validClassYearRides.length}`);
         }
-      } else if (req.query.class_year === "Senior") {
+      } else if (req.query.classYear === "Senior") {
         if(unfilledRides[i].senior_box) {
           validClassYearRides.push(unfilledRides[i]);
           console.log(`length: ${validClassYearRides.length}`);

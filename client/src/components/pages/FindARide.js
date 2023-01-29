@@ -22,10 +22,6 @@ const FindARide = (props) => {
     })
   },[]);
 
-  useEffect(() => {
-    props.refreshProfile();
-  },[]);
-
   const [activeRides, setActiveRides] = useState([]);
 
   //modal states and functions------------------
@@ -95,15 +91,15 @@ const FindARide = (props) => {
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
-  // console.log(`props.classYear outside useEffect: ${props.class_year}`);
+  // console.log(`props.classYear outside useEffect: ${props.classYear}`);
   useEffect(() => {
     const query = {
       user_googleid: props.user_googleid,
-      class_year: props.class_year,
+      classYear: props.classYear,
     };
 
     // console.log(`query, outside GET request: ${JSON.stringify(query)}`);
-    // console.log(`props.class_year ${props.class_year}`);
+    // console.log(`props.classYear ${props.classYear}`);
 
     get("/api/activeRides", query).then((rideObjs) => {
       // console.log(`query: ${JSON.stringify(query)}`);
@@ -111,7 +107,7 @@ const FindARide = (props) => {
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
-  }, [props.user_googleid, props.class_year]);
+  }, [props.user_googleid, props.classYear]);
 
   let ridesList = null;
   const hasRides = activeRides.length !== 0;
@@ -219,7 +215,7 @@ const FindARide = (props) => {
     setJuniorBox(false);
     setSeniorBox(false);
 
-    get("/api/activeRides", {user_googleid: props.user_googleid, class_year: props.class_year}).then((rideObjs) => {
+    get("/api/activeRides", {user_googleid: props.user_googleid, classYear: props.classYear}).then((rideObjs) => {
       let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
