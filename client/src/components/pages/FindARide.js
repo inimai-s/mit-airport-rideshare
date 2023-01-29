@@ -16,11 +16,14 @@ import Modal from 'react-bootstrap/Modal';
 const FindARide = (props) => {
   // console.log(`In FindARide.js. props: ${JSON.stringify(props)}`);
 
-
   useEffect(() => {
     post("/api/setRideCardActivity").then(() => {
       // do nothing
     })
+  },[]);
+
+  useEffect(() => {
+    props.refreshProfile();
   },[]);
 
   const [activeRides, setActiveRides] = useState([]);
@@ -92,7 +95,7 @@ const FindARide = (props) => {
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
-  // console.log(`props.class_year outside useEffect: ${props.class_year}`);
+  // console.log(`props.classYear outside useEffect: ${props.class_year}`);
   useEffect(() => {
     const query = {
       user_googleid: props.user_googleid,
@@ -223,6 +226,18 @@ const FindARide = (props) => {
   };
 
   let masterModal = null;
+
+  let updateProfileModal = null;
+
+  const [showProfileModal, setShowProfileModal] = useState(true);
+
+  const handleCloseProfileModal = () => setShowProfileModal(false);
+
+  const handleGoToEditProfile = () => {
+    setShowProfileModal(false);
+    location.replace("/editMyProfile/");
+  };
+
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>Find A Ride</h1>
@@ -282,6 +297,28 @@ const FindARide = (props) => {
 
       {ridesList}
     </>
+
+    if(props.classYear === "" || props.classYear === "Unknown") {
+      updateProfileModal = <>
+      <Modal show={showProfileModal} onHide={handleCloseProfileModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Please fill in your Class Year!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        Different rides will be displayed/available for you depending on your class year.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleGoToEditProfile}>
+            Edit Profile
+          </Button>
+          
+          <Button onClick={handleCloseProfileModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </>
+    }
   }else{
     masterModal=<>
       <h1>Find A Ride</h1>
@@ -290,7 +327,10 @@ const FindARide = (props) => {
   }
 
   return (
-    <><Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container></>
+    <>
+      <Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container>
+      {updateProfileModal}
+    </>
   );
 };
 
