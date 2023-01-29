@@ -52,6 +52,16 @@ const Card = (props) => {
 
     post("/api/joinRide", body).then((ride) => {
       handleShow();
+
+      const newBody={
+        recipient: {
+          _id: ride._id,
+          rideName: `${ride.user_name}'s Ride to ${ride.destination}, ${ride.start_date}`,
+        },
+        content: `${props.user_name} joined the ride`,
+      };
+
+      post("/api/userMessage", newBody);
     });
 
     //-------------------------------------------------------------------

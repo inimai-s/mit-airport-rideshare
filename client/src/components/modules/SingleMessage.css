@@ -30,6 +30,18 @@
   margin-right: 0;
 }
 
+.SingleMessage-rideChatBotContent {
+  width:100%;
+  text-align:center;
+  padding: var(--s) var(--m);
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 1;
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
 .SingleMessage-mine .SingleMessage-content {
   background: var(--primary--dim);
   color: var(--white);

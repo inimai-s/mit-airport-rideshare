@@ -185,6 +185,16 @@ const CreateARide = (props) => {
     post("/api/ride", body).then((ride) => {
       console.log(body);
       handleShow();
+
+      const newBody={
+        recipient: {
+          _id: ride._id,
+          rideName: `${ride.user_name}'s Ride to ${ride.destination}, ${ride.start_date}`,
+        },
+        content: `${props.user_name} created the chat`,
+      };
+
+      post("/api/userMessage", newBody);
     });
 
     // Clear the form

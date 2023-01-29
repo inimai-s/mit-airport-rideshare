@@ -31,6 +31,20 @@ const SingleMessage = (props) => {
       </span>
     </div>
     </>
+  }else if(props.message.sender.user_name=="ridechatbot"){
+    messageModal=<>
+    <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
+      <span className="SingleMessage-rideChatBotContent">
+        <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+          <a target="blank" href={decoratedHref} key={key} className="SingleMessage-myLink">
+              {decoratedText}
+          </a>
+        )}>
+            {props.message.content}
+        </Linkify>
+      </span>
+    </div>
+    </>
   }else{
     messageModal=<>
     <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>

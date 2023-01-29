@@ -281,8 +281,7 @@ router.post("/joinRide", (req, res) => {
   Ride.findOne({_id: req.body._id}).then((ride) => {
     ride.user_googleId_joined.push(req.body.my_googleid);
     ride.save();
-  }).then(() => {
-    res.send({});
+    res.send(ride);
   });
 });
 
@@ -416,6 +415,25 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   //   socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
   // }
   
+});
+
+router.post("/userMessage", auth.ensureLoggedIn, (req, res) => {
+  console.log(`Received a chat message from ${req.user.user_name}: ${req.body.content}`);
+
+  // insert this message into the database
+  const message = new Message({
+    recipient: req.body.recipient,
+    sender: {
+      _id: "ridechatbot",
+      user_name: "ridechatbot",
+    },
+    content: req.body.content,
+  });
+  message.save();
+
+  console.log(`JSON stringify of message: ${message}`)
+
+  socketManager.getIo().emit("message", message);
 });
 
 router.post("/updateMostRecentMessage", (req, res) => {
