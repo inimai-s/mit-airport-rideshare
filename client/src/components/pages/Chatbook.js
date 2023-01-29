@@ -133,13 +133,13 @@ const Chatbook = (props) => {
   if (!props.userId) {
     masterModal=<>
     <h1>My Chats</h1>
-    <h4>Please login to Google with an @mit.edu email first!</h4>
+    <h4>Please log in to Google with an @mit.edu email first!</h4>
     </> 
   }else{
     if (ridesJoined.length > 0){
       masterModal=<>
       <h1>My Chats</h1>
-      <p>You are a part of a group chat for each ride that you've joined!</p>
+      <p>Here are the group chats for each ride that you've joined!</p>
       <br></br><br></br>
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-userList">
@@ -159,7 +159,7 @@ const Chatbook = (props) => {
     }else{
       masterModal=<>
       <h1>My Chats</h1>
-      <p>You are not part of any rides, join or create one now to be part of a chat!</p>
+      <p>You are not part of any rides right now. Join or create one to be part of a chat!</p>
       </>
     }
     

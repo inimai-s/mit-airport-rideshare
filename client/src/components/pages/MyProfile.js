@@ -92,7 +92,7 @@ const MyProfile = (props) => {
   }else{
     masterModal=<>
       <h1>My Profile</h1>
-      <h4>Please login to Google with an @mit.edu email first!</h4>
+      <h4>Please log in to Google with an @mit.edu email first!</h4>
       <br></br>
     </>
   }
@@ -114,7 +114,9 @@ const MyProfile = (props) => {
           <Modal.Title>Please Edit Your Profile!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        Fill in both your class year and major
+        You'll need to input your class year in order to view a list of available rides in the Find A Ride page.
+        <br></br><br></br>
+        As for your major, feel free to input anything! That's just for fun :)
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleGoToEditProfile}>

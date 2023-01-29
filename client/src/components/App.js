@@ -92,6 +92,7 @@ const App = () => {
 
     //     post("/api/initsocket", { socketid: socket.id });
 
+<<<<<<< Updated upstream
     //     // bring user to Profile page if they don't have a class year or major inputted
     //     if(user.classYear === "" || user.classYear === "Unknown" || user.major === "" || user.major === "Unknown") {
     //       location.replace("/myProfile/");
@@ -100,6 +101,16 @@ const App = () => {
     // }else{
     //   window.alert("Please login with an @mit.edu email!");
     // }
+=======
+        // bring user to Profile page if they don't have a class year or major inputted
+        if(user.classYear === "" || user.classYear === "Unknown" || user.major === "" || user.major === "Unknown") {
+          location.replace("/myProfile/");
+        }
+      });
+    }else{
+      window.alert("Please log in with an @mit.edu email!");
+    }
+>>>>>>> Stashed changes
   };
 
   const handleLogout = () => {
