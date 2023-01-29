@@ -68,6 +68,7 @@ const MyProfile = (props) => {
         junior_box={rideObj.junior_box}
         senior_box={rideObj.senior_box}
         my_googleid={props.user_googleid}
+        my_user_name={props.user_name}
       />
     ));
   } else {

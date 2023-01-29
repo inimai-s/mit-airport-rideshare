@@ -58,7 +58,7 @@ const Card = (props) => {
           _id: ride._id,
           rideName: `${ride.user_name}'s Ride to ${ride.destination}, ${ride.start_date}`,
         },
-        content: `${props.user_name} joined the ride`,
+        content: `${props.my_user_name} joined the ride`,
       };
 
       post("/api/userMessage", newBody);
