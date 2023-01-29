@@ -100,7 +100,16 @@ const NewStory = (props) => {
 const NewMessage = (props) => {
   const sendMessage = (value) => {
     const body = { recipient: props.recipient, content: value };
+    console.log(`This is the body being posted: ${JSON.stringify(body)}`)
     post("/api/message", body);
+
+    const newBody = {
+      _id: props.recipient._id,
+    };
+
+    post("/api/updateMostRecentMessage", newBody).then((ride) => {
+        // Do nothing
+    });
   };
 
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;

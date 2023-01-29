@@ -70,7 +70,11 @@ const Chatbook = (props) => {
       // console.log(`rideObjs: ${rideObjs}`);
       // console.log(`props.user_googleid for Chatbook.js: ${props.user_googleid}`);
   
-      let reversedRideObjs = rideObjs.reverse();
+      // let reversedRideObjs = rideObjs.reverse();
+      let reversedRideObjs = rideObjs.sort((a, b) => b.most_recent_message - a.most_recent_message)
+      console.log(`reversedRideObjs[0]: ${JSON.stringify(reversedRideObjs[0])}`)
+      console.log(`reversedRideObjs[0] typeof date: ${typeof reversedRideObjs[0].most_recent_message}`)
+
       setRidesJoined(reversedRideObjs);
   
       if (reversedRideObjs.length > 0){

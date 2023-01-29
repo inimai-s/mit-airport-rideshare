@@ -114,14 +114,14 @@ const MyProfile = (props) => {
           <Modal.Title>Please Edit Your Profile!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <span className="u-bold">Fill in both your class year and major! </span>
+        Fill in both your class year and major
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="u-primary" onClick={handleGoToEditProfile}>
-            Go to Edit Profile
+          <Button variant="secondary" onClick={handleGoToEditProfile}>
+            Edit Profile
           </Button>
           
-          <Button className="secondary" onClick={handleClose}>
+          <Button onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

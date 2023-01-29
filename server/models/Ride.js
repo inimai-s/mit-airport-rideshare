@@ -20,6 +20,7 @@ const RideSchema = new mongoose.Schema({
   extra_ride_info: String,
   user_googleId_joined:[String],
   active: Boolean,
+  most_recent_message: Number,
 });
 
 // compile model from schema

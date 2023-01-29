@@ -153,6 +153,10 @@ const CreateARide = (props) => {
     console.log(`Here is props.user_googleid: ${props.user_googleid}`)
     console.log(`Here is props.user_name: ${props.user_name}`)
 
+    const start = new Date(2023,1,1);
+    const end = Date.now();
+    const elapsed = end - start; // elapsed time in milliseconds
+
     const body = {
       user_googleid: props.user_googleid,
       user_name: props.user_name,
@@ -172,6 +176,7 @@ const CreateARide = (props) => {
       extra_ride_info: extraRideInfo,
       user_googleId_joined:[props.user_googleid],
       active: true,
+      most_recent_message: elapsed,
     };
 
     console.log(`props.user_googleid: ${props.user_googleid}`);

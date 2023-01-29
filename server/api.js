@@ -219,6 +219,7 @@ router.post("/ride", (req, res) => {
     extra_ride_info: req.body.extra_ride_info,
     user_googleId_joined: req.body.user_googleId_joined,
     active: req.body.active,
+    most_recent_message: req.body.most_recent_message,
   });
 
   // saves the newStory to MongoDB
@@ -415,6 +416,19 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   //   socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
   // }
   
+});
+
+router.post("/updateMostRecentMessage", (req, res) => {
+  Ride.findOne({ _id: req.body._id }).then((existingRide) => {
+    const start = new Date(2023,1,1);
+    const end = new Date();
+    const elapsed = end.getTime() - start.getTime(); // elapsed time in milliseconds
+
+    existingRide.most_recent_message = elapsed;
+    existingRide.save();
+  }).then(() => {
+    res.send({});
+  });
 });
 
 router.get("/activeUsers", (req, res) => {
