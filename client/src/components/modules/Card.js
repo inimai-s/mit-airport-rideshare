@@ -62,6 +62,14 @@ const Card = (props) => {
       };
 
       post("/api/userMessage", newBody);
+
+      const updateRecentMessageBody = {
+        _id: ride._id,
+      };
+  
+      post("/api/updateMostRecentMessage", updateRecentMessageBody).then((ride) => {
+          // Do nothing
+      });
     });
 
     //-------------------------------------------------------------------
