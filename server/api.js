@@ -292,9 +292,8 @@ router.post("/leaveRide", (req, res) => {
     const index = ride.user_googleId_joined.indexOf(req.body.my_googleid);
     ride.user_googleId_joined.splice(index, 1);
     ride.save();
-  }).then(() => {
-    res.send({});
-  });
+    res.send(ride);
+  })
 });
 
 router.get("/getActiveJoinedRides", (req, res) => {
