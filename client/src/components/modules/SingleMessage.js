@@ -14,8 +14,8 @@ const SingleMessage = (props) => {
 
   let messageModal=<></>
 
-  console.log(`props.message.sender._id ${props.message.sender._id}`)
-  console.log(`props.userId ${props.userId}`)
+  // console.log(`props.message.sender._id ${props.message.sender._id}`)
+  // console.log(`props.userId ${props.userId}`)
 
   if (props.message.sender._id === props.userId){
     messageModal=<>

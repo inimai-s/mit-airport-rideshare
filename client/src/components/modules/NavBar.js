@@ -22,7 +22,7 @@ import Navbar from 'react-bootstrap/Navbar';
 const GOOGLE_CLIENT_ID = "354424873499-ns84n5jbt5benp32pf6fkvar91ffghi5.apps.googleusercontent.com";
 
 const NavBar = (props) => {
-  console.log(`This is the props.photoLink: ${props.photoLink}`);
+  // console.log(`This is the props.photoLink: ${props.photoLink}`);
 
   return (
     <>

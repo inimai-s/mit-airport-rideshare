@@ -69,16 +69,16 @@ const EditMyProfile = (props) => {
         let classYearText="";
 
         if (classYearFreshman===true){
-            console.log(`Freshman selected`)
+            // console.log(`Freshman selected`)
             classYearText="Freshman";
         }else if (classYearSophomore===true){
-            console.log(`Soph selected`)
+            // console.log(`Soph selected`)
             classYearText="Sophomore";
         }else if (classYearJunior===true){
-            console.log(`Junior selected`)
+            // console.log(`Junior selected`)
             classYearText="Junior";
         }else if (classYearSenior===true){
-            console.log(`Senior selected`)
+            // console.log(`Senior selected`)
             classYearText="Senior";
         }
 
@@ -88,7 +88,7 @@ const EditMyProfile = (props) => {
             major:majorText,
         };
 
-        console.log(`This is the body being posted: ${JSON.stringify(body)}`)
+        // console.log(`This is the body being posted: ${JSON.stringify(body)}`)
 
         post("/api/updateUser", body).then((user) => {
             if(classYearText !== ""){

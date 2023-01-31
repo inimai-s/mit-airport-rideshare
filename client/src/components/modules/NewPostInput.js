@@ -100,7 +100,7 @@ const NewStory = (props) => {
 const NewMessage = (props) => {
   const sendMessage = (value) => {
     const body = { recipient: props.recipient, content: value };
-    console.log(`This is the body being posted: ${JSON.stringify(body)}`)
+    // console.log(`This is the body being posted: ${JSON.stringify(body)}`)
     post("/api/message", body);
 
     const newBody = {

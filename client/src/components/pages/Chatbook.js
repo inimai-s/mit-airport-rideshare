@@ -52,7 +52,7 @@ const Chatbook = (props) => {
         messages: messages,
       });
     }).then(() => {
-      console.log(`activeChat: ${JSON.stringify(activeChat)}`);
+      // console.log(`activeChat: ${JSON.stringify(activeChat)}`);
     });
   };
 
@@ -72,8 +72,8 @@ const Chatbook = (props) => {
   
       // let reversedRideObjs = rideObjs.reverse();
       let reversedRideObjs = rideObjs.sort((a, b) => b.most_recent_message - a.most_recent_message)
-      console.log(`reversedRideObjs[0]: ${JSON.stringify(reversedRideObjs[0])}`)
-      console.log(`reversedRideObjs[0] typeof date: ${typeof reversedRideObjs[0].most_recent_message}`)
+      // console.log(`reversedRideObjs[0]: ${JSON.stringify(reversedRideObjs[0])}`)
+      // console.log(`reversedRideObjs[0] typeof date: ${typeof reversedRideObjs[0].most_recent_message}`)
 
       setRidesJoined(reversedRideObjs);
   
@@ -89,7 +89,7 @@ const Chatbook = (props) => {
           rideName: `${rideObjs[0].user_name}'s Ride to ${rideObjs[0].destination}, ${month}/${day}/${year}`
         }
 
-        console.log(`recipient being passed into loadMessageHistory: ${JSON.stringify(recipient)}`)
+        // console.log(`recipient being passed into loadMessageHistory: ${JSON.stringify(recipient)}`)
         loadMessageHistory(recipient);
       }
     });
@@ -97,12 +97,12 @@ const Chatbook = (props) => {
 
   useEffect(() => {
     const addMessages = (data) => {
-      console.log(`data.recipient._id: ${data.recipient._id}`);
-      console.log(`data.sender._id: ${data.sender._id}`);
-      console.log(`activeChat.recipient._id: ${activeChat.recipient._id}`);
+      // console.log(`data.recipient._id: ${data.recipient._id}`);
+      // console.log(`data.sender._id: ${data.sender._id}`);
+      // console.log(`activeChat.recipient._id: ${activeChat.recipient._id}`);
 
       if (data.recipient._id === activeChat.recipient._id) {
-        console.log("data.recipient._id === activeChat.recipient._id")
+        // console.log("data.recipient._id === activeChat.recipient._id")
         setActiveChat(prevActiveChat => ({
           recipient: prevActiveChat.recipient,
           messages: prevActiveChat.messages.concat(data),
@@ -122,7 +122,7 @@ const Chatbook = (props) => {
 
   const setActiveUser = (rideObj) => {
     // let modified_ride_name = "";
-    console.log(`rideObj.start_date: ${rideObj.start_date}`);
+    // console.log(`rideObj.start_date: ${rideObj.start_date}`);
     const month = (rideObj.start_date).substring(5,7);
     const day = (rideObj.start_date).substring(8,10);
     const year = (rideObj.start_date).substring(0,4);

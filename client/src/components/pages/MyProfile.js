@@ -36,8 +36,8 @@ const MyProfile = (props) => {
     };
 
     get("/api/getActiveJoinedRides", query).then((rideObjs) => {
-      console.log("getting Joined Rides list");
-      console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
+      // console.log("getting Joined Rides list");
+      // console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
       let reversedRideObjs = rideObjs.reverse();
       setRidesJoined(reversedRideObjs);
     });

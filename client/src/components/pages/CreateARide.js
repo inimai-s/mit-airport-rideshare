@@ -150,8 +150,8 @@ const CreateARide = (props) => {
       stringDestination="Logan Airport";
     }
 
-    console.log(`Here is props.user_googleid: ${props.user_googleid}`)
-    console.log(`Here is props.user_name: ${props.user_name}`)
+    // console.log(`Here is props.user_googleid: ${props.user_googleid}`)
+    // console.log(`Here is props.user_name: ${props.user_name}`)
 
     const start = new Date(2023,1,1);
     const end = Date.now();
@@ -179,11 +179,11 @@ const CreateARide = (props) => {
       most_recent_message: elapsed,
     };
 
-    console.log(`props.user_googleid: ${props.user_googleid}`);
-    console.log(`body.user_googleid: ${body.user_googleid}`);
+    // console.log(`props.user_googleid: ${props.user_googleid}`);
+    // console.log(`body.user_googleid: ${body.user_googleid}`);
 
     post("/api/ride", body).then((ride) => {
-      console.log(body);
+      // console.log(body);
       handleShow();
 
       const newBody={

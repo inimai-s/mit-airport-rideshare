@@ -25,8 +25,8 @@ const RideHistory = (props) => {
     };
   
     get("/api/getInactiveJoinedRides", query).then((rideObjs) => {
-      console.log("getting ride history list");
-      console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
+      // console.log("getting ride history list");
+      // console.log(`props.user_googleid for MyProfile.js: ${props.user_googleid}`)
       let reversedRideObjs = rideObjs.reverse();
       setOldRides(reversedRideObjs);
     });

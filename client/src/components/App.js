@@ -36,7 +36,7 @@ const App = () => {
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
-        console.log(`User Info: ${JSON.stringify(user)}`)
+        // console.log(`User Info: ${JSON.stringify(user)}`)
         // they are registed in the database, and currently logged in.
         set_userId(user._id);
         set_user_googleid(user.user_googleid);
@@ -47,7 +47,7 @@ const App = () => {
         set_major(user.major);
 
         get("/api/user_classYear_major",{user_googleid:user.user_googleid}).then((user_classYear_major) => {
-          console.log(`user_classYear_major: ${user_classYear_major}`);
+          // console.log(`user_classYear_major: ${user_classYear_major}`);
           set_classYear(user_classYear_major.classYear);
           set_major(user_classYear_major.major);
         });
@@ -60,7 +60,7 @@ const App = () => {
   const handleLogin = (credentialResponse) => {
     const userToken = credentialResponse.credential;
     const decodedCredential = jwt_decode(userToken);
-    console.log(`Logged in as ${decodedCredential.name}`);
+    // console.log(`Logged in as ${decodedCredential.name}`);
 
     // post("/api/login", { token: userToken }).then((user) => {
     //   console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
@@ -79,8 +79,8 @@ const App = () => {
     
     if (decodedCredential.email.endsWith('@mit.edu')){
       post("/api/login", { token: userToken }).then((user) => {
-        console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
-        console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
+        // console.log(`Here is the userToken: ${JSON.stringify(userToken)}`);
+        // console.log(`Here is the decodedCredential: ${JSON.stringify(decodedCredential)}`);
   
         set_userId(user._id);
         set_user_googleid(decodedCredential.sub);
@@ -117,7 +117,7 @@ const App = () => {
 
         const user=userObjs[0];
 
-        console.log(`Refresh Profile User Info: ${JSON.stringify(user)}`)
+        // console.log(`Refresh Profile User Info: ${JSON.stringify(user)}`)
 
         set_userId(user._id);
         set_user_googleid(user.user_googleid);

@@ -22,7 +22,7 @@ import AddToCalendar from "react-add-to-calendar";
 const ProfileCard = (props) => {
   
     const handleLeaveRide=()=>{
-        console.log(`Need to leave ${props.user_name.replace(/ .*/,'')}'s Ride`)
+        // console.log(`Need to leave ${props.user_name.replace(/ .*/,'')}'s Ride`)
 
         if(props.user_googleid === props.my_googleid) {
           alert("You can't leave this ride because you are the ride captain");

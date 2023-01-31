@@ -109,7 +109,7 @@ const checkDestination = (ride_destination, pref_destination) => {
 router.get("/activeRides", (req, res) => {
   // TODO (step1) get all the rides from the database and send response back to client 
   Ride.find({active: true}).then((rides) => {
-    console.log(req.query.user_googleid);
+    // console.log(req.query.user_googleid);
     let unfilledRides=rides.filter(ride => ((!(ride.user_googleId_joined.includes(req.query.user_googleid))) && (ride.user_googleId_joined.length-1)<ride.maxPeople));
 
     // console.log(`unfilled length: ${unfilledRides.length}`);
@@ -121,22 +121,22 @@ router.get("/activeRides", (req, res) => {
       if(req.query.classYear === "Freshman") {
         if(unfilledRides[i].freshman_box) {
           validClassYearRides.push(unfilledRides[i]);
-          console.log(`length: ${validClassYearRides.length}`);
+          // console.log(`length: ${validClassYearRides.length}`);
         }
       } else if (req.query.classYear === "Sophomore") {
         if(unfilledRides[i].sophomore_box) {
           validClassYearRides.push(unfilledRides[i]);
-          console.log(`length: ${validClassYearRides.length}`);
+          // console.log(`length: ${validClassYearRides.length}`);
         }
       } else if (req.query.classYear === "Junior") {
         if(unfilledRides[i].junior_box) {
           validClassYearRides.push(unfilledRides[i]);
-          console.log(`length: ${validClassYearRides.length}`);
+          // console.log(`length: ${validClassYearRides.length}`);
         }
       } else if (req.query.classYear === "Senior") {
         if(unfilledRides[i].senior_box) {
           validClassYearRides.push(unfilledRides[i]);
-          console.log(`length: ${validClassYearRides.length}`);
+          // console.log(`length: ${validClassYearRides.length}`);
         }
       }
     }
@@ -228,7 +228,7 @@ router.post("/ride", (req, res) => {
 
 router.get("/user_classYear_major", (req, res) => {
   // req.query for GET requests
-  console.log(`user_googleid to look for: ${req.query.user_googleid}`);
+  // console.log(`user_googleid to look for: ${req.query.user_googleid}`);
   User.find({user_googleid: req.query.user_googleid}).then((users) => {
     if(users.length >0){
       const user=users[0];
@@ -242,18 +242,18 @@ router.get("/user_classYear_major", (req, res) => {
 
 router.get("/users", (req, res) => {
   // req.query for GET requests
-  console.log(`user_googleid to look for: ${req.query.user_googleid}`);
+  // console.log(`user_googleid to look for: ${req.query.user_googleid}`);
   User.find({user_googleid: req.query.user_googleid}).then((users) => res.send(users));
 });
 
 router.post("/updateUser", (req, res) => {
-  console.log("Updating user");
+  // console.log("Updating user");
 
   User.findOne({ user_googleid: req.body.user_googleid }).then((existingUser) => {
-    console.log("Updating user info")
-    console.log(`req.body ${req.body}`)
-    console.log(`req.body.classYear ${req.body.classYear}`)
-    console.log(`req.body.major ${req.body.major}`)
+    // console.log("Updating user info")
+    // console.log(`req.body ${req.body}`)
+    // console.log(`req.body.classYear ${req.body.classYear}`)
+    // console.log(`req.body.major ${req.body.major}`)
 
     if(req.body.classYear !== ""){
       existingUser.classYear = req.body.classYear;
@@ -276,7 +276,7 @@ router.get("/getOneRide",(req,res) =>{
 });
 
 router.post("/joinRide", (req, res) => {
-  console.log("Joining a Ride");
+  // console.log("Joining a Ride");
 
   Ride.findOne({_id: req.body._id}).then((ride) => {
     ride.user_googleId_joined.push(req.body.my_googleid);
@@ -286,7 +286,7 @@ router.post("/joinRide", (req, res) => {
 });
 
 router.post("/leaveRide", (req, res) => {
-  console.log("Leaving a Ride");
+  // console.log("Leaving a Ride");
 
   Ride.findOne({_id: req.body._id}).then((ride) => {
     const index = ride.user_googleId_joined.indexOf(req.body.my_googleid);
@@ -297,9 +297,9 @@ router.post("/leaveRide", (req, res) => {
 });
 
 router.get("/getActiveJoinedRides", (req, res) => {
-  console.log("in get joined rides request");
+  // console.log("in get joined rides request");
   joined_rides_list = [];
-  console.log(`my google id: ${req.my_googleid}`);
+  // console.log(`my google id: ${req.my_googleid}`);
   Ride.find({active: true}).then((rides) => {
     for(var i=0;i<rides.length;i++) {
       if(rides[i].user_googleId_joined.includes(req.query.my_googleid)) {
@@ -314,7 +314,7 @@ router.get("/getActiveJoinedRides", (req, res) => {
 router.get("/getInactiveJoinedRides", (req, res) => {
   // console.log("in get joined rides request");
   ride_history_list = [];
-  console.log(`my google id: ${req.my_googleid}`);
+  // console.log(`my google id: ${req.my_googleid}`);
   Ride.find({active: false}).then((rides) => {
     for(var i=0;i<rides.length;i++) {
       if(rides[i].user_googleId_joined.includes(req.query.my_googleid)) {
@@ -327,9 +327,9 @@ router.get("/getInactiveJoinedRides", (req, res) => {
 });
 
 router.get("/getAllJoinedRides", (req, res) => {
-  console.log("in get joined rides request");
+  // console.log("in get joined rides request");
   joined_rides_list = [];
-  console.log(`my google id: ${req.my_googleid}`);
+  // console.log(`my google id: ${req.my_googleid}`);
   Ride.find().then((rides) => {
     for(var i=0;i<rides.length;i++) {
       if(rides[i].user_googleId_joined.includes(req.query.my_googleid)) {
@@ -357,14 +357,14 @@ const checkIfExpired = (ride_end_date, ride_end_time) => {
 }
 
 router.post("/setRideCardActivity", (req, res) => {
-  console.log("Setting expired ride cards to inactive");
+  // console.log("Setting expired ride cards to inactive");
 
   Ride.find({active: true}).then((rides) => {
     for (var i=0;i<rides.length;i++) {
       isExpired = checkIfExpired(rides[i].end_date, rides[i].end_time);
       if(isExpired) {
         // console.log("deleting");
-        console.log(`rides[i]: ${rides[i]._id}`);
+        // console.log(`rides[i]: ${rides[i]._id}`);
         rides[i].active = false;
         rides[i].save();
         // Ride.deleteOne({_id: rides[i]._id}).then((student) => console.log("Deleted"));
@@ -392,7 +392,7 @@ router.get("/chat", (req, res) => {
 });
 
 router.post("/message", auth.ensureLoggedIn, (req, res) => {
-  console.log(`Received a chat message from ${req.user.user_name}: ${req.body.content}`);
+  // console.log(`Received a chat message from ${req.user.user_name}: ${req.body.content}`);
 
   // insert this message into the database
   const message = new Message({
@@ -405,7 +405,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
 
-  console.log(`JSON stringify of message: ${message}`)
+  // console.log(`JSON stringify of message: ${message}`)
 
   socketManager.getIo().emit("message", message);
   
@@ -417,7 +417,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.post("/userMessage", auth.ensureLoggedIn, (req, res) => {
-  console.log(`Received a chat message from ${req.user.user_name}: ${req.body.content}`);
+  // console.log(`Received a chat message from ${req.user.user_name}: ${req.body.content}`);
 
   // insert this message into the database
   const message = new Message({
@@ -430,7 +430,7 @@ router.post("/userMessage", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
 
-  console.log(`JSON stringify of message: ${message}`)
+  // console.log(`JSON stringify of message: ${message}`)
 
   socketManager.getIo().emit("message", message);
 });
@@ -454,7 +454,7 @@ router.get("/activeUsers", (req, res) => {
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
-  console.log(`API route not found: ${req.method} ${req.url}`);
+  // console.log(`API route not found: ${req.method} ${req.url}`);
   res.status(404).send({ msg: "API route not found" });
 });
 
