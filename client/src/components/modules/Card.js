@@ -120,6 +120,9 @@ const Card = (props) => {
   };
 
   useEffect(() => {
+    if(members !== "") {
+      setMembers("");
+    }
     for (var i = 0; i<props.user_googleId_joined.length; i++) {
       get("/api/getName2",{user_googleid:props.user_googleId_joined[i]}).then((user) => {
         handleMembers(user.user_name);

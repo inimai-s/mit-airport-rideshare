@@ -162,7 +162,6 @@ const FindARide = (props) => {
     user_googleid: props.user_googleid,
   };
 
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
