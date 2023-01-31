@@ -1,5 +1,11 @@
 # How to code a webapp with this skeleton
 
+## 3rd party libraries/APIs
+React.js: https://reactjs.org/
+React Bootstrap: https://react-bootstrap.github.io/
+react-linkify: https://www.npmjs.com/package/react-linkify
+react-add-to-calendar: https://jasonsalzman.github.io/react-add-to-calendar/
+
 ## Initial setup
 
 All teammates will need (explained in http://weblab.is/install)
