@@ -36,7 +36,6 @@
   --m: 16px;
   --l: 24px;
   --xl: 32px;
-  --xxl: 500px;
 }
 
 body {
@@ -110,10 +109,9 @@ form {
 }
 
 .u-alignText {
-  text-align: center;
   text-decoration: none;
-  border-radius: 10px;
-  padding: var(--s);
+  border-radius: 5px;
+  padding: 8px 10px;
 }
 
 .u-inlineBlock {
@@ -188,10 +186,6 @@ form {
   margin-right: var(--xl);
 }
 
-.u-margin-right-xxl{
-  margin-right: var(--xxl)
-}
-
 .u-fontsize-m{
   font-size: var(--m);
 }
@@ -221,4 +215,8 @@ form {
   border: var(--darkgrey) 2px solid;
   border-radius: var(--xs);
   padding:16px;
+}
+
+.u-calendarButtonWidth{
+  width:193px;
 }

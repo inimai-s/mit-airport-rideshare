@@ -161,13 +161,8 @@ const Card = (props) => {
           <br></br>
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
           <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
-          <br></br>
         </Col>
       </Row>
-
-      <br></br>
-
-      
 
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -179,16 +174,15 @@ const Card = (props) => {
 
           You have also been added to the group chat for {props.user_name}'s ride to {props.destination}!
           <br></br><br></br>
-          <Button className="u-backgroundColorPrimary">
+          <Button className="Card-alignButtons u-backgroundColorPrimary u-margin-right-m">
             <Link to="/chat/" className="u-noTextDecoration">
               <span className="u-colorWhite">Go to My Chats page!</span>
             </Link>
           </Button>
-          <span>
-            <div className="u-backgroundColorMedBlue u-fontsize-m u-margin-right-xxl u-pointer u-margin-top-s u-colorWhite u-alignText">
-              <AddToCalendar event={event} buttonLabel="Add Ride to Calendar" buttonTemplate={icon}/>
-            </div>
-          </span>
+
+          <div className="Card-alignButtons Card-calendarButtonClass u-backgroundColorMedBlue u-fontsize-m u-pointer u-alignText u-colorWhite u-calendarButtonWidth">
+            <AddToCalendar event={event} buttonLabel="Add Ride to Calendar" buttonTemplate={icon}/>
+          </div>
 
         </Modal.Body>
       </Modal>

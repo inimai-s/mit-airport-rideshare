@@ -1,4 +1,13 @@
 .ProfileCard-container {
 margin-top: 32px;
 }
-  
+
+.calendarButtonClass a{
+    color:white;
+    text-decoration: none;
+}
+
+.calendarButtonClass a:hover{
+    color:white;
+    text-decoration: none;
+}

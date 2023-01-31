@@ -45,7 +45,7 @@ const NewPostInput = (props) => {
       <button
         type="submit"
         className="NewPostInput-button u-pointer"
-        value="Submit"
+        value="Send"
         onClick={handleSubmit}
       >
         Submit
