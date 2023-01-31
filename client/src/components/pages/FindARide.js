@@ -187,20 +187,6 @@ const FindARide = (props) => {
     let reversedRideObjs = rideObjs.reverse();
       setActiveRides(reversedRideObjs);
     });
-
-    // if (destinationMIT===false && destinationLogan===false) {
-    //   setDestinationMIT(false);
-    //   setDestinationLogan(false);
-    // }
-    // if (startDate!=="")
-    // setStartDate("");
-    // setStartTime("");
-    // setEndDate("");
-    // setEndTime("");
-    // setFreshmanBox(false);
-    // setSophomoreBox(false);
-    // setJuniorBox(false);
-    // setSeniorBox(false);
   };
   const handleShow = () => setShow(true);
   const handleClear=()=>{
