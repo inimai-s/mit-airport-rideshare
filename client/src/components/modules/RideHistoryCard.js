@@ -98,7 +98,7 @@ const RideHistoryCard = (props) => {
           <p className="Card-storyContent"><span className="u-bold">Ride Departure:</span> <span className="u-colorPrimary">{modified_end_date} at {modified_end_time}</span></p>
           <br></br>
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
-          <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
+          <p className="Card-storyContent"><span className="u-bold">Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
         </Col>
       </Row>
 
