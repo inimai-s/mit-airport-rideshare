@@ -316,7 +316,7 @@ const CreateARide = (props) => {
   }else{
     masterModal=<>
       <h1>Create A Ride</h1>
-      <h4>Please log in to Google with an @mit.edu email first!</h4>
+      <h4>Please login to Google with an @mit.edu email first!</h4>
     </>
   }
 
