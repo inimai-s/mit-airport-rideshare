@@ -306,7 +306,7 @@ const CreateARide = (props) => {
           <Modal.Title>Successfully created a ride!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          People can join your ride on <Link to="/findARide/">Find a Ride</Link>
+          You can see your ride on <Link to="/myProfile/">My Profile</Link>. Others will see your ride on the Find a Ride page.
           <br></br><br></br>
 
           A group chat has also been created for your ride in <Link to="/chat/">My Chats</Link>

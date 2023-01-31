@@ -138,7 +138,7 @@ const FindARide = (props) => {
       />
     ));
   } else {
-    ridesList = <div><br></br><span class="u-bold">No rides are available yet, feel free to create one now!</span></div>;
+    ridesList = <div><br></br><span class="u-bold">No rides that meet your preferences are available yet, feel free to create one now!</span></div>;
   }
 
   let stringDestination="";

@@ -38,7 +38,7 @@ const RideHistory = (props) => {
   if (props.user_googleid && props.user_name){
     masterModal=<>
       <h1>My Ride History</h1>
-      <p>This page shows your completed rides!</p>
+      <p>This page shows your rides from the past!</p>
     </>
 
     const hasJoinedRides = oldRides.length !== 0;
