@@ -55,7 +55,7 @@ const SingleRideName = (props) => {
         props.setActiveUser(props.rideJoined);
       }}
     >
-      {props.rideJoined.user_name}'s Ride to {props.rideJoined.destination}, {props.rideJoined.start_date} 
+      {props.rideJoined.user_name}'s Ride to {props.rideJoined.destination}, {(props.rideJoined.start_date).substring(5,7)}/{(props.rideJoined.start_date).substring(8,10)}/{(props.rideJoined.start_date).substring(0,4)} 
       <br></br>
       {members.map((m,i) => (
         <img key={i} src={m.photoLink} alt="Profile Image" className="SingleRideName-profilePhoto"/>
