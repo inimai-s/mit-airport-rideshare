@@ -36,6 +36,7 @@
   --m: 16px;
   --l: 24px;
   --xl: 32px;
+  --xxl: 500px;
 }
 
 body {
@@ -104,6 +105,17 @@ form {
   align-items: center;
 }
 
+.u-white {
+  color: white;
+}
+
+.u-alignText {
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: var(--s);
+}
+
 .u-inlineBlock {
   display: inline-block;
 }
@@ -126,6 +138,12 @@ form {
 
 .u-link {
   color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.u-link-mod {
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }
@@ -168,6 +186,10 @@ form {
 
 .u-margin-right-xl{
   margin-right: var(--xl);
+}
+
+.u-margin-right-xxl{
+  margin-right: var(--xxl)
 }
 
 .u-fontsize-m{

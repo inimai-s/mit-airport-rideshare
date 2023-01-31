@@ -11,6 +11,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
+import AddToCalendar from "react-add-to-calendar";
 /**
  * Card is a component for displaying content like stories
  *
@@ -71,48 +73,6 @@ const Card = (props) => {
           // Do nothing
       });
     });
-
-    //-------------------------------------------------------------------
-    const event = {
-      'summary': 'Google I/O 2015',
-      'location': '800 Howard St., San Francisco, CA 94103',
-      'description': 'A chance to hear more about Google\'s developer products.',
-      'start': {
-        'dateTime': '2023-01-23T09:00:00-07:00',
-        'timeZone': 'America/Los_Angeles',
-      },
-      'end': {
-        'dateTime': '2023-01-23T17:00:00-07:00',
-        'timeZone': 'America/Los_Angeles',
-      },
-      'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=2'
-      ],
-      'attendees': [
-        {'email': 'inimai@mit.edu'},
-        {'email': 'sbrin@example.com'},
-      ],
-      'reminders': {
-        'useDefault': false,
-        'overrides': [
-          {'method': 'email', 'minutes': 24 * 60},
-          {'method': 'popup', 'minutes': 10},
-        ],
-      },
-    };
-    
-    calendar.events.insert({
-      auth: auth,
-      calendarId: 'primary',
-      resource: event,
-    }, function(err, event) {
-      if (err) {
-        console.log('There was an error contacting the Calendar service: ' + err);
-        return;
-      }
-      console.log('Event created: %s', event.htmlLink);
-    });
-    
   };
 
   let modified_start_date = "";
@@ -167,6 +127,18 @@ const Card = (props) => {
     }
   },[props.user_googleId_joined]);
 
+  let ride_start_ms = new Date(props.start_date.concat(" ").concat(props.start_time));
+  let ride_title = props.user_name.concat("'s Ride to ").concat(props.destination);
+  let ride_end_ms = new Date(ride_start_ms.getTime() + 30*60000);
+  const event = {
+    title: ride_title,
+    description: props.extra_ride_info,
+    startTime: ride_start_ms,
+    endTime: ride_end_ms,
+    location: props.meetup_location,
+  };
+  let icon = { 'calendar-plus-o': 'left' };
+
   return (
     <div className="u-lightGreyCard Card-container">
       <Row>
@@ -189,6 +161,10 @@ const Card = (props) => {
           <br></br>
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>
           <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
+          <br></br>
+          <div className="u-backgroundColorMedBlue u-fontsize-m u-margin-right-xxl u-pointer u-margin-top-s u-colorWhite u-alignText">
+            <AddToCalendar event={event} buttonLabel="Add Ride to Calendar" buttonTemplate={icon}/>
+          </div>
         </Col>
       </Row>
 

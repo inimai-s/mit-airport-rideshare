@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import AddToCalendar from "react-add-to-calendar";
 
 /**
  * Card is a component for displaying content like stories
@@ -108,6 +109,17 @@ const ProfileCard = (props) => {
     }
   },[props.user_googleId_joined]);
   
+  let ride_start_ms = new Date(props.start_date.concat(" ").concat(props.start_time));
+  let ride_title = props.user_name.concat("'s Ride to ").concat(props.destination);
+  let ride_end_ms = new Date(ride_start_ms.getTime() + 30*60000);
+  const event = {
+    title: ride_title,
+    description: props.extra_ride_info,
+    startTime: ride_start_ms,
+    endTime: ride_end_ms,
+    location: props.meetup_location,
+  };
+  let icon = { 'calendar-plus-o': 'left' };
 
   return (
   
@@ -132,6 +144,10 @@ const ProfileCard = (props) => {
 
           <p className="Card-storyContent"><span className="u-bold">Extra Information:</span> <span className="u-colorPrimary">{props.extra_ride_info}</span></p>  
           <p className="Card-storyContent"><span className="u-bold">Current Ride Members:</span> <span className="u-colorPrimary">{members.slice(0,-2)}</span></p>
+          <br></br>
+          <div className="u-backgroundColorMedBlue u-fontsize-m u-margin-right-xxl u-pointer u-margin-top-s u-colorWhite u-alignText">
+            <AddToCalendar event={event} buttonLabel="Add Ride to Calendar" buttonTemplate={icon}/>
+          </div>
         </Col>
       </Row>
     </div>

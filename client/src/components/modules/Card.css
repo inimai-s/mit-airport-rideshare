@@ -16,6 +16,12 @@
   font-weight: 600;
 }
 
+.Card-link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .Card-storyContent {
   margin: var(--s) 0 0;
 }
