@@ -159,7 +159,7 @@ const Chatbook = (props) => {
     }else{
       masterModal=<>
       <h1>My Chats</h1>
-      <p>You are not part of any rides right now. Join or create one to be part of a chat!</p>
+      <p className="u-bold">You are not currently part of any rides, join or create one now to be part of a chat!</p>
       </>
     }
     

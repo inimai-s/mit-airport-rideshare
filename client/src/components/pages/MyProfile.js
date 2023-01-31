@@ -72,7 +72,7 @@ const MyProfile = (props) => {
       />
     ));
   } else {
-    ridesJoinedModal = <div>No rides joined!</div>;
+    ridesJoinedModal = <div>You are not currently part of any active rides!</div>;
   }
 
   let masterModal = null;
@@ -89,12 +89,12 @@ const MyProfile = (props) => {
       <Button className="u-backgroundColorPrimary"><Link to="/editMyProfile/" className="u-noTextDecoration"><span className="u-colorWhite">Edit</span></Link></Button>
     </div>
     <br></br><br></br>
+    <h2>My Active Rides:</h2>{ridesJoinedModal}
     </>
   }else{
     masterModal=<>
       <h1>My Profile</h1>
       <h4>Please log in to Google with an @mit.edu email first!</h4>
-      <br></br>
     </>
   }
 
@@ -115,7 +115,7 @@ const MyProfile = (props) => {
           <Modal.Title>Please Edit Your Profile!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        You'll need to input your class year in order to view a list of available rides in the Find A Ride page.
+        You'll need to input your class year in order to view a list of available rides in <Link to="/findARide/">Find a Ride</Link>
         <br></br><br></br>
         As for your major, feel free to input anything! That's just for fun :)
         </Modal.Body>
@@ -130,9 +130,7 @@ const MyProfile = (props) => {
 
   return (
     <>
-      <Container className="u-marginTopPage">{masterModal}</Container>
-      
-      <Container className="u-marginBottomPage"><h2>My Active Rides:</h2>{ridesJoinedModal}</Container>
+      <Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container>
 
       {updateProfileModal}
     </>

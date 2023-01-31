@@ -222,7 +222,37 @@ const CreateARide = (props) => {
   };
 
   let masterModal = null;
+  let updateProfileModal = null;
+
+  const [showProfileModal, setShowProfileModal] = useState(true);
+
+  const handleCloseProfileModal = () => setShowProfileModal(false);
+
+  const handleGoToEditProfile = () => {
+    setShowProfileModal(false);
+    location.replace("/editMyProfile/");
+  };
+
+
   if (props.user_googleid && props.user_name){
+    if(props.classYear === "" || props.classYear === "Unknown") {
+      updateProfileModal = <>
+      <Modal show={showProfileModal} onHide={handleCloseProfileModal}>
+        <Modal.Header>
+          <Modal.Title>Please fill in your Class Year!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        That way people can filter rides based on the Ride Captain's class year!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleGoToEditProfile}>
+            Edit Profile
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </>
+    }
+
     masterModal=<>
       <h1>Create A Ride</h1>
       <p>You will be the "Captain" for this shared ride!
@@ -239,16 +269,6 @@ const CreateARide = (props) => {
         <input type="text" value={meetupLocationText} onChange={handleMeetupLocationChange} required/>
 
         <br></br><br></br>
-
-        {/* <span className="u-bold u-margin-right-m">Departure Start Date/Time:</span>
-        <input type="date" value={startDate} onChange={handleStartDateChange} required/>
-        <input type="time" value={startTime} onChange={handleStartTimeChange} required/>
-
-        <br></br><br></br>
-
-        <span className="u-bold u-margin-right-m">Departure End Date/Time:</span>
-        <input type="date" value={endDate} onChange={handleEndDateChange} required/>
-        <input type="time" value={endTime} onChange={handleEndTimeChange} required/> */}
 
         <span className="u-bold u-margin-right-m">Ride Departure Date and Time:</span>
         <input type="date" value={endDate} onChange={handleEndDateChange} required/>
@@ -281,18 +301,17 @@ const CreateARide = (props) => {
         <Button className="u-backgroundColorPrimary" onClick={submitRide}>Submit!</Button>
       </div>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Successfully created a ride!</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            People can join your ride on <Link to="/findARide/">Find a Ride</Link>
-            <br></br><br></br>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Successfully created a ride!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          People can join your ride on <Link to="/findARide/">Find a Ride</Link>
+          <br></br><br></br>
 
-            A group chat has also been created for your ride in <Link to="/chat/">My Chats</Link>
-          </Modal.Body>
-        </Modal>
-      
+          A group chat has also been created for your ride in <Link to="/chat/">My Chats</Link>
+        </Modal.Body>
+      </Modal>
     </>
   }else{
     masterModal=<>
@@ -302,7 +321,10 @@ const CreateARide = (props) => {
   }
 
   return (
-    <><Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container></>
+    <>
+    <Container className="u-marginTopPage u-marginBottomPage">{masterModal}</Container>
+    {updateProfileModal}
+    </>
   );
 };
 
