@@ -78,9 +78,15 @@ const Chatbook = (props) => {
       setRidesJoined(reversedRideObjs);
   
       if (reversedRideObjs.length > 0){
+        // console.log(`rideObjs[0].start_date: ${rideObjs[0].start_date}`);
+        const month = (rideObjs[0].start_date).substring(5,7);
+        const day = (rideObjs[0].start_date).substring(8,10);
+        const year = (rideObjs[0].start_date).substring(0,4);
+
         let recipient = {
           _id: rideObjs[0]._id,
-          rideName: `${rideObjs[0].user_name}'s Ride to ${rideObjs[0].destination}, ${rideObjs[0].start_date}`
+          // rideName: `${rideObjs[0].user_name}'s Ride to ${rideObjs[0].destination}, ${rideObjs[0].start_date}`
+          rideName: `${rideObjs[0].user_name}'s Ride to ${rideObjs[0].destination}, ${month}/${day}/${year}`
         }
 
         console.log(`recipient being passed into loadMessageHistory: ${JSON.stringify(recipient)}`)
@@ -115,10 +121,19 @@ const Chatbook = (props) => {
   }, [activeChat.recipient._id, props.userId]);
 
   const setActiveUser = (rideObj) => {
+    // let modified_ride_name = "";
+    console.log(`rideObj.start_date: ${rideObj.start_date}`);
+    const month = (rideObj.start_date).substring(5,7);
+    const day = (rideObj.start_date).substring(8,10);
+    const year = (rideObj.start_date).substring(0,4);
+    // const modified_ride_name = rideObj.start_date.substring(5,7).concat("/").concat(rideObj.start_date.subtring(8,10)).concat("/").concat(rideObj.start_date.substring(0,4));
+
+
     if (rideObj._id !== activeChat.recipient._id) {
       let myRecipient = {
         _id: rideObj._id,
-        rideName: `${rideObj.user_name}'s Ride to ${rideObj.destination}, ${rideObj.start_date}`
+        // rideName: `${rideObj.user_name}'s Ride to ${rideObj.destination}, ${rideObj.start_date}`
+        rideName: `${rideObj.user_name}'s Ride to ${rideObj.destination}, ${month}/${day}/${year}`
       }
 
       setActiveChat({
