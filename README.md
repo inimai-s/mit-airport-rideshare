@@ -5,6 +5,9 @@ Users can create a new ride group, filter through available ride groups to find 
 
 The “Find a Ride” page also has a smart filter that shows rides based on your preferences and only includes rides that you haven’t joined, still contain available spots, and are comfortable including students of your class year.
 
+# Website
+https://mit-rideshare.herokuapp.com/
+
 ## Core Technologies
 - MongoDB
 - Express.js
